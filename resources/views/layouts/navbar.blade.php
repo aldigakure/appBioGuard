@@ -1,5 +1,4 @@
-
-<nav class="navbar navbar-expand-lg bg-light">
+<nav id="navbar" class="navbar fixed-top navbar-expand-lg 2 bg-transparent">
     <div class="container-fluid">
         <a href="/" class="logo navbar-brand">
             <div class="logo-icon">🌿</div>
@@ -27,14 +26,14 @@
 
                     <a href="#about" class="nav-link">Tentang</a>
                 </li>
-              
+
             </ul>
             <div class="d-flex">
                 @auth
                 @else
-                    <a href="{{ route('login') }}" class="btn btn-outline me-2">Masuk</a>
+                <a href="{{ route('login') }}" class="btn btn-outline me-2">Masuk</a>
 
-                    <a href="{{ route('register') }}" class="btn btn-primary ">Daftar</a>
+                <a href="{{ route('register') }}" class="btn btn-primary ">Daftar</a>
 
                 @endauth
             </div>

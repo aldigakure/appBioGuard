@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
 
 </head>
@@ -35,24 +35,82 @@
     <script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
+
+        // Define sections for scroll spy (order matters - top to bottom)
+        const sections = ['features', 'entities', 'stats', 'about'];
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        // Function to update active nav link
+        function updateActiveNavLink() {
+            const scrollPosition = window.scrollY + 150; // Offset for navbar height
+
+            // If at top of page, activate "Fitur"
+            if (window.scrollY < 100) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                const fiturLink = document.querySelector('.navbar-nav .nav-link[href="#features"]');
+                if (fiturLink) fiturLink.classList.add('active');
+                return;
+            }
+
+            // Find which section is currently in view
+            let currentSection = null;
+
+            for (const sectionId of sections) {
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        currentSection = sectionId;
+                        break;
+                    }
+                }
+            }
+
+            // Update active class on nav links
+            if (currentSection) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    const href = link.getAttribute('href');
+                    if (href === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        }
+
+        // Navbar background and scroll spy on scroll
         window.addEventListener('scroll', () => {
+            // Navbar background effect
             if (window.scrollY > 50) {
                 navbar.classList.add('nav-scrolled');
             } else {
                 navbar.classList.remove('nav-scrolled');
             }
+
+            // Update active nav link based on scroll position
+            updateActiveNavLink();
         });
+
+        // Initialize active state on page load
+        updateActiveNavLink();
 
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
+
+                    // Update active class immediately on click
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
                 }
             });
         });
