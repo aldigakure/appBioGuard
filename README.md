@@ -1,59 +1,256 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/BioGuard-Konservasi%20Digital-00875A?style=for-the-badge&logo=leaf&logoColor=white" alt="BioGuard Badge">
 </p>
 
-## About Laravel
+<h1 align="center">🌿 BioGuard</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <strong>Platform Konservasi Digital Berbasis Artificial Intelligence</strong><br>
+  <em>Memantau, Melindungi, dan Mendata Keanekaragaman Hayati secara Real-Time</em>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+  <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=flat-square&logo=laravel&logoColor=white" alt="Laravel 12">
+  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP 8.2+">
+  <img src="https://img.shields.io/badge/AI-Powered-00A67E?style=flat-square&logo=openai&logoColor=white" alt="AI Powered">
+  <img src="https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=flat-square" alt="Status">
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🌍 Tentang BioGuard
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Keanekaragaman hayati adalah fondasi kehidupan di bumi. Setiap spesies flora dan fauna memiliki peran penting dalam menjaga keseimbangan ekosistem yang menunjang kehidupan kita semua. Namun, realita menunjukkan kondisi yang memprihatinkan — perburuan liar, penebangan hutan ilegal, pencemaran lingkungan, dan perubahan iklim terus mengancam keberadaan berbagai spesies.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Proses pemantauan keanekaragaman hayati selama ini masih dilakukan secara manual dan terpisah-pisah. Metode konvensional ini membutuhkan waktu, biaya, dan tenaga yang besar, serta sering menghasilkan data yang tidak real-time dan kurang akurat. Akibatnya, tindakan pencegahan dan perlindungan tidak dapat dilakukan secara optimal.
 
-## Laravel Sponsors
+**BioGuard** hadir sebagai solusi — sebuah platform konservasi digital yang memanfaatkan **Artificial Intelligence (AI)** untuk membantu pemantauan, perlindungan, dan pendataan keanekaragaman hayati secara terintegrasi dan real-time.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🎯 Mengapa BioGuard?
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+| Tantangan | Solusi BioGuard |
+|-----------|-----------------|
+| Pemantauan manual yang lambat dan mahal | Identifikasi otomatis spesies melalui AI |
+| Data tersebar dan tidak terintegrasi | Platform terpusat dengan peta interaktif |
+| Deteksi ancaman yang terlambat | Sistem peringatan dini berbasis real-time |
+| Rendahnya partisipasi masyarakat | Fitur citizen science dengan gamifikasi |
+| Sulitnya menentukan prioritas restorasi | Analisis prediktif berbasis citra satelit |
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ⚡ Fitur Utama
 
-## Code of Conduct
+### 🔬 BioGuard — Pemantauan dan Perlindungan Spesies
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Mengidentifikasi hewan dan tumbuhan melalui foto, rekaman sensor, dan kamera trap untuk memantau populasi spesies langka atau terancam punah.
 
-## Security Vulnerabilities
+**Fitur Tambahan:**
+- 🗺️ Peta interaktif habitat satwa
+- 🔔 Notifikasi spesies yang membutuhkan perlindungan mendesak
+- 👥 Komunitas warga untuk melaporkan temuan satwa di lapangan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### 🌱 Bio-AI — Prediksi dan Restorasi Ekosistem
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Menganalisis data lingkungan seperti citra satelit, tingkat kelembapan, dan data deforestasi untuk menentukan area yang paling membutuhkan restorasi ekosistem.
+
+**Fitur Tambahan:**
+- 📊 Dashboard dampak reboisasi
+- 🔄 Simulasi perubahan ekosistem akibat intervensi tertentu
+- 🤝 Integrasi dengan program sukarelawan penanaman pohon
+
+---
+
+### 🛡️ EcoDetect — Deteksi Ancaman Biodiversitas
+
+Memantau ancaman terhadap biodiversitas seperti perburuan liar, penebangan ilegal, dan polusi di habitat kritis dengan memberikan peringatan dini kepada pihak berwenang.
+
+**Fitur Tambahan:**
+- 📈 Analisis tren ancaman dari data real-time
+- 💡 Rekomendasi tindakan mitigasi berbasis AI
+- 📡 Integrasi dengan sensor lingkungan atau drone
+
+---
+
+### 🌸 PlantID — Edukasi dan Citizen Science
+
+Memungkinkan pengguna mengidentifikasi tumbuhan dan hewan dari foto, memperoleh informasi status konservasi, dan berkontribusi langsung dalam pendataan biodiversitas lokal.
+
+**Fitur Tambahan:**
+- 🎮 Gamifikasi untuk mendorong partisipasi masyarakat
+- 📍 Statistik biodiversitas per wilayah
+- 🏞️ Rekomendasi lokasi kunjungan ramah lingkungan
+
+---
+
+## 💡 Bagaimana AI Bekerja?
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         INPUT DATA                              │
+│   📷 Foto Pengguna  |  🎥 Kamera Trap  |  🛰️ Citra Satelit      │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                    PEMROSESAN AI                                │
+│   🔍 Computer Vision  |  🧠 Machine Learning  |  📊 Analytics   │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         OUTPUT                                  │
+│  ✅ Identifikasi Spesies  |  ⚠️ Early Warning  |  📋 Report    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+Teknologi AI dalam BioGuard menggunakan **Computer Vision** dan **Machine Learning** untuk:
+- Mengenali pola visual, bentuk, dan ciri khas spesies
+- Menganalisis kondisi lingkungan dan habitat
+- Memprediksi dampak perubahan ekosistem
+- Mendeteksi aktivitas mencurigakan seperti perburuan liar
+
+---
+
+## 👥 Untuk Siapa?
+
+| Pengguna | Manfaat |
+|----------|---------|
+| **Masyarakat Umum** | Media edukasi dan sarana partisipasi aktif dalam pelestarian lingkungan |
+| **Peneliti & Akademisi** | Data biodiversitas terstruktur untuk riset dan pengembangan ilmu pengetahuan |
+| **Pemerintah & Lembaga Konservasi** | Alat bantu monitoring, early warning, dan penyusunan kebijakan konservasi |
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Teknologi |
+|-------|-----------|
+| **Backend** | Laravel 12, PHP 8.2+ |
+| **Frontend** | Blade Templates, Vite |
+| **AI/ML** | Python, TensorFlow (untuk model identifikasi) |
+| **Database** | SQLite / MySQL |
+| **DevOps** | Laravel Sail, Docker |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- PHP >= 8.2
+- Composer
+- Node.js & npm
+
+### Installation
+
+```bash
+# Clone repository
+git clone https://github.com/your-username/bioguard.git
+cd bioguard
+
+# Install dependencies dan setup otomatis
+composer setup
+```
+
+Atau secara manual:
+
+```bash
+# Install PHP dependencies
+composer install
+
+# Copy environment file
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Run database migrations
+php artisan migrate
+
+# Install frontend dependencies
+npm install
+
+# Build assets
+npm run build
+```
+
+### Development
+
+```bash
+# Jalankan development server dengan semua services
+composer dev
+```
+
+Perintah ini akan menjalankan:
+- 🌐 Laravel development server
+- 📬 Queue listener
+- 📜 Log viewer (Pail)
+- ⚡ Vite HMR
+
+---
+
+## 🌟 Dampak yang Diharapkan
+
+### Aspek Sosial
+✅ Meningkatkan kesadaran masyarakat terhadap pelestarian lingkungan  
+✅ Membangun budaya partisipatif dalam menjaga ekosistem
+
+### Aspek Ekonomi
+✅ Efisiensi biaya pemantauan dan konservasi  
+✅ Dasar perencanaan ekowisata dan pembangunan berkelanjutan
+
+### Aspek Teknologi
+✅ Penerapan teknologi modern dalam pengelolaan lingkungan  
+✅ Peluang inovasi lanjutan (IoT, Drone, Predictive Analytics)
+
+---
+
+## 🔮 Rencana Pengembangan
+
+- [ ] Integrasi sensor IoT untuk monitoring real-time
+- [ ] Penambahan dukungan drone untuk survei area
+- [ ] Analisis prediktif jangka panjang
+- [ ] Mobile application (iOS & Android)
+- [ ] Multi-language support
+
+---
+
+## 📚 Referensi
+
+- Setiawan, A. (2022). *Keanekaragaman Hayati Indonesia: Masalah dan Upaya Konservasinya*
+- Kusmana, C. (2015). *Keanekaragaman hayati (biodiversitas) sebagai elemen kunci ekosistem kota hijau*
+- Malik, A.A., et al. (2020). *Keanekaragaman Hayati Flora dan Fauna di Kawasan TNBBS*
+- Jainuddin, N. (2023). *Dampak deforestasi terhadap keanekaragaman hayati dan ekosistem*
+
+---
+
+## 📄 Dokumentasi Lengkap
+
+- 🎬 [Video Demo](https://drive.google.com/drive/folders/1MUl4DCkU0H5fu9U8sY2DEyHWEmJL3-v8)
+- 📑 [Presentasi](https://www.canva.com/design/DAG-KThxMVA/bIWjeMWYRJH4q0KnWHPrA/edit)
+
+---
+
+## 🤝 Kontribusi
+
+Kami sangat terbuka untuk kontribusi! Silakan buat issue atau pull request untuk membantu mengembangkan BioGuard.
+
+---
+
+## 📝 Lisensi
+
+Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  <strong>🌿 Bersama BioGuard, Mari Jaga Keanekaragaman Hayati untuk Generasi Mendatang 🌿</strong>
+</p>
+
+<p align="center">
+  <em>Dikembangkan dengan ❤️ untuk DINACOM 2026</em>
+</p>
