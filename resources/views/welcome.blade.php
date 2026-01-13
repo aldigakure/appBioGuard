@@ -3,11 +3,11 @@
   @section('content')
   <!-- Hero Section -->
   <section class="hero bg-mesh p-0" style="padding-top:8rem !important">
-      <div class="hero-container ">
+      <div class="hero-container  ">
           <div class="hero-content px-4 pb-4">
               <div class="hero-badge">
-                  <span>🤖</span>
-                  <span>Powered by Stemtarda</span>
+                 <img src="{{ asset('assets/images/antrek.png') }}" style="width: 26px" alt="" >
+                  <span >Powered by Stemtarda </span>
               </div>
               <h1 class="hero-title">
                   Lindungi <span class="text-gradient">Keanekaragaman Hayati</span> Indonesia

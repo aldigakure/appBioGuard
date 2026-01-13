@@ -10,6 +10,9 @@
     $userName = Auth::user()->name ?? session('admin_user.name') ?? 'User';
     $userEmail = Auth::user()->email ?? session('admin_user.email') ?? 'user@bioguard.id';
     $userAvatar = session('admin_user.avatar') ?? null;
+    $userPhone = session('admin_user.phone') ?? '+62 812-XXXX-XXXX';
+    $userLocation = session('admin_user.location') ?? 'Jakarta, Indonesia';
+    $userBio = session('admin_user.bio') ?? 'Pecinta alam dan relawan konservasi aktif. Bergabung dengan BIOGUARD untuk berkontribusi dalam pelestarian biodiversitas Indonesia.';
 @endphp
 
 @section('content')
@@ -35,7 +38,7 @@
                         <span class="badge badge-verified">✓ Terverifikasi</span>
                     </div>
                 </div>
-                <button class="btn btn-primary" id="editProfileBtn">Edit Profil</button>
+                <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profil</a>
             </div>
         </div>
 
@@ -66,14 +69,14 @@
                 <!-- About Section -->
                 <div class="profile-card">
                     <h3 class="card-title">📋 Tentang Saya</h3>
-                    <p class="profile-bio">Pecinta alam dan relawan konservasi aktif. Bergabung dengan BIOGUARD untuk berkontribusi dalam pelestarian biodiversitas Indonesia.</p>
+                    <p class="profile-bio">{{ $userBio }}</p>
                     <div class="profile-info-list">
                         <div class="info-item">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
-                            <span>Jakarta, Indonesia</span>
+                            <span>{{ $userLocation }}</span>
                         </div>
                         <div class="info-item">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -88,7 +91,7 @@
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"></path>
                             </svg>
-                            <span>+62 812-XXXX-XXXX</span>
+                            <span>{{ $userPhone }}</span>
                         </div>
                     </div>
                 </div>
@@ -187,76 +190,6 @@
     </div>
 </main>
 
-<!-- Edit Profile Modal -->
-<div class="modal-overlay" id="editProfileModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title">✏️ Edit Profil</h2>
-            <button type="button" class="modal-close" id="closeEditModal">&times;</button>
-        </div>
-        <form action="{{ route('profile.update') }}" method="POST" id="editProfileForm" enctype="multipart/form-data">
-            @csrf
-            <!-- Avatar Upload -->
-            <div class="form-group">
-                <label class="form-label">Foto Profil</label>
-                <div class="avatar-upload-wrapper">
-                    <div class="avatar-preview">
-                        @if($userAvatar)
-                            <img src="{{ asset('storage/' . $userAvatar) }}" alt="Preview" id="avatarPreview">
-                        @else
-                            <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=100" alt="Preview" id="avatarPreview">
-                        @endif
-                    </div>
-                    <div class="avatar-upload-btn">
-                        <input type="file" name="avatar" id="avatarInput" accept="image/*" hidden>
-                        <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('avatarInput').click()">
-                            📷 Pilih Foto
-                        </button>
-                        <span class="avatar-hint">JPG, PNG max 2MB</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Nama Lengkap</label>
-                <input type="text" name="name" class="form-input" id="inputName" value="{{ $userName }}">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Email</label>
-                <input type="email" name="email" class="form-input" id="inputEmail" value="{{ $userEmail }}">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Telepon</label>
-                <input type="tel" name="phone" class="form-input" placeholder="+62 812-XXXX-XXXX">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Lokasi</label>
-                <input type="text" name="location" class="form-input" placeholder="Jakarta, Indonesia">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Bio</label>
-                <textarea name="bio" class="form-textarea" placeholder="Ceritakan tentang diri Anda..."></textarea>
-            </div>
-            <div class="modal-actions">
-                <button type="button" class="btn-cancel" id="cancelEditBtn">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                    Batal
-                </button>
-                <button type="submit" class="btn-submit">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
-                        <polyline points="7 3 7 8 15 8"></polyline>
-                    </svg>
-                    Simpan Perubahan
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-
 @if(session('success'))
 <div class="alert-toast" id="successToast">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -265,33 +198,15 @@
     </svg>
     {{ session('success') }}
 </div>
-@endif
-
 <script>
-    const modal = document.getElementById('editProfileModal');
-    document.getElementById('editProfileBtn').addEventListener('click', () => modal.classList.add('active'));
-    document.getElementById('closeEditModal').addEventListener('click', () => modal.classList.remove('active'));
-    document.getElementById('cancelEditBtn').addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-
     // Auto-hide success toast
     const toast = document.getElementById('successToast');
     if (toast) {
         setTimeout(() => toast.classList.add('hide'), 3000);
     }
-
-    // Avatar preview
-    document.getElementById('avatarInput').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                document.getElementById('avatarPreview').src = e.target.result;
-            }
-            reader.readAsDataURL(file);
-        }
-    });
 </script>
+@endif
+
 @endsection
 
 

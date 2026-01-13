@@ -14,13 +14,13 @@
                 <h1>🔭 Observasi Biodiversitas</h1>
                 <p>Dokumentasikan pengamatan flora dan fauna untuk mendukung konservasi alam Indonesia</p>
             </div>
-            <button class="btn btn-primary" id="addObservasiBtn">
+            <a href="{{ route('observasi.create') }}" class="btn btn-primary">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <line x1="12" y1="5" x2="12" y2="19"></line>
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                 </svg>
                 Tambah Observasi
-            </button>
+            </a>
         </div>
 
         <!-- Filter Section -->
@@ -125,64 +125,4 @@
         </div>
     </div>
 </main>
-
-<!-- Add Observation Modal -->
-<div class="modal-overlay" id="addObservationModal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2 class="modal-title">📝 Tambah Observasi Baru</h2>
-            <button class="modal-close" id="closeModalBtn">&times;</button>
-        </div>
-        <form>
-            <div class="form-group">
-                <label class="form-label">Nama Spesies</label>
-                <input type="text" class="form-input" placeholder="Contoh: Harimau Sumatera">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Nama Latin</label>
-                <input type="text" class="form-input" placeholder="Contoh: Panthera tigris sumatrae">
-            </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label class="form-label">Kategori</label>
-                    <select class="form-select">
-                        <option value="">Pilih Kategori</option>
-                        <option value="mamalia">Mamalia</option>
-                        <option value="burung">Burung</option>
-                        <option value="reptil">Reptil</option>
-                        <option value="flora">Flora</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Tanggal</label>
-                    <input type="date" class="form-input">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Lokasi</label>
-                <input type="text" class="form-input" placeholder="Contoh: TN Kerinci Seblat">
-            </div>
-            <div class="form-group">
-                <label class="form-label">Deskripsi</label>
-                <textarea class="form-textarea" placeholder="Deskripsi pengamatan..."></textarea>
-            </div>
-            <div class="form-group">
-                <label class="form-label">Upload Foto</label>
-                <div class="upload-area">📷 Klik untuk upload</div>
-            </div>
-            <div class="modal-actions">
-                <button type="button" class="btn-cancel" id="cancelModalBtn">Batal</button>
-                <button type="submit" class="btn-submit">Simpan</button>
-            </div>
-        </form>
-    </div>
-</div>
-
-<script>
-    const modal = document.getElementById('addObservationModal');
-    document.getElementById('addObservasiBtn').addEventListener('click', () => modal.classList.add('active'));
-    document.getElementById('closeModalBtn').addEventListener('click', () => modal.classList.remove('active'));
-    document.getElementById('cancelModalBtn').addEventListener('click', () => modal.classList.remove('active'));
-    modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
-</script>
 @endsection

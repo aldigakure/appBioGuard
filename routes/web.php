@@ -23,6 +23,9 @@ Route::prefix('dashboard')->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     
     Route::get('/observasi', [ObservasiController::class, 'observasi'])->name('observasi');
+    Route::get('/observasi/create', [ObservasiController::class, 'create'])->name('observasi.create');
+    Route::post('/observasi', [ObservasiController::class, 'store'])->name('observasi.store');
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
