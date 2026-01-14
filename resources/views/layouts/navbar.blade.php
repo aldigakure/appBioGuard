@@ -31,13 +31,16 @@
                 @else
                     {{-- Landing Page Navigation --}}
                     <li class="nav-item">
+                        <a href="#home" class="nav-link">beranda</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="#features" class="nav-link">Fitur</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#entities" class="nav-link">Entitas</a>
+                        <a href="#stats" class="nav-link">Statistik</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#stats" class="nav-link">Statistik</a>
+                        <a href="#entities" class="nav-link">Entitas</a>
                     </li>
                     <li class="nav-item">
                         <a href="#about" class="nav-link">Tentang</a>

@@ -2,11 +2,11 @@
 
   @section('content')
   <!-- Hero Section -->
-  <section class="hero bg-mesh p-0" style="padding-top:8rem !important">
+  <section class="hero bg-mesh p-0" id="home" style="padding-top:8rem !important">
       <div class="hero-container  ">
           <div class="hero-content px-4 pb-4">
               <div class="hero-badge">
-                 <img src="{{ asset('assets/images/antrek.png') }}" style="width: 26px" alt="" >
+                  <img src="{{ asset('assets/images/antrek.png') }}" style="width: 26px" alt="" >
                   <span >Powered by Stemtarda </span>
               </div>
               <h1 class="hero-title">
@@ -29,7 +29,7 @@
                   </a>
               </div>
           </div>
-
+          
           <div class="hero-visual ">
               <div class="hero-blob"></div>
               <img src="{{ asset('assets/images/dinacommaskot.png') }}" alt="maskot">
@@ -38,22 +38,94 @@
                   <div>
                       <div style="font-weight: 600; color: #111827;">Species Tracked</div>
                       <div style="color: var(--primary-600); font-weight: 700;">5,000+</div>
-                  </div>
-              </div>
-
-              <div class="floating-card floating-card-2">
-                  <div class="floating-icon icon-cyan">🔍</div>
-                  <div>
-                      <div style="font-weight: 600; color: #111827;">AI Analysis</div>
-                      <div style="color: var(--accent-600); font-weight: 700;">Real-time</div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
-
-  <!-- Entities Section -->
-  <section class="section" id="entities" style="background: white;">
+                    </div>
+                </div>
+                
+                <div class="floating-card floating-card-2">
+                    <div class="floating-icon icon-cyan">🔍</div>
+                    <div>
+                        <div style="font-weight: 600; color: #111827;">AI Analysis</div>
+                        <div style="color: var(--accent-600); font-weight: 700;">Real-time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <span>✨</span>
+                    <span>Fitur Unggulan</span>
+                </div>
+                <h2 class="section-title">Teknologi Canggih untuk Konservasi</h2>
+                <p class="section-description">
+                    Memanfaatkan AI dan teknologi terkini untuk pemantauan biodiversitas yang lebih efektif dan efisien.
+                </p>
+            </div>
+  
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+                <div class="feature-card card-hover" style="background: linear-gradient(135deg, #f0fdf4, #ecfeff);">
+                    <div class="feature-icon icon-green">🔍</div>
+                    <h3 class="feature-title">AI Species Recognition</h3>
+                    <p class="feature-description">Identifikasi otomatis spesies dari foto menggunakan machine learning
+                        dengan akurasi tinggi.</p>
+                    </div>
+                    
+                    <div class="feature-card card-hover" style="background: linear-gradient(135deg, #fef3c7, #ffedd5);">
+                        <div class="feature-icon icon-amber">📊</div>
+                        <h3 class="feature-title">Real-time Analytics</h3>
+                        <p class="feature-description">Dashboard analitik real-time untuk monitoring populasi dan tren
+                        biodiversitas.</p>
+                </div>
+  
+                <div class="feature-card card-hover" style="background: linear-gradient(135deg, #fce7f3, #ede9fe);">
+                    <div class="feature-icon icon-rose">🗺️</div>
+                    <h3 class="feature-title">GIS Mapping</h3>
+                    <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran spesies
+                        dan habitat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Stats Section -->
+        <section class="section stats-section" id="stats">
+            <div class="section-container">
+                 <div class="section-header">
+                <div class="section-badge">
+                    <span>✨</span>
+                    <span>lorem ipsum</span>
+                </div>
+                <h2 class="section-title">Statistik</h2>
+                <p class="section-description">
+                  BioGuard mengubah observasi menjadi wawasan untuk melindungi biodiversitas secara berkelanjutan.
+                </p>
+            </div>
+  
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">5,000+</div>
+                        <div class="stat-label">Spesies Terdaftar</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Observasi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1,200+</div>
+                        <div class="stat-label">Relawan Aktif</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100K+</div>
+                        <div class="stat-label">Pohon Ditanam</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Entities Section -->
+  <section class="section" id="entities">
       <div class="section-container">
           <div class="section-header">
               <div class="section-badge">
@@ -191,71 +263,10 @@
       </div>
   </section>
 
-  <!-- Stats Section -->
-  <section class="section stats-section" id="stats">
-      <div class="section-container">
-          <div class="stats-grid">
-              <div class="stat-item">
-                  <div class="stat-number">5,000+</div>
-                  <div class="stat-label">Spesies Terdaftar</div>
-              </div>
-              <div class="stat-item">
-                  <div class="stat-number">50K+</div>
-                  <div class="stat-label">Observasi</div>
-              </div>
-              <div class="stat-item">
-                  <div class="stat-number">1,200+</div>
-                  <div class="stat-label">Relawan Aktif</div>
-              </div>
-              <div class="stat-item">
-                  <div class="stat-number">100K+</div>
-                  <div class="stat-label">Pohon Ditanam</div>
-              </div>
-          </div>
-      </div>
-  </section>
 
-  <!-- Features Section -->
-  <section class="section" id="features">
-      <div class="section-container">
-          <div class="section-header">
-              <div class="section-badge">
-                  <span>✨</span>
-                  <span>Fitur Unggulan</span>
-              </div>
-              <h2 class="section-title">Teknologi Canggih untuk Konservasi</h2>
-              <p class="section-description">
-                  Memanfaatkan AI dan teknologi terkini untuk pemantauan biodiversitas yang lebih efektif dan efisien.
-              </p>
-          </div>
-
-          <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
-              <div class="feature-card card-hover" style="background: linear-gradient(135deg, #f0fdf4, #ecfeff);">
-                  <div class="feature-icon icon-green">🔍</div>
-                  <h3 class="feature-title">AI Species Recognition</h3>
-                  <p class="feature-description">Identifikasi otomatis spesies dari foto menggunakan machine learning
-                      dengan akurasi tinggi.</p>
-              </div>
-
-              <div class="feature-card card-hover" style="background: linear-gradient(135deg, #fef3c7, #ffedd5);">
-                  <div class="feature-icon icon-amber">📊</div>
-                  <h3 class="feature-title">Real-time Analytics</h3>
-                  <p class="feature-description">Dashboard analitik real-time untuk monitoring populasi dan tren
-                      biodiversitas.</p>
-              </div>
-
-              <div class="feature-card card-hover" style="background: linear-gradient(135deg, #fce7f3, #ede9fe);">
-                  <div class="feature-icon icon-rose">🗺️</div>
-                  <h3 class="feature-title">GIS Mapping</h3>
-                  <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran spesies
-                      dan habitat.</p>
-              </div>
-          </div>
-      </div>
-  </section>
 
   <!-- CTA Section -->
-  <section class="section cta-section" id="about">
+  <section class="section cta-section " id="about">
       <div class="section-container">
           <div class="cta-container">
               <div class="section-badge">

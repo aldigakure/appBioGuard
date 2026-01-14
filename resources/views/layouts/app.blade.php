@@ -37,19 +37,26 @@
             // Navbar scroll effect
             const navbar = document.getElementById('navbar');
 
+
+            // Flag to prevent scroll spy from overriding click-set active state
+            let isClickScrolling = false;
+
             // Define sections for scroll spy (order matters - top to bottom)
-            const sections = ['features', 'entities', 'stats', 'about'];
+            const sections = ['home','features', 'entities', 'stats', 'about'];
             const navLinks = document.querySelectorAll('.navbar-nav.navbar-user .nav-link');
 
             // Function to update active nav link
             function updateActiveNavLink() {
+                // Skip if currently scrolling due to click
+                if (isClickScrolling) return;
+
                 const scrollPosition = window.scrollY + 150; // Offset for navbar height
 
                 // If at top of page, activate "Fitur"
                 if (window.scrollY < 100) {
                     navLinks.forEach(link => link.classList.remove('active'));
-                    const fiturLink = document.querySelector('.navbar-nav.navbar-user .nav-link[href="#features"]');
-                    if (fiturLink) fiturLink.classList.add('active');
+                    const homelink = document.querySelector('.navbar-nav.navbar-user .nav-link[href="#home"]');
+                    if (homelink) homelink.classList.add('active');
                     return;
                 }
 
@@ -104,14 +111,26 @@
                     const targetId = this.getAttribute('href');
                     const target = document.querySelector(targetId);
                     if (target) {
+                        // Set flag to prevent scroll spy from overriding
+                        isClickScrolling = true;
+
+                        // Update active class immediately on click
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        // Find the matching nav link and set active
+                        const matchingNavLink = document.querySelector(`.navbar-nav.navbar-user .nav-link[href="${targetId}"]`);
+                        if (matchingNavLink) {
+                            matchingNavLink.classList.add('active');
+                        }
+
                         target.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
 
-                        // Update active class immediately on click
-                        navLinks.forEach(link => link.classList.remove('active'));
-                        this.classList.add('active');
+                        // Reset flag after scroll completes
+                        setTimeout(() => {
+                            isClickScrolling = false;
+                        }, 800);
                     }
                 });
             });
