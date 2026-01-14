@@ -16,34 +16,34 @@
                     {{-- Dashboard Navigation --}}
                     <li class="nav-item">
                         <a href="{{ route('dashboard') }}"
-                            class="nav-link  {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
+                            class="nav-link text-capitalize {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('observasi') }}"
-                            class="nav-link {{ request()->is('dashboard/observasi') ? 'active' : '' }}">Observasi</a>
+                            class="nav-link text-capitalize {{ request()->is('dashboard/observasi') ? 'active' : '' }}">Observasi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Spesies</a>
+                        <a href="#" class="nav-link text-capitalize">Spesies</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">Laporan</a>
+                        <a href="#" class="nav-link text-capitalize">Laporan</a>
                     </li>
                 @else
                     {{-- Landing Page Navigation --}}
                     <li class="nav-item">
-                        <a href="#home" class="nav-link">beranda</a>
+                        <a href="#home" class="nav-link text-capitalize">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#features" class="nav-link">Fitur</a>
+                        <a href="#features" class="nav-link text-capitalize">Fitur</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#stats" class="nav-link">Statistik</a>
+                        <a href="#stats" class="nav-link text-capitalize">Statistik</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#entities" class="nav-link">Entitas</a>
+                        <a href="#entities" class="nav-link text-capitalize">Entitas</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#about" class="nav-link">Tentang</a>
+                        <a href="#about" class="nav-link text-capitalize">Tentang</a>
                     </li>
                 @endif
             </ul>
