@@ -26,7 +26,11 @@
 
     <body>
 
-        @include('layouts.navbar')
+        @if (request()->routeIs('dashboard') || request()->is('dashboard/*'))
+            @include('layouts.navbar-dashboard')
+        @else
+            @include('layouts.navbar-landing')
+        @endif
 
 
         @yield('content')

@@ -10,42 +10,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul
-                class="navbar-nav mx-auto mb-2 mb-lg-0 {{ request()->routeIs('dashboard') || request()->is('dashboard/*') ? '' : 'navbar-user' }}">
-                @if (request()->routeIs('dashboard') || request()->is('dashboard/*'))
-                    {{-- Dashboard Navigation --}}
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('observasi') }}"
-                            class="nav-link text-capitalize {{ request()->is('dashboard/observasi') ? 'active' : '' }}">Observasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Spesies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Laporan</a>
-                    </li>
-                @else
-                    {{-- Landing Page Navigation --}}
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link text-capitalize">Beranda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#features" class="nav-link text-capitalize">Fitur</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#stats" class="nav-link text-capitalize">Statistik</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#entities" class="nav-link text-capitalize">Entitas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link text-capitalize">Tentang</a>
-                    </li>
-                @endif
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                {{-- Dashboard Navigation --}}
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('observasi') }}"
+                        class="nav-link text-capitalize {{ request()->is('dashboard/observasi') ? 'active' : '' }}">Observasi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-capitalize">Spesies</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-capitalize">Laporan</a>
+                </li>
             </ul>
             <div class="d-flex align-items-center gap-2">
                 @php
@@ -57,16 +37,14 @@
                 @if ($isLoggedIn)
                     <div class="d-flex flex-row">
                     <!-- Notification Button -->
-                   
-                    <button class="notification-btn" id="notificationBtn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                        </svg>
-                        <span class="notification-badge">5</span>
-                    </button>
-                    
+                   <button class="notification-btn" id="notificationBtn">
+                       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                           stroke-width="2">
+                           <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                           <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                       </svg>
+                       <span class="notification-badge">5</span>
+                   </button>
                     </div>
                     {{-- Logged in user --}}
                     <div class="user-dropdown dropdown">
