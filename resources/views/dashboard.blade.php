@@ -412,8 +412,11 @@
     document.getElementById('currentDate').textContent = new Date().toLocaleDateString('id-ID', dateOptions);
 
     // Notification button interaction
-    document.getElementById('notificationBtn').addEventListener('click', function() {
-        alert('Notifikasi: Anda memiliki 5 pemberitahuan baru!');
+    // Notification button interaction
+    document.querySelectorAll('.notification-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            alert('Notifikasi: Anda memiliki 5 pemberitahuan baru!');
+        });
     });
 </script>
 @endsection

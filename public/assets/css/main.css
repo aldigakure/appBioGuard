@@ -131,17 +131,17 @@
  }
 
  nav {
-     transition: all .3s ease-in-out;
+     transition: all 0.4s ease-in-out;
      background: transparent;
      box-shadow: none;
  }
 
  .nav-scrolled {
-     background: rgba(255, 255, 255, 0.7) !important;
-     backdrop-filter: blur(16px);
-     -webkit-backdrop-filter: blur(16px);
+     background: rgba(255, 255, 255, 0.6) !important;
+     backdrop-filter: blur(20px) saturate(180%);
+     -webkit-backdrop-filter: blur(20px) saturate(180%);
      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05) !important;
-     border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
  }
 
  .nav-inner {
@@ -185,10 +185,11 @@
      color: #4b5563;
      text-decoration: none;
      font-weight: 500;
-     font-size: 0.95rem;
+     font-size: 1.25rem;
      transition: all 0.3s ease;
      position: relative;
      padding-bottom: 4px;
+     padding: 0.5rem 1rem;
  }
 
 
@@ -939,11 +940,15 @@
          margin-top: 1rem;
          padding-top: 1rem;
          border-top: 1px solid rgba(0, 0, 0, 0.1);
+         width: 100%;
      }
 
      .navbar .d-flex .btn {
          width: 100%;
          justify-content: center;
+         text-align: center;
+         margin-right: 0 !important;
+         margin-left: 0 !important;
      }
  }
 
@@ -1345,6 +1350,7 @@
      display: flex;
      align-items: center;
      justify-content: space-between;
+     gap: 0.75rem;
      margin-bottom: 1.5rem;
  }
 
@@ -1375,6 +1381,21 @@
      cursor: pointer;
      flex-shrink: 0;
      margin-top: 2px;
+ }
+
+ /* Terms checkbox specific styling */
+ .form-checkbox-terms {
+     justify-content: flex-start;
+ }
+
+ .form-checkbox-terms .form-checkbox-label {
+     flex-wrap: wrap;
+     align-items: flex-start;
+ }
+
+ .form-checkbox-terms .form-checkbox-label span {
+     flex: 1;
+     line-height: 1.6;
  }
 
  .form-link {

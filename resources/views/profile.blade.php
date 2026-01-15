@@ -1,44 +1,48 @@
 @extends('layouts.app')
 
 @push('styles')
-<link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/observasi.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/observasi.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
 @endpush
 
 @php
-    $userName = Auth::user()->name ?? session('admin_user.name') ?? 'User';
-    $userEmail = Auth::user()->email ?? session('admin_user.email') ?? 'user@bioguard.id';
+    $userName = Auth::user()->name ?? (session('admin_user.name') ?? 'User');
+    $userEmail = Auth::user()->email ?? (session('admin_user.email') ?? 'user@bioguard.id');
     $userAvatar = session('admin_user.avatar') ?? null;
     $userPhone = session('admin_user.phone') ?? '+62 812-XXXX-XXXX';
     $userLocation = session('admin_user.location') ?? 'Jakarta, Indonesia';
-    $userBio = session('admin_user.bio') ?? 'Pecinta alam dan relawan konservasi aktif. Bergabung dengan BIOGUARD untuk berkontribusi dalam pelestarian biodiversitas Indonesia.';
+    $userBio =
+        session('admin_user.bio') ??
+        'Pecinta alam dan relawan konservasi aktif. Bergabung dengan BIOGUARD untuk berkontribusi dalam pelestarian biodiversitas Indonesia.';
 @endphp
 
 @section('content')
-<main class="dashboard-main" style="padding-top: 6rem;">
-    <div class="dashboard-container">
-        <!-- Profile Header -->
-        <div class="profile-header">
-            <div class="profile-cover"></div>
-            <div class="profile-info">
-                <div class="profile-avatar">
-                    @if($userAvatar)
-                        <img src="{{ asset('storage/' . $userAvatar) }}" alt="Avatar" id="profileAvatarImg">
-                    @else
-                        <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=120" alt="Avatar" id="profileAvatarImg">
-                    @endif
-                   
-                </div>
-                <div class="profile-details">
-                    <h1 class="profile-name">{{ $userName }}</h1>
-                    <p class="profile-email">{{ $userEmail }}</p>
-                    <div class="profile-badges">
-                        <span class="badge badge-volunteer">🌿 Volunteer</span>
-                        <span class="badge badge-verified">✓ Terverifikasi</span>
+    <main class="dashboard-main" style="padding-top: 6rem;">
+        <div class="dashboard-container">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="d-flex align-items-center justify-content-between p-4 flex-wrap gap-4 ">
+                    <div class="d-flex align-items-center gap-4">
+                        <div class="profile-avatar">
+                            @if ($userAvatar)
+                                <img src="{{ asset('storage/' . $userAvatar) }}" alt="Avatar" id="profileAvatarImg">
+                            @else
+                                <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=120"
+                                    alt="Avatar" id="profileAvatarImg">
+                            @endif
+                        </div>
+                        <div class="profile-details">
+                            <h1 class="profile-name">{{ $userName }}</h1>
+                            <p class="profile-email">{{ $userEmail }}</p>
+                            <div class="profile-badges">
+                                <span class="badge badge-volunteer">🌿 Volunteer</span>
+                                <span class="badge badge-verified">✓ Terverifikasi</span>
+                            </div>
+                        </div>
                     </div>
+                    <a href="{{ route('profile.edit') }}" class="btn btn-primary align-self-start me-2 mt-3">Edit Profil</a>
                 </div>
-                <a href="{{ route('profile.edit') }}" class="btn btn-primary">Edit Profil</a>
             </div>
         </div>
 
@@ -72,14 +76,16 @@
                     <p class="profile-bio">{{ $userBio }}</p>
                     <div class="profile-info-list">
                         <div class="info-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
                             <span>{{ $userLocation }}</span>
                         </div>
                         <div class="info-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                 <line x1="16" y1="2" x2="16" y2="6"></line>
                                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -88,8 +94,11 @@
                             <span>Bergabung Jan 2024</span>
                         </div>
                         <div class="info-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72"></path>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path
+                                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72">
+                                </path>
                             </svg>
                             <span>{{ $userPhone }}</span>
                         </div>
@@ -172,41 +181,36 @@
                         <a href="{{ route('observasi') }}" class="see-all-link">Lihat Semua →</a>
                     </div>
                     <div class="mini-observations">
-                        @foreach([
-                            ['icon' => '🦧', 'name' => 'Orangutan Kalimantan', 'status' => 'verified'],
-                            ['icon' => '🐅', 'name' => 'Harimau Sumatera', 'status' => 'pending'],
-                            ['icon' => '🦜', 'name' => 'Kakatua Raja', 'status' => 'verified']
-                        ] as $obs)
-                        <div class="mini-obs-item">
-                            <div class="mini-obs-icon">{{ $obs['icon'] }}</div>
-                            <span class="mini-obs-name">{{ $obs['name'] }}</span>
-                            <span class="status-badge status-{{ $obs['status'] }}">{{ $obs['status'] == 'verified' ? 'Verified' : 'Pending' }}</span>
-                        </div>
+                        @foreach ([['icon' => '🦧', 'name' => 'Orangutan Kalimantan', 'status' => 'verified'], ['icon' => '🐅', 'name' => 'Harimau Sumatera', 'status' => 'pending'], ['icon' => '🦜', 'name' => 'Kakatua Raja', 'status' => 'verified']] as $obs)
+                            <div class="mini-obs-item">
+                                <div class="mini-obs-icon">{{ $obs['icon'] }}</div>
+                                <span class="mini-obs-name">{{ $obs['name'] }}</span>
+                                <span
+                                    class="status-badge status-{{ $obs['status'] }}">{{ $obs['status'] == 'verified' ? 'Verified' : 'Pending' }}</span>
+                            </div>
                         @endforeach
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
+        </div>
+    </main>
 
-@if(session('success'))
-<div class="alert-toast" id="successToast">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-    </svg>
-    {{ session('success') }}
-</div>
-<script>
-    // Auto-hide success toast
-    const toast = document.getElementById('successToast');
-    if (toast) {
-        setTimeout(() => toast.classList.add('hide'), 3000);
-    }
-</script>
-@endif
-
+    @if (session('success'))
+        <div class="alert-toast" id="successToast">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            {{ session('success') }}
+        </div>
+        <script>
+            // Auto-hide success toast
+            const toast = document.getElementById('successToast');
+            if (toast) {
+                setTimeout(() => toast.classList.add('hide'), 3000);
+            }
+        </script>
+    @endif
 @endsection
-
-

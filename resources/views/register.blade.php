@@ -137,10 +137,10 @@
                     >
                 </div>
 
-                <div class="form-checkbox-wrapper">
-                    <input type="checkbox" name="terms" id="terms" class="form-checkbox" required>
+                <div class="form-checkbox-wrapper form-checkbox-terms">
                     <label for="terms" class="form-checkbox-label">
-                        Saya menyetujui <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a> BIOGUARD
+                        <input type="checkbox" name="terms" id="terms" class="form-checkbox" required>
+                        <span>Saya menyetujui <a href="#">Syarat & Ketentuan</a> serta <a href="#">Kebijakan Privasi</a> BIOGUARD</span>
                     </label>
                 </div>
 

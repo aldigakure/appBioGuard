@@ -10,22 +10,26 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-user">
+            @php
+                $isBioGuardPage = request()->is('bioguard/*');
+                $baseUrl = $isBioGuardPage ? url('/') : '';
+            @endphp
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-user gap-3" data-bioguard-page="{{ $isBioGuardPage ? 'true' : 'false' }}">
                 {{-- Landing Page Navigation --}}
                 <li class="nav-item">
-                    <a href="#home" class="nav-link text-capitalize">Beranda</a>
+                    <a href="{{ $baseUrl }}#home" class="nav-link text-capitalize">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#features" class="nav-link text-capitalize">Fitur</a>
+                    <a href="{{ $baseUrl }}#features" class="nav-link text-capitalize">Fitur</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#stats" class="nav-link text-capitalize">Statistik</a>
+                    <a href="{{ $baseUrl }}#stats" class="nav-link text-capitalize">Statistik</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#entities" class="nav-link text-capitalize">Entitas</a>
+                    <a href="{{ $baseUrl }}#entities" class="nav-link text-capitalize">Entitas</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#about" class="nav-link text-capitalize">Tentang</a>
+                    <a href="{{ $baseUrl }}#about" class="nav-link text-capitalize">Tentang</a>
                 </li>
             </ul>
             <div class="d-flex align-items-center gap-2">
@@ -37,7 +41,7 @@
 
                 @if ($isLoggedIn)
                     {{-- Logged in user --}}
-                    <div class="user-dropdown dropdown">
+                    <div class="user-dropdown dropdown me-4" >
                         <button class="btn btn-user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             @if ($userAvatar)

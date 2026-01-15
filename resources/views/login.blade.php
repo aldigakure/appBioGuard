@@ -75,7 +75,7 @@
                     >
                 </div>
 
-                <div class="form-checkbox-wrapper">
+                <div class="form-checkbox-wrapper ">
                     <label class="form-checkbox-label">
                         <input type="checkbox" name="remember" class="form-checkbox">
                         Ingat saya
@@ -100,5 +100,7 @@
             </div>
         </div>
     </div>
+
+
 </body>
 </html>

@@ -6,8 +6,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ObservasiController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BioGuardController;
 
 Route::get('/', [HomeController::class, 'index']);
+
+// BioGuard Routes
+Route::get('/bioguard/flora', [BioGuardController::class, 'flora'])->name('bioguard.flora');
+Route::get('/bioguard/fauna', [BioGuardController::class, 'fauna'])->name('bioguard.fauna');
 
 // Authentication Routes
 Route::get('login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');

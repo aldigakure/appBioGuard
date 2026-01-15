@@ -16,6 +16,7 @@
             rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bioguard.css') }}">
 
         @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
             @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -41,6 +42,9 @@
             // Navbar scroll effect
             const navbar = document.getElementById('navbar');
 
+            // Check if on BioGuard page
+            const navbarUserList = document.querySelector('.navbar-nav.navbar-user');
+            const isBioGuardPage = navbarUserList && navbarUserList.dataset.bioguardPage === 'true';
 
             // Flag to prevent scroll spy from overriding click-set active state
             let isClickScrolling = false;
@@ -51,12 +55,15 @@
 
             // Function to update active nav link
             function updateActiveNavLink() {
+                // Skip if on BioGuard page - no active state
+                if (isBioGuardPage) return;
+
                 // Skip if currently scrolling due to click
                 if (isClickScrolling) return;
 
                 const scrollPosition = window.scrollY + 150; // Offset for navbar height
 
-                // If at top of page, activate "Fitur"
+                // If at top of page, activate "Beranda"
                 if (window.scrollY < 100) {
                     navLinks.forEach(link => link.classList.remove('active'));
                     const homelink = document.querySelector('.navbar-nav.navbar-user .nav-link[href="#home"]');
@@ -95,18 +102,22 @@
             // Navbar background and scroll spy on scroll
             window.addEventListener('scroll', () => {
                 // Navbar background effect
-                if (window.scrollY > 50) {
+                if (window.scrollY > 10) {
                     navbar.classList.add('nav-scrolled');
                 } else {
                     navbar.classList.remove('nav-scrolled');
                 }
 
-                // Update active nav link based on scroll position
-                updateActiveNavLink();
+                // Update active nav link based on scroll position (only on landing page)
+                if (!isBioGuardPage) {
+                    updateActiveNavLink();
+                }
             });
 
-            // Initialize active state on page load
-            updateActiveNavLink();
+            // Initialize active state on page load (only on landing page)
+            if (!isBioGuardPage) {
+                updateActiveNavLink();
+            }
 
             // Smooth scroll for anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
