@@ -700,3 +700,66 @@
         padding: 0.75rem 0.5rem;
     }
 }
+
+.data-table {
+    font-size: 0.8rem;
+}
+
+
+/* User Management Specific Styles */
+.role-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.role-admin {
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+}
+
+.role-user {
+    background: rgba(107, 114, 128, 0.1);
+    color: #4b5563;
+}
+
+.role-volunteer {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+}
+
+.role-researcher {
+    background: rgba(59, 130, 246, 0.1);
+    color: #2563eb;
+}
+
+.role-citizen {
+    background: rgba(245, 158, 11, 0.1);
+    color: #d97706;
+}
+
+.select-role {
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    font-size: 0.875rem;
+    background: white;
+    cursor: pointer;
+}
+
+.btn-save-role {
+    background: var(--primary-500);
+    color: white;
+    border: none;
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-save-role:hover {
+    background: var(--primary-600);
+}

@@ -53,7 +53,7 @@
         
         <div class="bioguard-map-container">
             <div class="bioguard-map-wrapper">
-                <div id="flora-map" class="bioguard-map-interactive"></div>
+                <div id="flora-map" class="bioguard-map-interactive flora"></div>
             </div>
             <div class="bioguard-habitat-list" id="floraHabitatList">
                 <div class="bioguard-habitat-placeholder">
@@ -154,16 +154,6 @@ function showFloraDetail(code, name) {
 }
 </script>
 
-<style>
-.bioguard-map-interactive { width: 100%; height: 450px; background: linear-gradient(135deg, #e0f2fe, #dcfce7); border-radius: 16px; }
-.bioguard-habitat-placeholder { text-align: center; padding: 2rem; color: #6b7280; }
-.bioguard-habitat-placeholder-icon { font-size: 3rem; margin-bottom: 1rem; }
-.bioguard-habitat-card-header { background: linear-gradient(135deg, #d1fae5, #a7f3d0) !important; }
-.species-status { font-size: 0.8rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 100px; display: inline-block; }
-.status-critical { background: rgba(239, 68, 68, 0.15); color: #dc2626; }
-.status-vulnerable { background: rgba(245, 158, 11, 0.15); color: #d97706; }
-.status-safe { background: rgba(16, 185, 129, 0.15); color: #059669; }
-</style>
 
 <!-- Urgent Notifications Section -->
 <section class="bioguard-section bioguard-notifications-section">

@@ -28,13 +28,8 @@
             <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
 
 
-            @if ($errors->any())
-            <div class="error-message">
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-            </div>
-            @endif
+
+
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -42,15 +37,17 @@
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
                     <input 
-                        type="email" 
+                        type="text" 
                         id="email" 
                         name="email" 
-                        class="form-input" 
+                        class="form-input @error('email') is-invalid @enderror" 
                         placeholder="nama@email.com"
                         value="{{ old('email') }}"
-                        required 
                         autofocus
                     >
+                    @error('email')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-group">
@@ -59,10 +56,12 @@
                         type="password" 
                         id="password" 
                         name="password" 
-                        class="form-input" 
+                        class="form-input @error('password') is-invalid @enderror" 
                         placeholder="Masukkan password"
-                        required
                     >
+                    @error('password')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div class="form-checkbox-wrapper ">

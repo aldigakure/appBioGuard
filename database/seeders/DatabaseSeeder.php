@@ -15,11 +15,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call(RoleSeeder::class);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create a default admin user
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@bioguard.com',
+            'password_hash' => bcrypt('password'),
+            'role_id' => 1, // admin
+        ]);
+
+        // Create a default regular user
+        User::create([
+            'name' => 'Regular User',
+            'email' => 'user@bioguard.com',
+            'password_hash' => bcrypt('password'),
+            'role_id' => 2, // user
         ]);
     }
 }

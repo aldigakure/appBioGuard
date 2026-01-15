@@ -8,12 +8,12 @@ class ObservasiController extends Controller
 {
     public function observasi()
     {
-        return view('observasi');
+        return view('user.observasi.index');
     }
 
     public function create()
     {
-        return view('observasi-create');
+        return view('user.observasi.create');
     }
 
     public function store(Request $request)

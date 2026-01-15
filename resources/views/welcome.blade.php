@@ -144,6 +144,16 @@
           document.body.style.overflow = '';
       }
 
+      function showDemoNotification() {
+          Swal.fire({
+              title: 'Notifikasi',
+              text: 'Anda memiliki 5 pemberitahuan baru terkait biodiversitas!',
+              icon: 'info',
+              confirmButtonColor: '#10b981',
+              confirmButtonText: 'Oke, Mengerti'
+          });
+      }
+
       // Close modal when clicking outside
       document.getElementById('bioguardModal').addEventListener('click', function(e) {
           if (e.target === this) {
