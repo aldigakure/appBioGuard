@@ -12,35 +12,27 @@ class AuthController extends Controller
         return view('login');
     }
 
+    // handle auth request.
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => ['required', 'email'],
-            'password' => ['required'],
+            'password' => 'required',
         ]);
 
-        // Demo login - Accept demo credentials
-        if ($request->email === 'admin@bioguard.id' && $request->password === 'password') {
-            // Create a simple session for demo user
-            session(['admin_user' => [
-                'id' => 1,
-                'name' => 'admin user',
-                'email' => 'admin@bioguard.id'
-            ]]);
-            session(['is_authenticated' => true]);
-            
-            return redirect()->intended('dashboard');
-        }
-
-        // Try actual authentication if user model exists
-        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+        if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
-        }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->onlyInput('email');
+            $user = $request->user();
+
+            return match ($user->role) {
+                'admin' => redirect()->intended('admin.dashboard'),
+                'user' => redirect()->intended('/dashboard'),
+                default => abort(403)
+            };
+
+
+        }
     }
 
     public function showRegister()
