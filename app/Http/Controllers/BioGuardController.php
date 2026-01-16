@@ -11,7 +11,7 @@ class BioGuardController extends Controller
      */
     public function flora()
     {
-        return view('bioguard-flora');
+        return view('main_feature.bioguard-flora');
     }
 
     /**
@@ -19,6 +19,14 @@ class BioGuardController extends Controller
      */
     public function fauna()
     {
-        return view('bioguard-fauna');
+        return view('main_feature.bioguard-fauna');
+    }
+
+    /**
+     * Display the Interactive Indonesia Map page
+     */
+    public function peta()
+    {
+        return view('main_feature.ecodetect');
     }
 }

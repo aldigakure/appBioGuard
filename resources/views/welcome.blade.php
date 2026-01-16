@@ -79,17 +79,21 @@
                           biodiversitas.</p>
                   </div>
 
-                  <div class="feature-card card-hover" style="background: linear-gradient(135deg, #fce7f3, #ede9fe);">
+                  <a href="{{ route('peta') }}" class="feature-card card-hover feature-card-clickable"
+                      style="background: linear-gradient(135deg, #fce7f3, #ede9fe); text-decoration: none;">
                       <div class="feature-icon icon-rose">🗺️</div>
                       <h3 class="feature-title">EcoDetect</h3>
                       <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran spesies
                           dan habitat.</p>
-                  </div>
+                  </a>
                   <div class="feature-card card-hover" style="background: linear-gradient(135deg, #97e7b1, #ede9fe);">
                       <div class="feature-icon icon-rose">🤖</div>
                       <h3 class="feature-title">PlantId</h3>
-                      <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran spesies
-                          dan habitat.</p>
+                      <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran
+                          spesiesIdentifikasi spesies dari foto pengguna, tampilkan status konservasi, dan dorong
+                          partisipasi warga.
+
+                      </p>
                   </div>
 
               </div>

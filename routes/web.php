@@ -13,6 +13,7 @@ Route::get('/', [HomeController::class, 'index']);
 // BioGuard Routes
 Route::get('/bioguard/flora', [BioGuardController::class, 'flora'])->name('bioguard.flora');
 Route::get('/bioguard/fauna', [BioGuardController::class, 'fauna'])->name('bioguard.fauna');
+Route::get('/peta', [BioGuardController::class, 'peta'])->name('peta');
 
 // Authentication Routes
 Route::get('login', [AuthController::class, 'showLogin'])->name('login')->middleware('guest');

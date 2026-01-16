@@ -11,7 +11,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @php
-                $isBioGuardPage = request()->is('bioguard/*');
+                $isBioGuardPage = request()->is('bioguard/*') || request()->is('peta');
                 $baseUrl = $isBioGuardPage ? url('/') : '';
             @endphp
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-user gap-3" data-bioguard-page="{{ $isBioGuardPage ? 'true' : 'false' }}">
