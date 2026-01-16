@@ -4,9 +4,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>BIOGUARD - AI-Powered Biodiversity Protection</title>
-    <meta name="description"
-        content="BIOGUARD adalah platform pemantauan dan perlindungan keanekaragaman hayati berbasis AI untuk konservasi alam Indonesia.">
+
+    <!-- Primary Meta Tags -->
+    <title>BIOGUARD - AI-Powered Biodiversity Protection Platform Indonesia</title>
+    <meta name="title" content="BIOGUARD - AI-Powered Biodiversity Protection Platform Indonesia">
+    <meta name="description" content="BIOGUARD adalah platform pemantauan dan perlindungan keanekaragaman hayati berbasis AI untuk konservasi alam Indonesia. Identifikasi spesies, pantau habitat, dan bergabung dalam program reboisasi.">
+    <meta name="keywords" content="BIOGUARD, biodiversity, keanekaragaman hayati, konservasi, flora, fauna, Indonesia, AI, machine learning, identifikasi spesies, peta interaktif, reboisasi, lingkungan, ekosistem">
+    <meta name="author" content="BIOGUARD Team">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/dinacom_notext.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/dinacom_notext.png') }}">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="BIOGUARD - AI-Powered Biodiversity Protection">
+    <meta property="og:description" content="Platform pemantauan dan perlindungan keanekaragaman hayati berbasis AI untuk konservasi alam Indonesia.">
+    <meta property="og:image" content="{{ asset('assets/images/dinacom.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="id_ID">
+    <meta property="og:site_name" content="BIOGUARD">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ url()->current() }}">
+    <meta name="twitter:title" content="BIOGUARD - AI-Powered Biodiversity Protection">
+    <meta name="twitter:description" content="Platform pemantauan dan perlindungan keanekaragaman hayati berbasis AI untuk konservasi alam Indonesia.">
+    <meta name="twitter:image" content="{{ asset('assets/images/dinacom.png') }}">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#10b981">
+    <meta name="msapplication-TileColor" content="#10b981">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
