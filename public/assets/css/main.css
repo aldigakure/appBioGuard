@@ -1568,3 +1568,120 @@
          padding: 1.5rem;
      }
  }
+
+ /* ================================
+   Fitur Dropdown Styles
+   ================================ */
+
+ /* Hide the dropdown toggle arrow/caret for Fitur menu */
+ #fitur-dropdown-toggle::after {
+     display: none;
+ }
+
+ /* Desktop: Show Fitur dropdown on hover OR when Bootstrap adds .show class */
+ @media (min-width: 992px) {
+
+     .navbar .nav-item.dropdown:hover>.dropdown-menu-features,
+     .dropdown-menu-features.show {
+         display: block !important;
+         opacity: 1 !important;
+         visibility: visible !important;
+         transform: translateY(0);
+     }
+
+     .dropdown-menu-features {
+         display: block;
+         opacity: 0;
+         visibility: hidden;
+         transform: translateY(10px);
+         transition: all 0.25s ease;
+         margin-top: 0;
+         position: absolute;
+     }
+
+     .navbar-collapse.collapse {
+         visibility: visible !important;
+     }
+ }
+
+ /* Mobile: Let Bootstrap handle through click */
+ @media (max-width: 991px) {
+     .dropdown-menu-features {
+         position: static;
+         float: none;
+         width: 100%;
+         margin-top: 0.5rem;
+     }
+ }
+
+ .navbar-collapse.collapse.show {
+     visibility: visible !important;
+ }
+
+ /* Features dropdown styling */
+ .dropdown-menu-features {
+     min-width: 300px;
+     padding: 0.75rem;
+     border: none;
+     border-radius: 16px;
+     background: rgba(255, 255, 255, 0.98);
+     backdrop-filter: blur(20px);
+     -webkit-backdrop-filter: blur(20px);
+     box-shadow:
+         0 10px 40px rgba(0, 0, 0, 0.1),
+         0 2px 10px rgba(0, 0, 0, 0.05);
+     z-index: 1050;
+ }
+
+ .dropdown-menu-features .dropdown-item {
+     display: flex;
+     align-items: center;
+     gap: 0.875rem;
+     padding: 0.875rem 1rem;
+     border-radius: 12px;
+     transition: all 0.2s ease;
+     color: var(--primary-900);
+     text-decoration: none;
+ }
+
+ .dropdown-menu-features .dropdown-item:hover,
+ .dropdown-menu-features .dropdown-item:focus {
+     background: var(--primary-50);
+     color: var(--primary-700);
+     transform: translateX(4px);
+ }
+
+ .dropdown-menu-features .dropdown-item.active {
+     background: linear-gradient(135deg, var(--primary-100), var(--primary-50));
+     color: var(--primary-700);
+ }
+
+ .dropdown-item-icon {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 42px;
+     height: 42px;
+     background: linear-gradient(135deg, var(--primary-50), var(--primary-100));
+     border-radius: 10px;
+     font-size: 1.25rem;
+     flex-shrink: 0;
+ }
+
+ .dropdown-item-text {
+     display: flex;
+     flex-direction: column;
+     gap: 0.125rem;
+ }
+
+ .dropdown-item-title {
+     font-weight: 600;
+     font-size: 0.9375rem;
+     color: var(--primary-800);
+ }
+
+ .dropdown-item-desc {
+     font-size: 0.8125rem;
+     color: #64748b;
+     font-weight: 400;
+ }
