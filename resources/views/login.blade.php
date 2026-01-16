@@ -27,16 +27,6 @@
             <h1 class="auth-title">Selamat Datang!</h1>
             <p class="auth-subtitle">Masuk ke akun Anda untuk melanjutkan</p>
 
-            {{-- Demo Info --}}
-            <div class="demo-info">
-                <div class="demo-info-title">
-                    <span>💡</span> Demo Login
-                </div>
-                <div class="demo-info-text">
-                    Email: <code>admin@bioguard.id</code><br>
-                    Password: <code>password</code>
-                </div>
-            </div>
 
             @if ($errors->any())
             <div class="error-message">

@@ -715,10 +715,67 @@
 @media (max-width: 768px) {
     .bioguard-selection-grid {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .bioguard-modal {
         padding: 1.5rem;
+        margin: 1rem;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 20px;
+    }
+
+    .bioguard-modal-header {
+        margin-bottom: 1.25rem;
+    }
+
+    .bioguard-modal-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.75rem;
+        border-radius: 16px;
+        margin-bottom: 1rem;
+    }
+
+    .bioguard-modal-title {
+        font-size: 1.35rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .bioguard-modal-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .bioguard-modal-close {
+        width: 36px;
+        height: 36px;
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+
+    .bioguard-selection-card {
+        padding: 1.25rem 1rem;
+        border-radius: 16px;
+    }
+
+    .bioguard-selection-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.75rem;
+        border-radius: 14px;
+        margin-bottom: 0.75rem;
+    }
+
+    .bioguard-selection-title {
+        font-size: 1.15rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .bioguard-selection-desc {
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
 
     .bioguard-header-title {
@@ -737,6 +794,47 @@
 
     .bioguard-habitat-card {
         min-width: 250px;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 400px) {
+    .bioguard-modal {
+        padding: 1.25rem;
+        margin: 0.75rem;
+    }
+
+    .bioguard-modal-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .bioguard-modal-title {
+        font-size: 1.2rem;
+    }
+
+    .bioguard-modal-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .bioguard-selection-card {
+        padding: 1rem 0.875rem;
+    }
+
+    .bioguard-selection-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .bioguard-selection-title {
+        font-size: 1.05rem;
+    }
+
+    .bioguard-selection-desc {
+        font-size: 0.75rem;
     }
 }
 

@@ -164,8 +164,8 @@
       <div class="section-container">
           <div class="section-header">
               <div class="section-badge">
-                  <span>✨</span>
-                  <span>lorem ipsum</span>
+                  <span>📊</span>
+                  <span>Data Terkini</span>
               </div>
               <h2 class="section-title">Statistik</h2>
               <p class="section-description">
