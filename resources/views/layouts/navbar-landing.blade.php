@@ -163,8 +163,8 @@
                     </ul>
                 </div>
                 @else
-                <a href="{{ route('login') }}" class="btn btn-outline me-2">Masuk</a>
-                <a href="{{ route('register') }}" class="btn btn-primary me-4">Daftar</a>
+                <a href="{{ route('login') }}" class="btn btn-primary me-4">Masuk</a>
+               
                 @endif
             </div>
         </div>
