@@ -37,7 +37,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-features">
                         <li>
-                            <a class="dropdown-item {{ request()->is('bioguard/*') ? 'active' : '' }}" href="{{ $baseUrl }}#bioguardCard">
+                            <a class="dropdown-item {{ request()->is('bioguard/*') ? 'active' : '' }}" href="{{ $baseUrl }}#features">
                                 <span class="dropdown-item-icon">🔍</span>
                                 <span class="dropdown-item-text">
                                     <span class="dropdown-item-title">BioGuard</span>

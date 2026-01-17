@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BioGuardController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -47,6 +48,9 @@ Route::middleware('auth')->group(function () {
         // User Management
         Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
         Route::post('/users/{id}/role', [AdminController::class, 'updateRole'])->name('admin.users.update-role');
+        
+        // Forum Diskusi / Laporan
+        Route::get('/laporan', [LaporanController::class, 'index'])->name('admin.laporan');
     });
 
     // User Dashboard

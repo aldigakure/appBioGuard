@@ -38,7 +38,8 @@
                         <a href="#" class="nav-link text-capitalize">Spesies</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Laporan</a>
+                        <a href="{{ route('admin.laporan') }}"
+                            class="nav-link text-capitalize {{ request()->routeIs('admin.laporan') ? 'active' : '' }}">Laporan</a>
                     </li>
 
                     <li class="nav-item">
