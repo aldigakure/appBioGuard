@@ -5,14 +5,59 @@
                 alt="BioGuard Logo">
             BIOGUARD
         </a>
-        <button class="notification-btn ms-auto me-2 d-lg-none" onclick="showDemoNotification()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-            <span class="notification-badge">3</span>
-        </button>
+        <!-- Mobile Notification Dropdown -->
+        <div class="dropdown ms-auto me-2 d-lg-none">
+            <button class="notification-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                </svg>
+                <span class="notification-badge">3</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notification-dropdown notification-dropdown-mobile p-0 border-0 shadow-lg">
+                <div class="notification-header border-bottom p-3 d-flex justify-content-between align-items-center">
+                    <h6 class="mb-0 fw-bold">Notifikasi</h6>
+                    <a href="#" class="text-decoration-none text-success small fw-semibold">Tandai dibaca</a>
+                </div>
+                <div class="notification-list" style="max-height: 80vh; overflow-y: auto;">
+                    <a href="#" class="notification-item d-flex align-items-start p-3 border-bottom text-decoration-none text-dark bg-light-subtle">
+                        <div class="notification-icon rounded-3 bg-primary-subtle text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                            🌿
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="mb-1 fw-semibold text-sm">Observasi Terverifikasi</p>
+                            <p class="mb-1 text-muted small text-xs">Laporan "Anggrek Hitam" Anda telah disetujui.</p>
+                            <span class="text-muted text-xs tiny">2 jam yang lalu</span>
+                        </div>
+                    </a>
+                    <a href="#" class="notification-item d-flex align-items-start p-3 border-bottom text-decoration-none text-dark">
+                        <div class="notification-icon rounded-3 bg-warning-subtle text-warning p-2 me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                            ⚠️
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="mb-1 fw-semibold text-sm">Peringatan Habitat</p>
+                            <p class="mb-1 text-muted small text-xs">Area konservasi A-12 mendeteksi aktivitas ilegal.</p>
+                            <span class="text-muted text-xs tiny">5 jam yang lalu</span>
+                        </div>
+                    </a>
+                    <a href="#" class="notification-item d-flex align-items-start p-3 text-decoration-none text-dark">
+                        <div class="notification-icon rounded-3 bg-info-subtle text-info p-2 me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                            📢
+                        </div>
+                        <div class="flex-grow-1">
+                            <p class="mb-1 fw-semibold text-sm">Pengumuman Sistem</p>
+                            <p class="mb-1 text-muted small text-xs">Pemeliharaan sistem terjadwal malam ini.</p>
+                            <span class="text-muted text-xs tiny">1 hari yang lalu</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="notification-footer p-2 text-center border-top">
+                    <a href="#" class="d-block py-1 text-decoration-none text-success fw-semibold small">Lihat Semua Notifikasi</a>
+                </div>
+            </div>
+        </div>
+
         <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -59,15 +104,58 @@
                 @endif
 
             </ul>
-            <button class="notification-btn me-6 d-none d-lg-flex" id="notificationBtnDesktop"
-                onclick="showDemoNotification()">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2">
-                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-                </svg>
-                <span class="notification-badge">3</span>
-            </button>
+            <!-- Desktop Notification Dropdown -->
+            <div class="dropdown me-6 d-none d-lg-block">
+                <button class="notification-btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                    </svg>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end notification-dropdown p-0 border-0 shadow-lg">
+                    <div class="notification-header border-bottom p-3 d-flex justify-content-between align-items-center">
+                        <h6 class="mb-0 fw-bold">Notifikasi</h6>
+                        <a href="#" class="text-decoration-none text-success small fw-semibold">Tandai dibaca</a>
+                    </div>
+                    <div class="notification-list" style="max-height: 300px; overflow-y: auto;">
+                        <a href="#" class="notification-item d-flex align-items-start p-3 border-bottom text-decoration-none text-dark bg-light-subtle">
+                            <div class="notification-icon rounded-3 bg-primary-subtle text-primary p-2 me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                                🌿
+                            </div>
+                            <div class="flex-grow-1">
+                                <p class="mb-1 fw-semibold text-sm">Observasi Terverifikasi</p>
+                                <p class="mb-1 text-muted small text-xs">Laporan "Anggrek Hitam" Anda telah disetujui.</p>
+                                <span class="text-muted text-xs tiny">2 jam yang lalu</span>
+                            </div>
+                        </a>
+                        <a href="#" class="notification-item d-flex align-items-start p-3 border-bottom text-decoration-none text-dark">
+                            <div class="notification-icon rounded-3 bg-warning-subtle text-warning p-2 me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                                ⚠️
+                            </div>
+                            <div class="flex-grow-1">
+                                <p class="mb-1 fw-semibold text-sm">Peringatan Habitat</p>
+                                <p class="mb-1 text-muted small text-xs">Area konservasi A-12 mendeteksi aktivitas ilegal.</p>
+                                <span class="text-muted text-xs tiny">5 jam yang lalu</span>
+                            </div>
+                        </a>
+                        <a href="#" class="notification-item d-flex align-items-start p-3 text-decoration-none text-dark">
+                            <div class="notification-icon rounded-3 bg-info-subtle text-info p-2 me-3 d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                                📢
+                            </div>
+                            <div class="flex-grow-1">
+                                <p class="mb-1 fw-semibold text-sm">Pengumuman Sistem</p>
+                                <p class="mb-1 text-muted small text-xs">Pemeliharaan sistem terjadwal malam ini.</p>
+                                <span class="text-muted text-xs tiny">1 hari yang lalu</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="notification-footer p-2 text-center border-top">
+                        <a href="#" class="d-block py-1 text-decoration-none text-success fw-semibold small">Lihat Semua Notifikasi</a>
+                    </div>
+                </div>
+            </div>
             <div class="d-flex align-items-center gap-2">
                 @php
                     $isLoggedIn = Auth::check() || session('is_authenticated');
@@ -138,3 +226,31 @@
         </div>
     </div>
 </nav>
+
+<script>
+    // Placeholder for mobile button if it still calls this
+    function showDemoNotification() {
+        console.log('Notification clicked');
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // "Mark as read" demo functionality
+        const markReadBtns = document.querySelectorAll('.dropdown-menu .text-success');
+        
+        markReadBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Hide ALL badges
+                const badges = document.querySelectorAll('.notification-badge');
+                badges.forEach(badge => badge.style.display = 'none');
+
+                // Visual feedback on ALL items in ALL dropdowns
+                const items = document.querySelectorAll('.notification-item');
+                items.forEach(item => {
+                    item.style.opacity = '0.6';
+                });
+            });
+        });
+    });
+</script>

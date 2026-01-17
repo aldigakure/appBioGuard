@@ -74,7 +74,7 @@ session('admin_user.bio') ??
         <div class="profile-left">
             <!-- About Section -->
             <div class="profile-card">
-                <h3 class="card-title">📋 Tentang Saya</h3>
+                <h3 class="card-title mb-3">📋 Tentang Saya</h3>
                 <p class="profile-bio">{{ $userBio }}</p>
                 <div class="profile-info-list">
                     <div class="info-item">
@@ -109,7 +109,7 @@ session('admin_user.bio') ??
 
             <!-- Achievements -->
             <div class="profile-card">
-                <h3 class="card-title">🏆 Pencapaian</h3>
+                <h3 class="card-title mb-3">🏆 Pencapaian</h3>
                 <div class="achievements-grid">
                     <div class="achievement-item">
                         <div class="achievement-icon">🌟</div>
@@ -143,7 +143,7 @@ session('admin_user.bio') ??
         <div class="profile-right">
             <!-- Recent Activity -->
             <div class="profile-card">
-                <h3 class="card-title">📊 Aktivitas Terbaru</h3>
+                <h3 class="card-title mb-3">📊 Aktivitas Terbaru</h3>
                 <div class="activity-list">
                     <div class="activity-item">
                         <div class="activity-icon icon-green">🦧</div>
