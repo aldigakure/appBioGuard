@@ -1,6 +1,7 @@
   @extends('layouts.app')
 
   @section('content')
+  @include('layouts.navbar-landing')
   <!-- Hero Section -->
   <section class="hero bg-mesh p-0" id="home" style="padding-top:8rem !important">
       <div class="hero-container  ">

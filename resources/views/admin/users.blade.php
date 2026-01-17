@@ -5,6 +5,9 @@
 @endpush
 
 @section('content')
+@include('layouts.navbar-dashboard')
+
+
 <main class="dashboard-main" style="padding-top: 6rem;">
     <div class="dashboard-container">
         <div class="dashboard-title-section">
@@ -53,25 +56,25 @@
                                 </td>
                                 <td>
                                     @if($user->role->role_name !== 'admin')
-                                    <form action="{{ route('admin.users.update-role', $user->user_id) }}" 
-                                          method="POST" 
-                                          class="d-flex gap-2 role-update-form"
-                                          data-user-name="{{ $user->name }}">
+                                    <form action="{{ route('admin.users.update-role', $user->user_id) }}"
+                                        method="POST"
+                                        class="d-flex gap-2 role-update-form"
+                                        data-user-name="{{ $user->name }}">
                                         @csrf
                                         <select name="role_id" class="select-role">
                                             @foreach($roles as $role)
-                                                <option value="{{ $role->role_id }}" {{ $user->role_id == $role->role_id ? 'selected' : '' }}>
-                                                    {{ ucfirst($role->role_name) }}
-                                                </option>
+                                            <option value="{{ $role->role_id }}" {{ $user->role_id == $role->role_id ? 'selected' : '' }}>
+                                                {{ ucfirst($role->role_name) }}
+                                            </option>
                                             @endforeach
                                         </select>
-                                    @else
+                                        @else
                                         <span class="text-muted small">Admin Utama Protected</span>
-                                    @endif
+                                        @endif
                                 </td>
                                 <td>
                                     @if($user->role->role_name !== 'admin')
-                                        <button type="submit" class="btn-save-role">Simpan</button>
+                                    <button type="submit" class="btn-save-role">Simpan</button>
                                     </form>
                                     @endif
                                 </td>

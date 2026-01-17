@@ -14,14 +14,14 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-  
+
 </head>
 
 <body class="bg-mesh">
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-logo">
-               <img src="{{ asset('assets/images/dinacom.png') }}" style="width: 62px" alt="">
+                <img src="{{ asset('assets/images/dinacom_notext.png') }}" style="width: 62px" alt="">
                 <span>BIOGUARD</span>
             </div>
 
@@ -50,32 +50,30 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="first_name" class="form-label">Nama Depan</label>
-                        <input 
-                            type="text" 
-                            id="first_name" 
-                            name="first_name" 
-                            class="form-input @error('first_name') is-invalid @enderror" 
+                        <input
+                            type="text"
+                            id="first_name"
+                            name="first_name"
+                            class="form-input @error('first_name') is-invalid @enderror"
                             placeholder="Nama depan"
                             value="{{ old('first_name') }}"
-                            autofocus
-                        >
+                            autofocus>
                         @error('first_name')
-                            <span class="invalid-feedback">{{ $message }}</span>
+                        <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                         <span class="invalid-feedback js-error" id="error-first_name"></span>
                     </div>
                     <div class="form-group">
                         <label for="last_name" class="form-label">Nama Belakang</label>
-                        <input 
-                            type="text" 
-                            id="last_name" 
-                            name="last_name" 
-                            class="form-input @error('last_name') is-invalid @enderror" 
+                        <input
+                            type="text"
+                            id="last_name"
+                            name="last_name"
+                            class="form-input @error('last_name') is-invalid @enderror"
                             placeholder="Nama belakang"
-                            value="{{ old('last_name') }}"
-                        >
+                            value="{{ old('last_name') }}">
                         @error('last_name')
-                            <span class="invalid-feedback">{{ $message }}</span>
+                        <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                         <span class="invalid-feedback js-error" id="error-last_name"></span>
                     </div>
@@ -83,16 +81,15 @@
 
                 <div class="form-group">
                     <label for="email" class="form-label">Email</label>
-                    <input 
-                        type="text" 
-                        id="email" 
-                        name="email" 
-                        class="form-input @error('email') is-invalid @enderror" 
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        class="form-input @error('email') is-invalid @enderror"
                         placeholder="nama@email.com"
-                        value="{{ old('email') }}"
-                    >
+                        value="{{ old('email') }}">
                     @error('email')
-                        <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                     <span class="invalid-feedback js-error" id="error-email"></span>
                 </div>
@@ -100,15 +97,14 @@
 
                 <div class="form-group">
                     <label for="password" class="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        name="password" 
-                        class="form-input @error('password') is-invalid @enderror" 
-                        placeholder="Minimal 8 karakter"
-                    >
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-input @error('password') is-invalid @enderror"
+                        placeholder="Minimal 8 karakter">
                     @error('password')
-                        <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                     <span class="invalid-feedback js-error" id="error-password"></span>
                     <div class="password-strength">
@@ -116,7 +112,7 @@
                             <div class="password-strength-fill" id="strengthFill"></div>
                         </div>
                         <div class="password-strength-text" id="strengthText"></div>
-                        
+
                         {{-- Password Requirements Checklist --}}
                         <div class="password-requirements">
                             <div class="requirement" id="req-length">
@@ -137,15 +133,14 @@
 
                 <div class="form-group">
                     <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                    <input 
-                        type="password" 
-                        id="password_confirmation" 
-                        name="password_confirmation" 
-                        class="form-input @error('password_confirmation') is-invalid @enderror" 
-                        placeholder="Ulangi password"
-                    >
+                    <input
+                        type="password"
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        class="form-input @error('password_confirmation') is-invalid @enderror"
+                        placeholder="Ulangi password">
                     @error('password_confirmation')
-                        <span class="invalid-feedback">{{ $message }}</span>
+                    <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                     <span class="invalid-feedback js-error" id="error-password_confirmation"></span>
                 </div>
@@ -158,7 +153,7 @@
                         </label>
                     </div>
                     @error('terms')
-                        <span class="invalid-feedback" style="display: block; margin-top: 0;">{{ $message }}</span>
+                    <span class="invalid-feedback" style="display: block; margin-top: 0;">{{ $message }}</span>
                     @enderror
                     <span id="termsError" class="invalid-feedback" style="display: none; margin-top: 0;">Anda harus menyetujui Syarat & Ketentuan.</span>
                 </div>
@@ -166,10 +161,10 @@
                 <button type="submit" class="btn-auth btn-auth-primary">
                     <span>Daftar Sekarang</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                        <circle cx="8.5" cy="7" r="4"/>
-                        <line x1="20" y1="8" x2="20" y2="14"/>
-                        <line x1="23" y1="11" x2="17" y2="11"/>
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="8.5" cy="7" r="4" />
+                        <line x1="20" y1="8" x2="20" y2="14" />
+                        <line x1="23" y1="11" x2="17" y2="11" />
                     </svg>
                 </button>
             </form>
@@ -193,7 +188,7 @@
         passwordInput.addEventListener('input', function() {
             const password = this.value;
             let strength = 0;
-            
+
             // Requirements check
             const requirements = {
                 length: password.length >= 8,
@@ -246,7 +241,7 @@
 
         registerForm.addEventListener('submit', function(e) {
             let hasError = false;
-            
+
             // Reset errors
             document.querySelectorAll('.js-error').forEach(el => el.style.display = 'none');
             document.querySelectorAll('.form-input, .form-select').forEach(el => el.classList.remove('is-invalid'));
@@ -309,10 +304,14 @@
                 // Scroll to first error
                 const firstError = document.querySelector('.is-invalid, #termsError');
                 if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
                 }
             }
         });
     </script>
 </body>
+
 </html>

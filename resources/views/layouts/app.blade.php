@@ -65,13 +65,6 @@
 
 <body>
 
-    @if (request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') || request()->routeIs('user.dashboard') || request()->is('dashboard/*') || request()->is('admin/dashboard*') || request()->is('user/dashboard*'))
-        @include('layouts.navbar-dashboard')
-    @else
-        @include('layouts.navbar-landing')
-    @endif
-
-
     @yield('content')
 
     @include('layouts.footer')
@@ -255,37 +248,37 @@
         // Global SweetAlert2 Handler for Session Flashes
         document.addEventListener('DOMContentLoaded', function() {
             @if(session('success'))
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Berhasil!',
-                    text: "{{ session('success') }}",
-                    timer: 3000,
-                    showConfirmButton: false,
-                    background: 'transparent',
-                    iconColor: '#10b981',
-                    customClass: {
-                        popup: 'premium-swal-popup',
-                        title: 'premium-swal-title',
-                        htmlContainer: 'premium-swal-html',
-                        actions: 'premium-swal-actions'
-                    }
-                });
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false,
+                background: 'transparent',
+                iconColor: '#10b981',
+                customClass: {
+                    popup: 'premium-swal-popup',
+                    title: 'premium-swal-title',
+                    htmlContainer: 'premium-swal-html',
+                    actions: 'premium-swal-actions'
+                }
+            });
             @endif
 
             @if(session('error'))
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Waduh!',
-                    text: "{{ session('error') }}",
-                    background: 'transparent',
-                    iconColor: '#ef4444',
-                    customClass: {
-                        popup: 'premium-swal-popup',
-                        title: 'premium-swal-title',
-                        htmlContainer: 'premium-swal-html',
-                        actions: 'premium-swal-actions'
-                    }
-                });
+            Swal.fire({
+                icon: 'error',
+                title: 'Waduh!',
+                text: "{{ session('error') }}",
+                background: 'transparent',
+                iconColor: '#ef4444',
+                customClass: {
+                    popup: 'premium-swal-popup',
+                    title: 'premium-swal-title',
+                    htmlContainer: 'premium-swal-html',
+                    actions: 'premium-swal-actions'
+                }
+            });
             @endif
         });
     </script>

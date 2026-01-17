@@ -5,6 +5,8 @@
 @endpush
 
 @section('content')
+@include('layouts.navbar-dashboard')
+
 <!-- Dashboard Content -->
 <main class="dashboard-main" style="padding-top: 6rem;">
     <div class="dashboard-container">
@@ -14,7 +16,7 @@
                 <h1 class="dashboard-title">Dashboard Overview</h1>
                 <p class="dashboard-subtitle">Selamat datang! Pantau aktivitas biodiversitas terkini.</p>
             </div>
-          
+
         </div>
 
         <!-- Stats Cards -->
@@ -408,7 +410,12 @@
 
 <script>
     // Set current date
-    const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateOptions = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    };
     document.getElementById('currentDate').textContent = new Date().toLocaleDateString('id-ID', dateOptions);
 
     // Notification button interaction

@@ -6,6 +6,8 @@
 @endpush
 
 @section('content')
+@include('layouts.navbar-dashboard')
+
 <main class="dashboard-main" style="padding-top: 6rem;">
     <div class="dashboard-container">
         <!-- Hero Section -->
@@ -72,12 +74,12 @@
         <!-- Observasi Grid -->
         <div class="observasi-grid">
             @foreach([
-                ['icon' => '🦧', 'name' => 'Orangutan Kalimantan', 'latin' => 'Pongo pygmaeus', 'loc' => 'TN Tanjung Puting', 'cat' => 'mamalia', 'user' => 'Maya Putri', 'role' => 'Volunteer'],
-                ['icon' => '🐅', 'name' => 'Harimau Sumatera', 'latin' => 'Panthera tigris sumatrae', 'loc' => 'TN Kerinci Seblat', 'cat' => 'mamalia', 'user' => 'Siti Rahayu', 'role' => 'Researcher'],
-                ['icon' => '🦜', 'name' => 'Kakatua Raja', 'latin' => 'Probosciger aterrimus', 'loc' => 'Raja Ampat, Papua', 'cat' => 'fauna', 'user' => 'Budi Santoso', 'role' => 'Volunteer'],
-                ['icon' => '🦎', 'name' => 'Komodo', 'latin' => 'Varanus komodoensis', 'loc' => 'Pulau Komodo, NTT', 'cat' => 'fauna', 'user' => 'Ahmad Fadli', 'role' => 'Researcher'],
-                ['icon' => '🌺', 'name' => 'Rafflesia Arnoldii', 'latin' => 'Rafflesia arnoldii', 'loc' => 'TN Bukit Barisan', 'cat' => 'flora', 'user' => 'Dewi Lestari', 'role' => 'Botanist'],
-                ['icon' => '🐘', 'name' => 'Gajah Sumatera', 'latin' => 'Elephas maximus', 'loc' => 'TN Way Kambas', 'cat' => 'mamalia', 'user' => 'Rudi Hartono', 'role' => 'Ranger']
+            ['icon' => '🦧', 'name' => 'Orangutan Kalimantan', 'latin' => 'Pongo pygmaeus', 'loc' => 'TN Tanjung Puting', 'cat' => 'mamalia', 'user' => 'Maya Putri', 'role' => 'Volunteer'],
+            ['icon' => '🐅', 'name' => 'Harimau Sumatera', 'latin' => 'Panthera tigris sumatrae', 'loc' => 'TN Kerinci Seblat', 'cat' => 'mamalia', 'user' => 'Siti Rahayu', 'role' => 'Researcher'],
+            ['icon' => '🦜', 'name' => 'Kakatua Raja', 'latin' => 'Probosciger aterrimus', 'loc' => 'Raja Ampat, Papua', 'cat' => 'fauna', 'user' => 'Budi Santoso', 'role' => 'Volunteer'],
+            ['icon' => '🦎', 'name' => 'Komodo', 'latin' => 'Varanus komodoensis', 'loc' => 'Pulau Komodo, NTT', 'cat' => 'fauna', 'user' => 'Ahmad Fadli', 'role' => 'Researcher'],
+            ['icon' => '🌺', 'name' => 'Rafflesia Arnoldii', 'latin' => 'Rafflesia arnoldii', 'loc' => 'TN Bukit Barisan', 'cat' => 'flora', 'user' => 'Dewi Lestari', 'role' => 'Botanist'],
+            ['icon' => '🐘', 'name' => 'Gajah Sumatera', 'latin' => 'Elephas maximus', 'loc' => 'TN Way Kambas', 'cat' => 'mamalia', 'user' => 'Rudi Hartono', 'role' => 'Ranger']
             ] as $obs)
             <div class="observasi-card card-hover">
                 <div class="observasi-image-placeholder">{{ $obs['icon'] }}</div>

@@ -6,6 +6,7 @@
 @endpush
 
 @section('content')
+@include('layouts.navbar-dashboard')
 <main class="dashboard-main" style="padding-top: 6rem;">
     <div class="dashboard-container">
         <!-- Breadcrumb Navigation -->
@@ -60,7 +61,7 @@
         <div class="create-form-card">
             <form action="{{ route('observasi.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="form-section">
                     <h3 class="form-section-title">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -68,17 +69,17 @@
                         </svg>
                         Informasi Spesies
                     </h3>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="species_name">Nama Spesies <span class="required">*</span></label>
                         <input type="text" class="form-input" id="species_name" name="species_name" placeholder="Contoh: Harimau Sumatera" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="latin_name">Nama Latin</label>
                         <input type="text" class="form-input" id="latin_name" name="latin_name" placeholder="Contoh: Panthera tigris sumatrae">
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="category">Kategori <span class="required">*</span></label>
@@ -107,12 +108,12 @@
                         </svg>
                         Lokasi Pengamatan
                     </h3>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="location">Lokasi <span class="required">*</span></label>
                         <input type="text" class="form-input" id="location" name="location" placeholder="Contoh: TN Kerinci Seblat, Jambi" required>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="latitude">Latitude</label>
@@ -140,12 +141,12 @@
                         </svg>
                         Detail Observasi
                     </h3>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="description">Deskripsi Pengamatan</label>
                         <textarea class="form-textarea" id="description" name="description" rows="4" placeholder="Jelaskan kondisi pengamatan, perilaku hewan/tumbuhan, jumlah individu, dan informasi relevan lainnya..."></textarea>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="population_count">Jumlah Individu</label>
@@ -174,7 +175,7 @@
                         </svg>
                         Dokumentasi Foto
                     </h3>
-                    
+
                     <div class="form-group">
                         <label class="form-label">Upload Foto</label>
                         <div class="upload-area" id="uploadArea">
@@ -216,7 +217,7 @@
 <script>
     // Set default date to today
     document.getElementById('observation_date').valueAsDate = new Date();
-    
+
     // Upload area functionality
     const uploadArea = document.getElementById('uploadArea');
     const photoInput = document.getElementById('photo');
@@ -225,16 +226,16 @@
     const removePreview = document.getElementById('removePreview');
 
     uploadArea.addEventListener('click', () => photoInput.click());
-    
+
     uploadArea.addEventListener('dragover', (e) => {
         e.preventDefault();
         uploadArea.classList.add('drag-over');
     });
-    
+
     uploadArea.addEventListener('dragleave', () => {
         uploadArea.classList.remove('drag-over');
     });
-    
+
     uploadArea.addEventListener('drop', (e) => {
         e.preventDefault();
         uploadArea.classList.remove('drag-over');
@@ -243,13 +244,13 @@
             showPreview(e.dataTransfer.files[0]);
         }
     });
-    
+
     photoInput.addEventListener('change', (e) => {
         if (e.target.files.length) {
             showPreview(e.target.files[0]);
         }
     });
-    
+
     function showPreview(file) {
         const reader = new FileReader();
         reader.onload = (e) => {
@@ -259,7 +260,7 @@
         };
         reader.readAsDataURL(file);
     }
-    
+
     removePreview.addEventListener('click', () => {
         photoInput.value = '';
         imagePreview.src = '';

@@ -7,17 +7,18 @@
 @endpush
 
 @php
-    $userName = Auth::user()->name ?? session('admin_user.name') ?? 'User';
-    $userEmail = Auth::user()->email ?? session('admin_user.email') ?? 'user@bioguard.id';
-    $userAvatar = session('admin_user.avatar') ?? null;
-    $userPhone = session('admin_user.phone') ?? '';
-    $userLocation = session('admin_user.location') ?? '';
-    $userBio = session('admin_user.bio') ?? '';
-    $userExpertise = session('admin_user.expertise') ?? '';
-    $userOrganization = session('admin_user.organization') ?? '';
+$userName = Auth::user()->name ?? session('admin_user.name') ?? 'User';
+$userEmail = Auth::user()->email ?? session('admin_user.email') ?? 'user@bioguard.id';
+$userAvatar = session('admin_user.avatar') ?? null;
+$userPhone = session('admin_user.phone') ?? '';
+$userLocation = session('admin_user.location') ?? '';
+$userBio = session('admin_user.bio') ?? '';
+$userExpertise = session('admin_user.expertise') ?? '';
+$userOrganization = session('admin_user.organization') ?? '';
 @endphp
 
 @section('content')
+@include('layouts.navbar-dashboard')
 <main class="dashboard-main" style="padding-top: 6rem;">
     <div class="dashboard-container">
         <!-- Breadcrumb Navigation -->
@@ -69,7 +70,7 @@
         <div class="create-form-card">
             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="form-section">
                     <h3 class="form-section-title">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -79,13 +80,13 @@
                         </svg>
                         Foto Profil
                     </h3>
-                    
+
                     <div class="avatar-upload-section">
                         <div class="avatar-preview-large">
                             @if($userAvatar)
-                                <img src="{{ asset('storage/' . $userAvatar) }}" alt="Preview" id="avatarPreview">
+                            <img src="{{ asset('storage/' . $userAvatar) }}" alt="Preview" id="avatarPreview">
                             @else
-                                <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=120" alt="Preview" id="avatarPreview">
+                            <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=120" alt="Preview" id="avatarPreview">
                             @endif
                         </div>
                         <div class="avatar-upload-controls">
@@ -111,17 +112,17 @@
                         </svg>
                         Informasi Dasar
                     </h3>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="name">Nama Lengkap <span class="required">*</span></label>
                         <input type="text" class="form-input" id="name" name="name" value="{{ $userName }}" required>
                     </div>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="email">Email <span class="required">*</span></label>
                         <input type="email" class="form-input" id="email" name="email" value="{{ $userEmail }}" required>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="phone">Telepon</label>
@@ -146,12 +147,12 @@
                         </svg>
                         Informasi Tambahan
                     </h3>
-                    
+
                     <div class="form-group">
                         <label class="form-label" for="bio">Bio</label>
                         <textarea class="form-textarea" id="bio" name="bio" rows="4" placeholder="Ceritakan tentang diri Anda, minat dalam konservasi, dan pengalaman Anda...">{{ $userBio }}</textarea>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label" for="organization">Organisasi/Institusi</label>
