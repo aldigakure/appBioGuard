@@ -13,7 +13,7 @@
     display: none;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 9999;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -56,7 +56,7 @@
 }
 
 .bioguard-modal-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 1.75rem;
     font-weight: 700;
     color: #111827;
@@ -144,7 +144,7 @@
 }
 
 .bioguard-selection-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: #111827;
@@ -167,15 +167,22 @@
 }
 
 .bioguard-header::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        radial-gradient(at 20% 30%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
-        radial-gradient(at 80% 20%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+    background: radial-gradient(
+            at 20% 30%,
+            rgba(16, 185, 129, 0.15) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 80% 20%,
+            rgba(6, 182, 212, 0.15) 0px,
+            transparent 50%
+        );
     pointer-events: none;
 }
 
@@ -218,7 +225,7 @@
 }
 
 .bioguard-header-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 3rem;
     font-weight: 800;
     color: #111827;
@@ -243,7 +250,7 @@
 }
 
 .bioguard-section-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 2rem;
     font-weight: 700;
     color: #111827;
@@ -289,7 +296,7 @@
 }
 
 .bioguard-upload-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: #111827;
@@ -401,7 +408,7 @@
 }
 
 .bioguard-habitat-info h4 {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 600;
     color: #111827;
     margin-bottom: 0.25rem;
@@ -485,7 +492,7 @@
 }
 
 .bioguard-notification-species {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
     color: #111827;
@@ -608,7 +615,7 @@
 }
 
 .bioguard-report-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
     color: #111827;
@@ -680,7 +687,7 @@
 }
 
 .bioguard-add-report-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
     color: #111827;
@@ -797,8 +804,6 @@
     }
 }
 
-
-
 /* Interactive Map Specific Styles */
 .bioguard-map-interactive {
     width: 100%;
@@ -908,7 +913,7 @@
 }
 
 .feature-card-clickable::after {
-    content: '→';
+    content: "→";
     position: absolute;
     top: 1rem;
     right: 1rem;
@@ -964,7 +969,7 @@
 }
 
 .peta-legend-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 600;
     font-size: 0.9rem;
     color: #374151;
@@ -1013,7 +1018,7 @@
 }
 
 .peta-detail-placeholder h3 {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.25rem;
     color: #111827;
@@ -1051,7 +1056,7 @@
 }
 
 .peta-detail-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     color: #111827;
@@ -1080,7 +1085,7 @@
 }
 
 .peta-stat-number {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     color: #059669;
@@ -1098,7 +1103,7 @@
 }
 
 .peta-species-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 600;
     font-size: 1rem;
     color: #374151;
@@ -1229,7 +1234,7 @@
 }
 
 .peta-quick-stat-number {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 800;
     font-size: 2rem;
     background: linear-gradient(135deg, var(--primary-500), var(--primary-700));
@@ -1305,15 +1310,22 @@
 }
 
 .user-dashboard-welcome::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background:
-        radial-gradient(at 20% 30%, rgba(16, 185, 129, 0.15) 0px, transparent 50%),
-        radial-gradient(at 80% 20%, rgba(6, 182, 212, 0.15) 0px, transparent 50%);
+    background: radial-gradient(
+            at 20% 30%,
+            rgba(16, 185, 129, 0.15) 0px,
+            transparent 50%
+        ),
+        radial-gradient(
+            at 80% 20%,
+            rgba(6, 182, 212, 0.15) 0px,
+            transparent 50%
+        );
     pointer-events: none;
 }
 
@@ -1344,7 +1356,7 @@
 }
 
 .user-welcome-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
     color: #111827;
@@ -1404,7 +1416,7 @@
 }
 
 .user-legend-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 600;
     font-size: 0.85rem;
     color: #111827;
@@ -1454,7 +1466,7 @@
 }
 
 .user-detail-placeholder h3 {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     color: #111827;
     margin-bottom: 0.5rem;
@@ -1487,7 +1499,7 @@
 }
 
 .user-detail-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.35rem;
     color: #111827;
@@ -1514,7 +1526,7 @@
 }
 
 .user-stat-number {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
     color: var(--primary-600);
@@ -1532,7 +1544,7 @@
 }
 
 .user-species-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 600;
     font-size: 0.95rem;
     color: #111827;
@@ -1668,7 +1680,7 @@
 }
 
 .user-quick-stat-number {
-    font-family: 'Outfit', sans-serif;
+    font-family: "Outfit", sans-serif;
     font-weight: 800;
     font-size: 2rem;
     color: var(--primary-600);
