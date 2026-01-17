@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@push('styles')
+@yield('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/observasi.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-@endpush
-{{-- @dd(auth()->user()->role) --}}
+
+
 
 @php
 $userName = Auth::user()->name ?? (session('admin_user.name') ?? 'User');
