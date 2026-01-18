@@ -1176,6 +1176,9 @@
 
  /* Mobile Menu Background with Glassmorphism */
  @media (max-width: 991px) {
+    nav #btn-group::before{
+       display: none; 
+    }
 
      /* Default Mobile Menu Background */
      .navbar-collapse {

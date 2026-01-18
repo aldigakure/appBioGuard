@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 class LaporanController extends Controller
 {
     /**
-     * Display the forum discussion page.
+     * Display the forum laporan page.
      */
     public function index()
     {
-        // Sample discussion data (in production, this would come from database)
-        $discussions = [
+        // Sample laporan data (in production, this would come from database)
+        $laporans = [
             [
                 'id' => 1,
                 'title' => 'Penemuan Harimau Sumatera di Kawasan Hutan Lindung',
@@ -55,6 +55,6 @@ class LaporanController extends Controller
             ],
         ];
 
-        return view('admin.laporan', compact('discussions'));
+        return view('admin.laporan', compact('laporans'));
     }
 }
