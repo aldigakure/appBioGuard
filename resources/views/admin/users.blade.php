@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@push('styles')
+@section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-@endpush
+@endsection
 
 @section('content')
 @include('layouts.navbar-dashboard')

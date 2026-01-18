@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
-@yield('styles')
+@section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/observasi.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-
+@endsection
 
 
 @php
     $userName = auth()->user()->name ?? null;
     $userEmail = auth()->user()->email ?? null;
+    $userExpertise =  auth()->user()->expertise ?? null;
     $userAvatar = auth()->user()->avatar ?? null;
     $userPhone = auth()->user()->phone ?? null;
     $userLocation = auth()->user()->location ?? null;
@@ -17,8 +18,8 @@
 
    
 @endphp
-
 @section('content')
+
     @include('layouts.navbar-dashboard')
     <main class="dashboard-main" style="padding-top: 6rem;">
         <div class="dashboard-container">
@@ -39,8 +40,8 @@
                             <h1 class="profile-name">{{ $userName }}</h1>
                             <p class="profile-email">{{ $userEmail }}</p>
                             <div class="profile-badges">
-                                <span class="badge badge-volunteer">🌿 Volunteer</span>
-                                <span class="badge badge-verified">✓ Terverifikasi</span>
+                                <span class="badge text-success badge-volunteer">{{ $userExpertise }}</span>
+                                <span class="badge text-primary badge-verified">✓ Terverifikasi</span>
                             </div>
                         </div>
                     </div>

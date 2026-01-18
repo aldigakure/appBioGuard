@@ -7,14 +7,14 @@
 
 
 @php
-$userName = Auth::user()->name ?? session('admin_user.name') ?? 'User';
-$userEmail = Auth::user()->email ?? session('admin_user.email') ?? 'user@bioguard.id';
-$userAvatar = session('admin_user.avatar') ?? null;
-$userPhone = session('admin_user.phone') ?? '';
-$userLocation = session('admin_user.location') ?? '';
-$userBio = session('admin_user.bio') ?? '';
-$userExpertise = session('admin_user.expertise') ?? '';
-$userOrganization = session('admin_user.organization') ?? '';
+$userName = auth()->user()->name ?? null;
+$userEmail =  auth()->user()->email ?? null;
+$userAvatar =  auth()->user()->avatar ?? null;
+$userPhone =  auth()->user()->phone ?? null;
+$userLocation =  auth()->user()->location ?? null;
+$userBio =  auth()->user()->bio ?? null;
+$userExpertise =  auth()->user()->expertise ?? null;
+$userOrganization = auth()->user()->organization ?? null;
 @endphp
 
 @section('content')

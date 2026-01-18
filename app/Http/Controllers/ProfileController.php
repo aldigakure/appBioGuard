@@ -31,6 +31,7 @@ class ProfileController extends Controller
             'expertise' => 'nullable|string|max:100',
             'organization' => 'nullable|string|max:255',
         ]);
+     
 
         /** @var \App\Models\User $user */
         $user = Auth::user();

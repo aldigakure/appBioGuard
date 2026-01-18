@@ -14,7 +14,7 @@
                 {{-- navbar --}}
                 @if (auth()->user()->role->role_name == 'admin')
                     <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
+                        <a href="{{ auth()->user()->role->role_name == 'admin'? route('admin.dashboard') : route('user.dashboard') }}"
                             class="nav-link text-capitalize {{ request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') || request()->routeIs('user.dashboard') ? 'active' : '' }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
@@ -159,7 +159,7 @@
                             <span class="user-name d-none d-md-inline">{{ $userName }}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                            <li><a class="dropdown-item" href="{{ auth()->user()->role->role_name == 'admin'? route('admin.dashboard') : route('user.dashboard') }}">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" class="me-2">
                                         <rect x="3" y="3" width="7" height="7"></rect>
