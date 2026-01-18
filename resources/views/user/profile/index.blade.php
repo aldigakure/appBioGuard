@@ -7,6 +7,8 @@
 @endsection
 
 
+@section('content')
+
 @php
     $userName = auth()->user()->name ?? null;
     $userEmail = auth()->user()->email ?? null;
@@ -18,8 +20,6 @@
 
    
 @endphp
-@section('content')
-
     @include('layouts.navbar-dashboard')
     <main class="dashboard-main" style="padding-top: 6rem;">
         <div class="dashboard-container">
@@ -199,3 +199,4 @@
         </div>
         </div>
     </main>
+@endsection
