@@ -43,6 +43,10 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link text-capitalize">Laporkan</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link text-capitalize">Permainan</a>
+
+                    </li>
                 @endif
 
             </ul>
