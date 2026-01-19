@@ -51,7 +51,7 @@
 
         </div>
 
-        <div class="d-flex w-auto align-items-center gap-2 flex-row" id="btn-group">
+        <div class="d-flex w-auto align-items-center gap-2 flex-nowrap" id="btn-group">
 
             <div class=" dropdown">
                 <a class="notification-btn" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
@@ -120,7 +120,16 @@
                                 <span class="d-block">$230 deducted from account</span>
                             </div>
                         </a>
-                      
+                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
+                            <span class="me-3">
+                                <img src="../../dist/images/profile/user-1.jpg" alt="user" class="rounded-circle"
+                                    width="48" height="48" />
+                            </span>
+                            <div class="w-75 d-inline-block v-middle">
+                                <h6 class="mb-1 fw-semibold">Roman Joined the Team!</h6>
+                                <span class="d-block">Congratulate him</span>
+                            </div>
+                        </a>
                     </div>
                     <div class="py-6 px-7 mb-1">
                         <button class="btn btn-outline-primary w-100"> See All Notifications </button>

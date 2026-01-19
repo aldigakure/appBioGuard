@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Shared Routes (Accessible by both Admin and User)
-    Route::middleware('role:admin,user')->group(function () {
+    Route::middleware('role:admin,warga,jagawana')->group(function () {
         // observasi routes
         Route::get('/observasi', [ObservasiController::class, 'observasi'])->name('observasi');
         Route::get('/observasi/create', [ObservasiController::class, 'create'])->name('observasi.create');
@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     });
 
     // User Dashboard
-    Route::middleware('role:user')->prefix('user')->group(function () {
+    Route::middleware('role:warga,jagawana')->prefix('user')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'userDashboard'])->name('user.dashboard');
     });
 

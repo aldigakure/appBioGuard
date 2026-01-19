@@ -40,9 +40,21 @@
                             <h1 class="profile-name">{{ $userName }}</h1>
                             <p class="profile-email">{{ $userEmail }}</p>
                             <div class="profile-badges">
-                                <span class="badge text-success badge-volunteer">{{ $userExpertise }}</span>
-                                <span class="badge text-primary badge-verified">✓ Terverifikasi</span>
-                            </div>
+                            @php
+                                $userRole = auth()->user()->role->role_name ?? 'warga';
+                                $roleConfig = match($userRole) {
+                                    'admin' => ['class' => 'role-admin', 'label' => 'Administrator', 'icon' => '🛡️'],
+                                    'jagawana' => ['class' => 'role-jagawana', 'label' => 'Jagawana', 'icon' => '🤠'],
+                                    'warga' => ['class' => 'role-warga', 'label' => 'Warga Lokal', 'icon' => '🏡'],
+                                    default => ['class' => 'role-warga', 'label' => 'Warga Lokal', 'icon' => '🏡'],
+                                };
+                            @endphp
+                            <span class="role-badge {{ $roleConfig['class'] }}">
+                                {{ $roleConfig['icon'] }} {{ $roleConfig['label'] }}
+                            </span>
+                            <span class="badge text-success badge-volunteer">{{ $userExpertise }}</span>
+                            <span class="badge text-primary badge-verified">✓ Terverifikasi</span>
+                        </div>
                         </div>
                     </div>
                     <a href="{{ route('profile.edit') }}" class="btn btn-primary align-self-start me-2 mt-3">Edit Profil</a>

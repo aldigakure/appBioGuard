@@ -83,8 +83,8 @@ class AuthController extends Controller
             'terms.accepted' => 'Anda harus menyetujui Syarat & Ketentuan.',
         ]);
 
-        // Strictly assign 'user' role by default
-        $userRole = Role::where('role_name', 'user')->first();
+        // Strictly assign 'warga' role by default
+        $userRole = Role::where('role_name', 'warga')->first();
         
         if (!$userRole) {
             // Fallback or handle missing role in production

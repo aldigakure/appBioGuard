@@ -79,7 +79,7 @@
             ['icon' => '🦜', 'name' => 'Kakatua Raja', 'latin' => 'Probosciger aterrimus', 'loc' => 'Raja Ampat, Papua', 'cat' => 'fauna', 'user' => 'Budi Santoso', 'role' => 'Volunteer'],
             ['icon' => '🦎', 'name' => 'Komodo', 'latin' => 'Varanus komodoensis', 'loc' => 'Pulau Komodo, NTT', 'cat' => 'fauna', 'user' => 'Ahmad Fadli', 'role' => 'Researcher'],
             ['icon' => '🌺', 'name' => 'Rafflesia Arnoldii', 'latin' => 'Rafflesia arnoldii', 'loc' => 'TN Bukit Barisan', 'cat' => 'flora', 'user' => 'Dewi Lestari', 'role' => 'Botanist'],
-            ['icon' => '🐘', 'name' => 'Gajah Sumatera', 'latin' => 'Elephas maximus', 'loc' => 'TN Way Kambas', 'cat' => 'mamalia', 'user' => 'Rudi Hartono', 'role' => 'Ranger']
+            ['icon' => '🐘', 'name' => 'Gajah Sumatera', 'latin' => 'Elephas maximus', 'loc' => 'TN Way Kambas', 'cat' => 'mamalia', 'user' => 'Rudi Hartono', 'role' => 'Jagawana']
             ] as $obs)
             <div class="observasi-card card-hover">
                 <div class="observasi-image-placeholder">{{ $obs['icon'] }}</div>

@@ -8,17 +8,17 @@ use App\Models\Role;
 
 class RoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         $roles = [
-            ['role_name' => 'admin'],
-            ['role_name' => 'user'],
-            ['role_name' => 'volunteer'],
-            ['role_name' => 'researcher'],
-            ['role_name' => 'citizen'],
+            //role admin
+            ['role_name' => 'admin'], //role id: 1
+
+            //anggota komunitas
+            ['role_name' => 'jagawana'], //role id: 2
+
+            //dafault role user
+            ['role_name' => 'warga'], //role id: 3
         ];
 
         foreach ($roles as $role) {

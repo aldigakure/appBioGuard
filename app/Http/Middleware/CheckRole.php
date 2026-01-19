@@ -21,7 +21,7 @@ class CheckRole
         }
 
         if (!Auth::user()->role || !in_array(Auth::user()->role->role_name, $roles)) {
-            return abort(403, 'Anda tidak memiliki hak akses untuk halaman ini.');
+            abort(403, 'Anda tidak memiliki hak akses untuk halaman ini.');
         }
 
         return $next($request);
