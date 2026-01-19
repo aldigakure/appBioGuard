@@ -41,7 +41,7 @@
 
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Menu Lainnya</a>
+                        <a href="#" class="nav-link text-capitalize">Laporkan</a>
                     </li>
                 @endif
 
