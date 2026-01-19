@@ -1176,9 +1176,17 @@
 
  /* Mobile Menu Background with Glassmorphism */
  @media (max-width: 991px) {
-    nav #btn-group::before{
-       display: none; 
-    }
+     nav #btn-group::before {
+         display: none;
+     }
+
+     /* Align notification, profile, and burger button with logo text */
+     nav #btn-group {
+         align-self: center !important;
+         margin-top: -8px !important;
+         flex-direction: row !important;
+         align-items: center !important;
+     }
 
      /* Default Mobile Menu Background */
      .navbar-collapse {

@@ -73,12 +73,12 @@
                       dengan akurasi tinggi.</p>
               </div>
 
-              <div class="feature-card card-hover" id="bioaiCard" style="background: linear-gradient(135deg, #fef3c7, #ffedd5);">
+              <a href="{{ route('bioguard.bio-ai') }}" class="feature-card card-hover feature-card-clickable" id="bioaiCard" style="background: linear-gradient(135deg, #fef3c7, #ffedd5); text-decoration: none;">
                   <div class="feature-icon icon-amber">🌳</div>
                   <h3 class="feature-title">Bio-Ai</h3>
                   <p class="feature-description">Dashboard analitik real-time untuk monitoring populasi dan tren
                       biodiversitas.</p>
-              </div>
+              </a>
 
               <a href="{{ route('peta') }}" class="feature-card card-hover feature-card-clickable"
                   style="background: linear-gradient(135deg, #fce7f3, #ede9fe); text-decoration: none;">

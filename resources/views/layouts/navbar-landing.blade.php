@@ -105,9 +105,9 @@
             </ul>
             <div class="d-flex align-items-center gap-2">
                 @php
-                $isLoggedIn = Auth::check() || session('is_authenticated');
-                $userName = Auth::user()->name ?? (session('admin_user.name') ?? 'User');
-                $userAvatar = session('admin_user.avatar') ?? null;
+                    $isLoggedIn = Auth::check() || session('is_authenticated');
+                    $userName =   $userName = auth()->user()->name ?? null;
+                    $userAvatar =   $userAvatar = auth()->user()->avatar ?? null;
                 @endphp
 
                 @if ($isLoggedIn)

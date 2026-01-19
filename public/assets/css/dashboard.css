@@ -1070,6 +1070,99 @@
         display: none;
     }
 }
+
 .btn-user-menu::before {
     display: none !important;
+}
+
+/* ============================================
+   Notification Dropdown Responsive Styles
+   ============================================ */
+
+/* Desktop Notification Dropdown */
+.notification-btn+.dropdown-menu,
+.notification-btn~.dropdown-menu,
+.dropdown>.content-dd {
+    min-width: 360px;
+    max-width: 400px;
+    border-radius: 16px !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    overflow: hidden;
+}
+
+.content-dd .message-body {
+    max-height: 320px;
+    overflow-y: auto;
+}
+
+.content-dd .dropdown-item {
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px !important;
+    margin: 0.25rem 0.5rem !important;
+    transition: all 0.2s ease;
+}
+
+.content-dd .dropdown-item:hover {
+    background: rgba(16, 185, 129, 0.08) !important;
+    transform: translateX(4px);
+}
+
+.content-dd .dropdown-item h6 {
+    font-size: 0.9rem;
+    color: #111827;
+}
+
+.content-dd .dropdown-item span {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* Mobile Notification Dropdown */
+@media (max-width: 768px) {
+
+    .notification-btn+.dropdown-menu,
+    .notification-btn~.dropdown-menu,
+    .dropdown>.content-dd {
+        min-width: auto !important;
+        max-width: none !important;
+        width: calc(100vw - 32px) !important;
+        position: fixed !important;
+        top: 70px !important;
+        left: 16px !important;
+        right: 16px !important;
+        transform: none !important;
+        border-radius: 16px !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .content-dd .message-body {
+        max-height: 50vh;
+    }
+
+    .content-dd .d-flex.align-items-center.justify-content-between {
+        padding: 1rem !important;
+    }
+
+    .content-dd .py-6.px-7 {
+        padding: 0.75rem 1rem !important;
+    }
+
+    .content-dd .dropdown-item {
+        padding: 0.6rem 0.75rem !important;
+        margin: 0.2rem 0.25rem !important;
+    }
+
+    .content-dd .dropdown-item h6 {
+        font-size: 0.85rem;
+    }
+
+    .content-dd .dropdown-item span {
+        font-size: 0.75rem;
+    }
+
+    .content-dd .dropdown-item img {
+        width: 40px !important;
+        height: 40px !important;
+    }
 }
