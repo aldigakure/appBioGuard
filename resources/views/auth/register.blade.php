@@ -21,7 +21,7 @@
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-logo">
-                <img src="{{ asset('assets/images/dinacom_notext.png') }}" style="width: 62px" alt="">
+                <img src="{{ asset('assets/images/dinacom_notext.png') }}" style="width: 42px" alt="">
                 <span>BIOGUARD</span>
             </div>
 
@@ -49,29 +49,39 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="first_name" class="form-label">Nama Depan</label>
-                        <input
-                            type="text"
-                            id="first_name"
-                            name="first_name"
-                            class="form-input @error('first_name') is-invalid @enderror"
-                            placeholder="Nama depan"
-                            value="{{ old('first_name') }}"
-                            autofocus>
+                        <div class="input-with-icon">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <input
+                                type="text"
+                                id="first_name"
+                                name="first_name"
+                                class="form-input @error('first_name') is-invalid @enderror"
+                                placeholder="Nama Depan"
+                                value="{{ old('first_name') }}"
+                                autofocus>
+                        </div>
                         @error('first_name')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
                         <span class="invalid-feedback js-error" id="error-first_name"></span>
                     </div>
                     <div class="form-group">
-                        <label for="last_name" class="form-label">Nama Belakang</label>
-                        <input
-                            type="text"
-                            id="last_name"
-                            name="last_name"
-                            class="form-input @error('last_name') is-invalid @enderror"
-                            placeholder="Nama belakang"
-                            value="{{ old('last_name') }}">
+                        <div class="input-with-icon">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            <input
+                                type="text"
+                                id="last_name"
+                                name="last_name"
+                                class="form-input @error('last_name') is-invalid @enderror"
+                                placeholder="Nama Belakang"
+                                value="{{ old('last_name') }}">
+                        </div>
                         @error('last_name')
                         <span class="invalid-feedback">{{ $message }}</span>
                         @enderror
@@ -80,14 +90,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        class="form-input @error('email') is-invalid @enderror"
-                        placeholder="nama@email.com"
-                        value="{{ old('email') }}">
+                    <div class="input-with-icon">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                            <path d="m3 7 9 6 9-6"></path>
+                        </svg>
+                        <input
+                            type="text"
+                            id="email"
+                            name="email"
+                            class="form-input @error('email') is-invalid @enderror"
+                            placeholder="Email"
+                            value="{{ old('email') }}">
+                    </div>
                     @error('email')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -96,13 +111,33 @@
 
 
                 <div class="form-group">
-                    <label for="password" class="form-label">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        class="form-input @error('password') is-invalid @enderror"
-                        placeholder="Minimal 8 karakter">
+                    <div class="password-input-wrapper input-with-icon">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-input @error('password') is-invalid @enderror"
+                            placeholder="Password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePassword(this)" aria-label="Toggle password visibility">
+                            <svg class="password-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <defs>
+                                    <mask id="eye-mask-1">
+                                        <rect width="24" height="24" fill="white"/>
+                                        <line class="mask-line" x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+                                    </mask>
+                                </defs>
+                                <g class="eye-group">
+                                    <path class="eye-path" d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                                    <circle class="eye-pupil" cx="12" cy="12" r="2.5"></circle>
+                                </g>
+                                <line class="eye-slash" x1="4" y1="4" x2="20" y2="20"></line>
+                            </svg>
+                        </button>
+                    </div>
                     @error('password')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -132,13 +167,33 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password_confirmation" class="form-label">Konfirmasi Password</label>
-                    <input
-                        type="password"
-                        id="password_confirmation"
-                        name="password_confirmation"
-                        class="form-input @error('password_confirmation') is-invalid @enderror"
-                        placeholder="Ulangi password">
+                    <div class="password-input-wrapper input-with-icon">
+                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="5" y="11" width="14" height="10" rx="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            class="form-input @error('password_confirmation') is-invalid @enderror"
+                            placeholder="Konfirmasi Password">
+                        <button type="button" class="password-toggle-btn" onclick="togglePassword(this)" aria-label="Toggle password visibility">
+                            <svg class="password-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <defs>
+                                    <mask id="eye-mask-2">
+                                        <rect width="24" height="24" fill="white"/>
+                                        <line class="mask-line" x1="4" y1="4" x2="20" y2="20" stroke="black" stroke-width="3.5" stroke-linecap="round"/>
+                                    </mask>
+                                </defs>
+                                <g class="eye-group">
+                                    <path class="eye-path" d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path>
+                                    <circle class="eye-pupil" cx="12" cy="12" r="2.5"></circle>
+                                </g>
+                                <line class="eye-slash" x1="4" y1="4" x2="20" y2="20"></line>
+                            </svg>
+                        </button>
+                    </div>
                     @error('password_confirmation')
                     <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
@@ -160,12 +215,6 @@
 
                 <button type="submit" class="btn-auth btn-auth-primary">
                     <span>Daftar Sekarang</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                        <circle cx="8.5" cy="7" r="4" />
-                        <line x1="20" y1="8" x2="20" y2="14" />
-                        <line x1="23" y1="11" x2="17" y2="11" />
-                    </svg>
                 </button>
             </form>
 
@@ -311,6 +360,21 @@
                 }
             }
         });
+    </script>
+
+    <script>
+        function togglePassword(btn) {
+            const wrapper = btn.closest('.password-input-wrapper');
+            const input = wrapper.querySelector('input');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                wrapper.classList.add('showing-password');
+            } else {
+                input.type = 'password';
+                wrapper.classList.remove('showing-password');
+            }
+        }
     </script>
 </body>
 

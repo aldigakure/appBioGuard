@@ -1,65 +1,119 @@
-/* Game-like Badge Styles */
+/* Minimalist Achievement Badge Styles */
 .role-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0 1.25rem;
+    height: 36px;
     border-radius: 12px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid transparent;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(255, 255, 255, 0.1);
+    /* Glass background base */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    cursor: default;
+    z-index: 1;
 }
 
 .role-badge:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
 }
 
 .role-badge svg {
-    width: 20px;
-    height: 20px;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    flex-shrink: 0;
 }
 
-/* Admin Badge - Guardian/Shield Theme (Red/Gold) */
+/* Role Specific Glass Themes */
+
+/* Admin - Royal Red Glass */
 .role-admin {
-    background: linear-gradient(135deg, #fff1f2 0%, #fee2e2 100%);
-    color: #e11d48;
-    border-color: #fecdd3;
+    background: linear-gradient(135deg, rgba(254, 242, 242, 0.7), rgba(255, 228, 230, 0.7));
+    color: #be123c;
+    border: 1px solid rgba(251, 113, 133, 0.3);
 }
 
-.role-admin::before {
+.role-admin:hover {
+    background: linear-gradient(135deg, rgba(254, 242, 242, 0.9), rgba(255, 228, 230, 0.9));
+}
+
+/* Jagawana - Nature Green Glass */
+.role-jagawana {
+    background: linear-gradient(135deg, rgba(240, 253, 244, 0.7), rgba(220, 252, 231, 0.7));
+    color: #047857;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.role-jagawana:hover {
+    background: linear-gradient(135deg, rgba(240, 253, 244, 0.9), rgba(220, 252, 231, 0.9));
+}
+
+/* Warga - Earthy Amber Glass */
+.role-warga {
+    background: linear-gradient(135deg, rgba(255, 251, 235, 0.7), rgba(254, 243, 199, 0.7));
+    color: #b45309;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.role-warga:hover {
+    background: linear-gradient(135deg, rgba(255, 251, 235, 0.9), rgba(254, 243, 199, 0.9));
+}
+
+/* Subtler Animation */
+.role-badge::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: -100%;
+    width: 30%;
     height: 100%;
-    background: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
-    transform: translateX(-100%);
-    transition: transform 0.6s;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    animation: simpleShine 6s infinite;
+    transform: skewX(-20deg);
 }
 
-.role-admin:hover::before {
-    transform: translateX(100%);
+@keyframes simpleShine {
+    0% {
+        left: -100%;
+    }
+
+    15% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
 }
 
-/* Jagawana Badge - Forest/Explorer Theme (Green/Teal) */
-.role-jagawana {
-    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-    color: #059669;
-    border-color: #bbf7d0;
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
 }
 
-/* Warga Badge - Community/Home Theme (Orange/Amber) */
-.role-warga {
-    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-    color: #ea580c;
-    border-color: #fed7aa;
+.role-badge {
+    animation: float 4s ease-in-out infinite;
 }

@@ -2,7 +2,7 @@
 
     <div class="container-fluid flex-nowrap">
         <a href="/" class="logo navbar-brand ms-2 ms-md-4">
-            <img src="{{ asset('assets/images/dinacom_notext.png') }}" class="d-none d-md-inline" style="width: 62px;"
+            <img src="{{ asset('assets/images/dinacom_notext.png') }}" class="d-none d-md-inline" style="width: 42px;"
                 alt="BioGuard Logo">
             BIOGUARD
         </a>

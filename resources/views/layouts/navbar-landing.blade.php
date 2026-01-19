@@ -1,7 +1,7 @@
-<nav id="navbar" class="navbar fixed-top navbar-expand-lg bg-transparent justify-content-center ">
+<nav id="navbar" class="navbar fixed-top navbar-expand-lg bg-transparent justify-content-center mt-4">
     <div class="container-fluid">
         <a href="/" class="logo navbar-brand ms-4">
-            <img src="{{ asset('assets/images/dinacom_notext.png') }}" class="d-none d-md-inline" style="width: 62px;"
+            <img src="{{ asset('assets/images/dinacom_notext.png') }}" class="d-none d-md-inline" style="width: 42px;"
                 alt="BioGuard Logo">
             BIOGUARD
         </a>
