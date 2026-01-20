@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Regular User',
             'email' => 'user@bioguard.com',
             'password_hash' => bcrypt('password'),
-            'role_id' => 2, // user
+            'role_id' => 3, // warga
         ]);
     }
 }

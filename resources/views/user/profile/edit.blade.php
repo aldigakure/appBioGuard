@@ -167,7 +167,7 @@ $userOrganization = auth()->user()->organization ?? null;
                                 <option value="photographer" {{ $userExpertise == 'photographer' ? 'selected' : '' }}>📸 Fotografer</option>
                                 <option value="botanist" {{ $userExpertise == 'botanist' ? 'selected' : '' }}>🌺 Botanis</option>
                                 <option value="zoologist" {{ $userExpertise == 'zoologist' ? 'selected' : '' }}>🦁 Zoologist</option>
-                                <option value="ranger" {{ $userExpertise == 'ranger' ? 'selected' : '' }}>🏕️ Ranger</option>
+                                <option value="jagawana" {{ $userExpertise == 'jagawana' ? 'selected' : '' }}>🏕️ Jagawana</option>
                                 <option value="other" {{ $userExpertise == 'other' ? 'selected' : '' }}>✨ Lainnya</option>
                             </select>
                         </div>
