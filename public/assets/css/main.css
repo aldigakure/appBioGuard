@@ -160,7 +160,7 @@
 
  /* nav dashboard */
  .nav-dashboard {
-    z-index: 999;
+     z-index: 999;
  }
 
  /* Navigation */
@@ -1952,7 +1952,17 @@
  }
 
  .password-strength {
+     margin-top: 0;
+     max-height: 0;
+     opacity: 0;
+     overflow: hidden;
+     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ .form-group:focus-within .password-strength {
      margin-top: 0.5rem;
+     max-height: 100px;
+     opacity: 1;
  }
 
  .password-strength-bar {
@@ -1985,11 +1995,11 @@
      max-height: 0;
      opacity: 0;
      overflow: hidden;
-     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+     transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
  }
 
  .form-group:focus-within .password-requirements {
-     margin-top: 1rem;
+     margin-top: 0.75rem;
      max-height: 100px;
      opacity: 1;
      padding: 0.5rem 0.75rem;
