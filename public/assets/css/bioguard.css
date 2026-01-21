@@ -862,6 +862,226 @@
     color: #059669;
 }
 
+/* Enhanced Detail Panel Styles */
+.bioguard-habitat-card-main {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5) !important;
+    border: 2px solid rgba(16, 185, 129, 0.2);
+    position: relative;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    overflow: visible;
+    display: flex;
+}
+
+.bioguard-habitat-card-main.fauna {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7) !important;
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.bioguard-habitat-main-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1rem;
+    text-align: center;
+}
+
+.bioguard-habitat-main-badge.fauna {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.bioguard-habitat-main-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.bioguard-habitat-main-content .bioguard-habitat-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.bioguard-habitat-main-content .bioguard-habitat-info h4 {
+    font-size: 1.15rem;
+    margin-bottom: 0.25rem;
+}
+
+.flora-alias,
+.fauna-alias {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin-bottom: 0.15rem !important;
+}
+
+.flora-latin,
+.fauna-latin {
+    color: #059669;
+    font-size: 0.8rem;
+    margin-bottom: 0.35rem !important;
+}
+
+.fauna-latin {
+    color: #d97706;
+}
+
+.bioguard-habitat-details {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.detail-item {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #374151;
+}
+
+.detail-tips,
+.detail-adaptasi {
+    background: rgba(16, 185, 129, 0.08);
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    border-left: 3px solid #10b981;
+}
+
+.detail-adaptasi {
+    background: rgba(245, 158, 11, 0.08);
+    border-left-color: #f59e0b;
+}
+
+.bioguard-habitat-section-title {
+    font-family: "Outfit", sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #059669;
+    padding: 1rem 0 0.5rem;
+    border-bottom: 2px solid #d1fae5;
+    margin-bottom: 0.5rem;
+}
+
+.bioguard-habitat-section-title.fauna {
+    color: #d97706;
+    border-bottom-color: #fef3c7;
+}
+
+.species-threat {
+    font-size: 0.75rem;
+    color: #dc2626;
+    margin-top: 0.25rem !important;
+    background: rgba(239, 68, 68, 0.08);
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+}
+
+/* Scrollable habitat list */
+.bioguard-habitat-list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Main species description */
+.bioguard-habitat-description {
+    background: rgba(16, 185, 129, 0.05);
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(16, 185, 129, 0.1);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.bioguard-habitat-description p {
+    font-size: 0.85rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.bioguard-habitat-description.fauna {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.1);
+}
+
+/* Hover tooltip for other species */
+.bioguard-species-hover {
+    position: relative;
+    cursor: pointer;
+}
+
+.species-hover-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background: #1f2937;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+}
+
+.species-hover-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 20px;
+    border: 8px solid transparent;
+    border-top-color: #1f2937;
+}
+
+.species-hover-tooltip p {
+    margin: 0;
+}
+
+.bioguard-species-hover:hover .species-hover-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-8px);
+}
+
 @media (max-width: 400px) {
     .bioguard-modal {
         padding: 1.25rem;
@@ -1764,5 +1984,692 @@
 
     .user-stats-section {
         padding: 2rem 1rem;
+    }
+}
+
+/* ============================================
+   EcoDetect-Style Card Layout for Flora/Fauna
+   ============================================ */
+
+/* Detail Content Wrapper */
+.peta-detail-content-wrapper {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1.25rem;
+}
+
+.peta-detail-content-wrapper.fauna {
+    background: #fffbeb;
+}
+
+/* Header Styles */
+.peta-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.peta-detail-header.fauna {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+
+.peta-detail-icon {
+    width: 48px;
+    height: 48px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.peta-detail-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.peta-detail-subtitle {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin: 0.25rem 0 0 0;
+}
+
+/* Stats Grid */
+.peta-detail-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+}
+
+.peta-detail-stats.fauna .peta-stat-item {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.peta-detail-stats.fauna .peta-stat-number {
+    color: #b45309;
+}
+
+.peta-stat-item {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.peta-stat-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+.peta-stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Species Section */
+.peta-species-section {
+    margin-bottom: 1.25rem;
+}
+
+.peta-species-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 0.75rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.peta-species-title.fauna {
+    color: #92400e;
+}
+
+/* Flora Identity Card */
+.peta-flora-identity-card,
+.peta-fauna-identity-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.peta-fauna-identity-card {
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.peta-flora-identity-header,
+.peta-fauna-identity-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+}
+
+.peta-fauna-identity-header {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+}
+
+.peta-flora-identity-icon,
+.peta-fauna-identity-icon {
+    width: 56px;
+    height: 56px;
+    background: white;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+    flex-shrink: 0;
+}
+
+.peta-fauna-identity-icon {
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.peta-flora-identity-info,
+.peta-fauna-identity-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.peta-flora-identity-name,
+.peta-fauna-identity-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+}
+
+.peta-flora-identity-alias,
+.peta-fauna-identity-alias {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0 0 0.25rem 0;
+}
+
+.peta-flora-identity-latin,
+.peta-fauna-identity-latin {
+    font-size: 0.85rem;
+    color: #059669;
+    margin: 0 0 0.5rem 0;
+}
+
+.peta-fauna-identity-latin {
+    color: #b45309;
+}
+
+.peta-flora-identity-status,
+.peta-fauna-identity-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* Description */
+.peta-flora-identity-desc,
+.peta-fauna-identity-desc {
+    padding: 1rem;
+    background: #f8fafc;
+    border-top: 1px solid rgba(16, 185, 129, 0.1);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.peta-fauna-identity-desc {
+    border-color: rgba(245, 158, 11, 0.1);
+    background: #fffbeb;
+}
+
+.peta-flora-identity-desc p,
+.peta-fauna-identity-desc p {
+    font-size: 0.85rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Details Grid */
+.peta-flora-identity-details,
+.peta-fauna-identity-details {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.peta-flora-detail-item,
+.peta-fauna-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.peta-flora-detail-icon,
+.peta-fauna-detail-icon {
+    flex-shrink: 0;
+}
+
+.peta-flora-detail-label,
+.peta-fauna-detail-label {
+    font-weight: 600;
+    color: #374151;
+    white-space: nowrap;
+}
+
+.peta-flora-tips,
+.peta-fauna-tips {
+    background: #f0fdf4;
+    padding: 0.75rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+}
+
+.peta-fauna-tips {
+    background: #fffbeb;
+}
+
+/* Flora/Fauna List Cards */
+.peta-flora-list,
+.peta-fauna-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.peta-flora-list::-webkit-scrollbar,
+.peta-fauna-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.peta-flora-list::-webkit-scrollbar-track,
+.peta-fauna-list::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 3px;
+}
+
+.peta-flora-list::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 3px;
+}
+
+.peta-fauna-list::-webkit-scrollbar-thumb {
+    background: #f59e0b;
+    border-radius: 3px;
+}
+
+.peta-flora-card,
+.peta-fauna-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    background: white;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+}
+
+.peta-flora-card:hover {
+    background: #f0fdf4;
+    border-color: #10b981;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.peta-fauna-card:hover {
+    background: #fffbeb;
+    border-color: #f59e0b;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.peta-flora-number,
+.peta-fauna-number {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.peta-fauna-number {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.peta-flora-info,
+.peta-fauna-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.peta-flora-name,
+.peta-fauna-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin: 0 0 0.25rem 0;
+}
+
+.peta-flora-latin,
+.peta-fauna-latin {
+    font-size: 0.75rem;
+    color: #059669;
+    margin: 0 0 0.35rem 0;
+}
+
+.peta-fauna-latin {
+    color: #b45309;
+}
+
+.peta-flora-status,
+.peta-fauna-status {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.peta-flora-desc,
+.peta-fauna-desc {
+    font-size: 0.75rem;
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0.5rem 0 0 0;
+}
+
+.peta-flora-threat,
+.peta-fauna-threat {
+    font-size: 0.7rem;
+    color: #dc2626;
+    margin: 0.35rem 0 0 0;
+    padding: 0.35rem 0.5rem;
+    background: #fef2f2;
+    border-radius: 6px;
+}
+
+/* Status Classes */
+.status-critical {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.status-vulnerable {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.status-safe {
+    background: #d1fae5;
+    color: #059669;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .peta-detail-content-wrapper {
+        padding: 1rem;
+    }
+
+    .peta-detail-stats {
+        gap: 0.5rem;
+    }
+
+    .peta-stat-item {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .peta-stat-number {
+        font-size: 1.25rem;
+    }
+
+    .peta-flora-identity-icon,
+    .peta-fauna-identity-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .peta-flora-identity-name,
+    .peta-fauna-identity-name {
+        font-size: 1rem;
+    }
+
+    .peta-flora-list,
+    .peta-fauna-list {
+        max-height: 300px;
+    }
+}
+
+/* ============================================
+   BioGuard Map Container Styles
+   ============================================ */
+
+/* Map container layout */
+.bioguard-map-container {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.bioguard-map-wrapper {
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    border-radius: 16px;
+    padding: 1rem;
+    min-height: 450px;
+    position: relative;
+    overflow: hidden;
+}
+
+.bioguard-map-interactive {
+    width: 100%;
+    height: 450px;
+}
+
+.bioguard-habitat-list {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 1rem;
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 3px;
+}
+
+.bioguard-habitat-list::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 3px;
+}
+
+.bioguard-habitat-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.bioguard-habitat-placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.6;
+}
+
+.bioguard-habitat-placeholder p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Responsive Map Layout - Stack vertically below 998px */
+@media (max-width: 998px) {
+    .bioguard-map-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .bioguard-map-wrapper {
+        min-height: 350px;
+        order: 1;
+    }
+
+    .bioguard-map-interactive {
+        height: 350px;
+    }
+
+    .bioguard-habitat-list {
+        order: 2;
+        max-height: none;
+        padding: 1rem;
+    }
+
+    .peta-detail-content-wrapper {
+        padding: 1rem;
+    }
+
+    .peta-detail-header {
+        padding: 0.875rem;
+    }
+
+    .peta-detail-icon {
+        width: 42px;
+        height: 42px;
+        font-size: 1.25rem;
+    }
+
+    .peta-detail-title {
+        font-size: 1.1rem;
+    }
+
+    .peta-detail-stats {
+        gap: 0.5rem;
+    }
+
+    .peta-stat-item {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .peta-stat-number {
+        font-size: 1.35rem;
+    }
+
+    .peta-stat-label {
+        font-size: 0.65rem;
+    }
+
+    .peta-flora-identity-card,
+    .peta-fauna-identity-card {
+        margin-bottom: 1rem;
+    }
+
+    .peta-flora-identity-header,
+    .peta-fauna-identity-header {
+        padding: 0.875rem;
+        gap: 0.75rem;
+    }
+
+    .peta-flora-identity-icon,
+    .peta-fauna-identity-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .peta-flora-identity-name,
+    .peta-fauna-identity-name {
+        font-size: 1rem;
+    }
+
+    .peta-flora-identity-desc,
+    .peta-fauna-identity-desc {
+        padding: 0.75rem;
+    }
+
+    .peta-flora-identity-desc p,
+    .peta-fauna-identity-desc p {
+        font-size: 0.8rem;
+    }
+
+    .peta-flora-identity-details,
+    .peta-fauna-identity-details {
+        padding: 0.875rem;
+    }
+
+    .peta-flora-detail-item,
+    .peta-fauna-detail-item {
+        font-size: 0.75rem;
+    }
+
+    .peta-species-title {
+        font-size: 0.85rem;
+    }
+
+    .peta-flora-list,
+    .peta-fauna-list {
+        max-height: 400px;
+    }
+
+    .peta-flora-card,
+    .peta-fauna-card {
+        padding: 0.75rem;
+    }
+
+    .peta-flora-number,
+    .peta-fauna-number {
+        width: 24px;
+        height: 24px;
+        font-size: 0.7rem;
+    }
+
+    .peta-flora-name,
+    .peta-fauna-name {
+        font-size: 0.85rem;
+    }
+
+    .peta-flora-latin,
+    .peta-fauna-latin {
+        font-size: 0.7rem;
+    }
+
+    .peta-flora-desc,
+    .peta-fauna-desc {
+        font-size: 0.7rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .bioguard-map-wrapper {
+        min-height: 280px;
+        padding: 0.75rem;
+    }
+
+    .bioguard-map-interactive {
+        height: 280px;
+    }
+
+    .peta-detail-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.35rem;
+    }
+
+    .peta-stat-item {
+        padding: 0.5rem 0.25rem;
+    }
+
+    .peta-stat-number {
+        font-size: 1.1rem;
+    }
+
+    .peta-stat-label {
+        font-size: 0.55rem;
+    }
+
+    .peta-flora-identity-icon,
+    .peta-fauna-identity-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
     }
 }
