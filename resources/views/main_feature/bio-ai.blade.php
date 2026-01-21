@@ -23,7 +23,7 @@
 </div>
 
 <!-- Stats Overview Section -->
-<section class="bioguard-section" style="background: white; padding-top: 2rem;">
+<section class="bioguard-section" style="background: #d1fae5; padding-top: 2rem;">
     <div class="bioguard-container">
         <div class="bioai-stats-grid">
             <div class="bioai-stat-card">
@@ -55,7 +55,7 @@
                 </div>
             </div>
             <div class="bioai-stat-card">
-                <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">🏝️</div>
+                <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #cffafe, #a5f3fc);">🏝️</div>
                 <div class="bioai-stat-content">
                     <div class="bioai-stat-number" id="stat-provinsi">Loading...</div>
                     <div class="bioai-stat-label">Provinsi Tercakup</div>
