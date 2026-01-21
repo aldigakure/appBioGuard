@@ -29,55 +29,55 @@
             <div class="bioai-stat-card">
                 <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #d1fae5, #a7f3d0);">🌳</div>
                 <div class="bioai-stat-content">
-                    <div class="bioai-stat-number" data-count="2450000">2,450,000+</div>
+                    <div class="bioai-stat-number" id="stat-pohon">Loading...</div>
                     <div class="bioai-stat-label">Pohon Ditanam</div>
                     <div class="bioai-stat-trend trend-up">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                             <polyline points="17 6 23 6 23 12"></polyline>
                         </svg>
-                        +12.5% dari tahun lalu
+                        <span id="stat-pohon-trend">+12.5% dari tahun lalu</span>
                     </div>
                 </div>
             </div>
             <div class="bioai-stat-card">
                 <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #cffafe, #a5f3fc);">📏</div>
                 <div class="bioai-stat-content">
-                    <div class="bioai-stat-number">185,420</div>
+                    <div class="bioai-stat-number" id="stat-hektar">Loading...</div>
                     <div class="bioai-stat-label">Hektar Direstorasi</div>
                     <div class="bioai-stat-trend trend-up">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                             <polyline points="17 6 23 6 23 12"></polyline>
                         </svg>
-                        +8.2% dari tahun lalu
+                        <span id="stat-hektar-trend">+8.2% dari tahun lalu</span>
                     </div>
                 </div>
             </div>
             <div class="bioai-stat-card">
-                <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">📉</div>
+                <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">🏝️</div>
                 <div class="bioai-stat-content">
-                    <div class="bioai-stat-number">32.5%</div>
-                    <div class="bioai-stat-label">Deforestasi Termitigasi</div>
+                    <div class="bioai-stat-number" id="stat-provinsi">Loading...</div>
+                    <div class="bioai-stat-label">Provinsi Tercakup</div>
                     <div class="bioai-stat-trend trend-up">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
                             <polyline points="17 6 23 6 23 12"></polyline>
                         </svg>
-                        Peningkatan 5.3%
+                        <span id="stat-provinsi-trend">Seluruh Indonesia</span>
                     </div>
                 </div>
             </div>
             <div class="bioai-stat-card">
                 <div class="bioai-stat-icon" style="background: linear-gradient(135deg, #fce7f3, #fbcfe8);">📍</div>
                 <div class="bioai-stat-content">
-                    <div class="bioai-stat-number">156</div>
-                    <div class="bioai-stat-label">Lokasi Prioritas</div>
+                    <div class="bioai-stat-number" id="stat-prioritas">Loading...</div>
+                    <div class="bioai-stat-label">Area Prioritas Tinggi</div>
                     <div class="bioai-stat-trend trend-neutral">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                        28 zona baru teridentifikasi
+                        <span id="stat-prioritas-trend">Perlu perhatian khusus</span>
                     </div>
                 </div>
             </div>
@@ -392,285 +392,5 @@
     }
 </script>
 <script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
-
-<script>
-    // Reforestation data for each province
-    const reforestationData = {
-        'id-ac': {
-            name: 'Aceh',
-            region: 'Sumatera',
-            treesPlanted: 125000,
-            areaRestored: 8500,
-            soilMoisture: 62,
-            deforestationRate: 12,
-            forestCoverage: 58,
-            soilHealth: 72,
-            priority: 'medium',
-            recommendation: 'Fokus pada restorasi koridor satwa liar Leuser Ecosystem. Prioritaskan penanaman pohon asli seperti Meranti dan Damar.',
-            value: 125
-        },
-        'id-su': {
-            name: 'Sumatera Utara',
-            region: 'Sumatera',
-            treesPlanted: 98000,
-            areaRestored: 6200,
-            soilMoisture: 55,
-            deforestationRate: 18,
-            forestCoverage: 45,
-            soilHealth: 65,
-            priority: 'high',
-            recommendation: 'Tingkatkan reboisasi di kawasan hutan lindung Toba. Implementasikan agroforestri dengan masyarakat lokal.',
-            value: 98
-        },
-        'id-ri': {
-            name: 'Riau',
-            region: 'Sumatera',
-            treesPlanted: 185000,
-            areaRestored: 12000,
-            soilMoisture: 35,
-            deforestationRate: 28,
-            forestCoverage: 32,
-            soilHealth: 48,
-            priority: 'critical',
-            recommendation: 'URGENT: Fokus restorasi lahan gambut. Perlu penanaman intensif dan rewetting lahan untuk mencegah kebakaran.',
-            value: 185
-        },
-        'id-kb': {
-            name: 'Kalimantan Barat',
-            region: 'Kalimantan',
-            treesPlanted: 156000,
-            areaRestored: 10500,
-            soilMoisture: 68,
-            deforestationRate: 15,
-            forestCoverage: 52,
-            soilHealth: 75,
-            priority: 'medium',
-            recommendation: 'Lanjutkan program bantaran sungai. Fokus pada tanaman buah lokal untuk mendukung ekonomi masyarakat.',
-            value: 156
-        },
-        'id-kt': {
-            name: 'Kalimantan Tengah',
-            region: 'Kalimantan',
-            treesPlanted: 210000,
-            areaRestored: 15800,
-            soilMoisture: 42,
-            deforestationRate: 24,
-            forestCoverage: 38,
-            soilHealth: 55,
-            priority: 'high',
-            recommendation: 'Prioritaskan restorasi Taman Nasional Tanjung Puting. Implementasikan program orangutan corridor.',
-            value: 210
-        },
-        'id-ki': {
-            name: 'Kalimantan Timur',
-            region: 'Kalimantan',
-            treesPlanted: 178000,
-            areaRestored: 11200,
-            soilMoisture: 58,
-            deforestationRate: 20,
-            forestCoverage: 48,
-            soilHealth: 68,
-            priority: 'high',
-            recommendation: 'Fokus reboisasi pasca-tambang. Gunakan spesies cepat tumbuh diikuti tanaman asli untuk suksesi ekologi.',
-            value: 178
-        },
-        'id-pa': {
-            name: 'Papua',
-            region: 'Papua',
-            treesPlanted: 85000,
-            areaRestored: 5800,
-            soilMoisture: 78,
-            deforestationRate: 5,
-            forestCoverage: 85,
-            soilHealth: 88,
-            priority: 'low',
-            recommendation: 'Pertahankan tutupan hutan yang ada. Fokus pada edukasi dan pemberdayaan masyarakat adat.',
-            value: 85
-        },
-        'id-pb': {
-            name: 'Papua Barat',
-            region: 'Papua',
-            treesPlanted: 72000,
-            areaRestored: 4500,
-            soilMoisture: 82,
-            deforestationRate: 4,
-            forestCoverage: 88,
-            soilHealth: 90,
-            priority: 'low',
-            recommendation: 'Monitoring biodiversitas. Dukung konservasi berbasis masyarakat adat.',
-            value: 72
-        },
-        'id-sa': {
-            name: 'Sulawesi Utara',
-            region: 'Sulawesi',
-            treesPlanted: 65000,
-            areaRestored: 3800,
-            soilMoisture: 70,
-            deforestationRate: 10,
-            forestCoverage: 55,
-            soilHealth: 72,
-            priority: 'medium',
-            recommendation: 'Restorasi Taman Nasional Bogani Nani Wartabone. Fokus habitat Maleo dan Tarsius.',
-            value: 65
-        },
-        'id-jb': {
-            name: 'Jawa Barat',
-            region: 'Jawa',
-            treesPlanted: 145000,
-            areaRestored: 8200,
-            soilMoisture: 52,
-            deforestationRate: 8,
-            forestCoverage: 22,
-            soilHealth: 60,
-            priority: 'high',
-            recommendation: 'Urban reforestation dan DAS Citarum. Kolaborasi dengan industri untuk CSR reboisasi.',
-            value: 145
-        }
-    };
-
-    // Initialize map on DOM ready
-    document.addEventListener('DOMContentLoaded', function() {
-        initReforestationMap();
-        initCharts();
-    });
-
-    function initReforestationMap() {
-        const mapData = [];
-        Highcharts.maps['countries/id/id-all'].features.forEach(function(f) {
-            const code = f.properties['hc-key'];
-            const data = reforestationData[code];
-            mapData.push({
-                'hc-key': code,
-                value: data?.value || Math.floor(Math.random() * 100) + 20,
-                name: f.properties.name
-            });
-        });
-
-        Highcharts.mapChart('reforestation-map', {
-            chart: {
-                backgroundColor: 'transparent',
-                height: 450
-            },
-            title: { text: null },
-            credits: { enabled: false },
-            exporting: { enabled: false },
-            mapNavigation: {
-                enabled: true,
-                buttonOptions: { verticalAlign: 'bottom' }
-            },
-            legend: { enabled: false },
-            colorAxis: {
-                min: 20,
-                max: 220,
-                stops: [
-                    [0, '#a7f3d0'],
-                    [0.3, '#34d399'],
-                    [0.6, '#059669'],
-                    [1, '#064e3b']
-                ]
-            },
-            tooltip: {
-                useHTML: true,
-                formatter: function() {
-                    const d = reforestationData[this.point['hc-key']];
-                    const trees = d?.treesPlanted || 'N/A';
-                    return '<div style="padding:8px;"><b>🌲 ' + this.point.name + '</b><br>' +
-                        (typeof trees === 'number' ? trees.toLocaleString() : trees) + ' pohon ditanam<br>' +
-                        '<small style="color:#10b981;">Klik untuk detail →</small></div>';
-                }
-            },
-            series: [{
-                data: mapData,
-                mapData: Highcharts.maps['countries/id/id-all'],
-                joinBy: 'hc-key',
-                borderColor: 'white',
-                borderWidth: 1,
-                states: {
-                    hover: {
-                        color: '#10b981',
-                        borderWidth: 2
-                    }
-                },
-                cursor: 'pointer',
-                point: {
-                    events: {
-                        click: function() {
-                            showProvinceDetail(this['hc-key'], this.name);
-                        }
-                    }
-                }
-            }]
-        });
-    }
-
-    function showProvinceDetail(code, name) {
-        const d = reforestationData[code] || {
-            name: name,
-            region: 'Indonesia',
-            treesPlanted: Math.floor(Math.random() * 50000) + 10000,
-            areaRestored: Math.floor(Math.random() * 5000) + 1000,
-            soilMoisture: Math.floor(Math.random() * 40) + 40,
-            deforestationRate: Math.floor(Math.random() * 20) + 5,
-            forestCoverage: Math.floor(Math.random() * 30) + 30,
-            soilHealth: Math.floor(Math.random() * 30) + 50,
-            priority: 'medium',
-            recommendation: 'Lakukan survei lebih lanjut untuk menentukan strategi reboisasi optimal.'
-        };
-
-        document.getElementById('detailPlaceholder').style.display = 'none';
-        document.getElementById('detailContent').style.display = 'block';
-
-        document.getElementById('provinceName').textContent = d.name || name;
-        document.getElementById('provinceRegion').textContent = d.region;
-        document.getElementById('treesPlanted').textContent = d.treesPlanted.toLocaleString();
-        document.getElementById('areaRestored').textContent = d.areaRestored.toLocaleString();
-        document.getElementById('soilMoisture').textContent = d.soilMoisture + '%';
-
-        // Update progress bars
-        document.getElementById('deforestationBar').style.width = d.deforestationRate + '%';
-        document.getElementById('deforestationRate').textContent = d.deforestationRate + '%';
-        document.getElementById('forestBar').style.width = d.forestCoverage + '%';
-        document.getElementById('forestCoverage').textContent = d.forestCoverage + '%';
-        document.getElementById('soilBar').style.width = d.soilHealth + '%';
-        document.getElementById('soilHealth').textContent = d.soilHealth + '%';
-
-        // Update priority badge
-        const priorityBadge = document.getElementById('priorityBadge');
-        priorityBadge.textContent = d.priority === 'critical' ? 'Kritis' : 
-                                    d.priority === 'high' ? 'Prioritas Tinggi' : 
-                                    d.priority === 'medium' ? 'Prioritas Sedang' : 'Prioritas Rendah';
-        priorityBadge.className = 'bioai-priority-badge ' + d.priority;
-
-        document.getElementById('aiRecommendation').textContent = d.recommendation;
-    }
-
-    function initCharts() {
-        // Trees Trend Chart
-        Highcharts.chart('treesTrendChart', {
-            chart: { type: 'areaspline', backgroundColor: 'transparent', height: 280 },
-            title: { text: null },
-            credits: { enabled: false },
-            xAxis: { categories: ['2020', '2021', '2022', '2023', '2024', '2025'], labels: { style: { color: '#6b7280' } } },
-            yAxis: { title: { text: 'Jumlah Pohon (ribu)', style: { color: '#6b7280' } }, labels: { style: { color: '#6b7280' } }, gridLineColor: '#e5e7eb' },
-            legend: { enabled: false },
-            plotOptions: {
-                areaspline: {
-                    fillOpacity: 0.3,
-                    marker: { enabled: true, radius: 4 }
-                }
-            },
-            series: [{
-                name: 'Pohon Ditanam',
-                data: [320, 485, 620, 890, 1250, 1680],
-                color: '#10b981',
-                fillColor: {
-                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
-                    stops: [[0, 'rgba(16, 185, 129, 0.4)'], [1, 'rgba(16, 185, 129, 0.05)']]
-                }
-            }]
-        });
-
-
-    }
-</script>
+<script src="{{ asset('assets/js/bioai-map.js') }}"></script>
 @endsection

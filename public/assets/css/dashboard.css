@@ -1182,3 +1182,130 @@
     background: rgba(139, 92, 246, 0.1);
     color: #7c3aed;
 }
+
+/* ============================================
+   Dashboard Interactive Map Styles
+   ============================================ */
+
+/* Dashboard Map Header */
+.dashboard-map-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-map-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+}
+
+.dashboard-map-icon.fauna {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+}
+
+.dashboard-map-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 0.25rem 0;
+}
+
+.dashboard-map-subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* Map Sections - Same background for both */
+.fauna-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+}
+
+/* Map Legend Styles */
+.dashboard-map-legend {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    padding: 0.875rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
+
+.dashboard-legend-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dashboard-legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.dashboard-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: #4b5563;
+}
+
+.dashboard-legend-color {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+/* Quick Stat Cards Variations */
+.user-quick-stat-card.flora {
+    background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.user-quick-stat-card.fauna {
+    background: linear-gradient(135deg, #fffbeb, #fef3c7);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+/* Dashboard Map Responsive */
+@media (max-width: 998px) {
+    .dashboard-map-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .dashboard-map-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.5rem;
+    }
+
+    .dashboard-map-title {
+        font-size: 1.15rem;
+    }
+
+    .dashboard-map-legend {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin-top: 1rem;
+    }
+}
