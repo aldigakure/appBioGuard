@@ -13,49 +13,51 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-3">
                 {{-- navbar --}}
                 @if (auth()->user()->role->role_name == 'admin')
-                    <li class="nav-item">
-                        <a href="{{ route('admin.dashboard') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('observasi') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('observasi*') ? 'active' : '' }}">Observasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('spesies') }}" class="nav-link text-capitalize {{ request()->routeIs('spesies') ? 'active' : '' }}">Spesies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('admin.laporan') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('admin.laporan') ? 'active' : '' }}">Laporan</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('observasi') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('observasi*') ? 'active' : '' }}">Observasi</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('spesies') }}" class="nav-link text-capitalize {{ request()->routeIs('spesies') ? 'active' : '' }}">Spesies</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.laporan') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('admin.laporan') ? 'active' : '' }}">Laporan</a>
+                </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('admin.users') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('admin.users') ? 'active' : '' }}">Pengguna</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.users') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('admin.users') ? 'active' : '' }}">Pengguna</a>
+                </li>
                 @else
-                    <li class="nav-item">
-                        <a href="{{ route('dashboard') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('warga.dashboard') || request()->routeIs('jagawana.dashboard') ? 'active' : '' }}">Dashboard</a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('warga.dashboard') || request()->routeIs('jagawana.dashboard') ? 'active' : '' }}">Dashboard</a>
+                </li>
 
 
-                    <li class="nav-item">
-                        <a href="{{ auth()->user()->role->role_name == 'jagawana' ? route('jagawana.laporan') : route('warga.laporan') }}" 
-                           class="nav-link text-capitalize {{ request()->routeIs('warga.laporan') || request()->routeIs('jagawana.laporan') ? 'active' : '' }}">
-                           Laporan
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('spesies') }}" 
-                           class="nav-link text-capitalize {{ request()->routeIs('spesies') ? 'active' : '' }}">
-                           Spesies
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Permainan</a>
-
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ auth()->user()->role->role_name == 'jagawana' ? route('jagawana.laporan') : route('warga.laporan') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('warga.laporan') || request()->routeIs('jagawana.laporan') ? 'active' : '' }}">
+                        Laporan
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('spesies') }}"
+                        class="nav-link text-capitalize {{ request()->routeIs('spesies') ? 'active' : '' }}">
+                        Spesies
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('quiz.index') }}"
+                        class="nav-link text-capitalize {{ request()->is('quiz*') ? 'active' : '' }}">
+                        Permainan
+                    </a>
+                </li>
                 @endif
 
             </ul>
@@ -149,72 +151,72 @@
                     </div>
                 </div>
             </div>
-       
-                @php
-                    $isLoggedIn = Auth::check() || session('is_authenticated');
-                    $userName = Auth::user()->name ?? (session('user.name') ?? 'User');
-                    $userAvatar = Auth::user()->avatar ?? (session('user.avatar') ?? null);
-                @endphp
-        
-                @if ($isLoggedIn)
-                   
-                    {{-- Logged in user --}}
-                    <div class="user-dropdown dropdown">
-                        <button class="btn btn-user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            @if ($userAvatar)
-                                <img src="{{ asset('storage/' . $userAvatar) }}" alt="User"
-                                    class="user-avatar-img">
-                            @else
-                                <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=32"
-                                    alt="User" class="user-avatar-img">
-                            @endif
-                            <span class="user-name d-none d-md-inline">{{ $userName }}</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" class="me-2">
-                                        <rect x="3" y="3" width="7" height="7"></rect>
-                                        <rect x="14" y="3" width="7" height="7"></rect>
-                                        <rect x="14" y="14" width="7" height="7"></rect>
-                                        <rect x="3" y="14" width="7" height="7"></rect>
-                                    </svg>
-                                    Dashboard
-                                </a></li>
-                            <li><a class="dropdown-item" href="{{ route('profile') }}">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" class="me-2">
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                    Profil
-                                </a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" class="me-2">
-                                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                            <polyline points="16 17 21 12 16 7"></polyline>
-                                            <line x1="21" y1="12" x2="9" y2="12">
-                                            </line>
-                                        </svg>
-                                        Keluar
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                @else
-                    <a href="{{ route('login') }}" class="btn btn-outline me-2">Masuk</a>
-                    <a href="{{ route('register') }}" class="btn btn-primary me-4">Daftar</a>
-                @endif
-            
+
+            @php
+            $isLoggedIn = Auth::check() || session('is_authenticated');
+            $userName = Auth::user()->name ?? (session('user.name') ?? 'User');
+            $userAvatar = Auth::user()->avatar ?? (session('user.avatar') ?? null);
+            @endphp
+
+            @if ($isLoggedIn)
+
+            {{-- Logged in user --}}
+            <div class="user-dropdown dropdown">
+                <button class="btn btn-user-menu dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    @if ($userAvatar)
+                    <img src="{{ asset('storage/' . $userAvatar) }}" alt="User"
+                        class="user-avatar-img">
+                    @else
+                    <img src="https://ui-avatars.com/api/?name={{ urlencode($userName) }}&background=10b981&color=fff&size=32"
+                        alt="User" class="user-avatar-img">
+                    @endif
+                    <span class="user-name d-none d-md-inline">{{ $userName }}</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="{{ route('dashboard') }}">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" class="me-2">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                            Dashboard
+                        </a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile') }}">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" class="me-2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                            Profil
+                        </a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" class="me-2">
+                                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                                    <polyline points="16 17 21 12 16 7"></polyline>
+                                    <line x1="21" y1="12" x2="9" y2="12">
+                                    </line>
+                                </svg>
+                                Keluar
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            @else
+            <a href="{{ route('login') }}" class="btn btn-outline me-2">Masuk</a>
+            <a href="{{ route('register') }}" class="btn btn-primary me-4">Daftar</a>
+            @endif
+
             <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">

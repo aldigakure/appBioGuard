@@ -15,7 +15,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @php
-            $isBioGuardPage = request()->is('bioguard/*') || request()->is('peta');
+            $isBioGuardPage = request()->is('bioguard/*') || request()->is('peta') || request()->is('quiz*');
             $baseUrl = $isBioGuardPage ? url('/') : '';
             @endphp
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-user gap-3" data-bioguard-page="{{ $isBioGuardPage ? 'true' : 'false' }}">
@@ -29,8 +29,9 @@
                         Beranda
                     </a>
                 </li>
+                {{-- MENU DROPDOWN FITUR --}}
                 <li class="nav-item dropdown">
-                    <a class="nav-link text-capitalize dropdown-toggle {{ request()->is('bioguard/*') || request()->is('peta') ? 'active' : '' }}"
+                    <a class="nav-link text-capitalize dropdown-toggle {{ request()->is('bioguard/*') || request()->is('peta') || request()->is('quiz*') ? 'active' : '' }}"
                         href="#" role="button" id="fitur-dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Fitur
@@ -63,12 +64,14 @@
                                 </span>
                             </a>
                         </li>
+                        
+                        {{-- PERBAIKAN 2: Ubah link PlantId ke route quiz dan tambah logika active --}}
                         <li>
-                            <a class="dropdown-item" href="{{ $baseUrl }}#plantIdCard">
+                            <a class="dropdown-item {{ request()->is('quiz*') ? 'active' : '' }}" href="{{ route('quiz.index') }}">
                                 <span class="dropdown-item-icon">🤖</span>
                                 <span class="dropdown-item-text">
                                     <span class="dropdown-item-title">PlantId</span>
-                                    <span class="dropdown-item-desc">Identifikasi tumbuhan</span>
+                                    <span class="dropdown-item-desc">Uji pengetahuan konservasi</span>
                                 </span>
                             </a>
                         </li>
@@ -105,9 +108,9 @@
             </ul>
             <div class="d-flex align-items-center gap-2">
                 @php
-                    $isLoggedIn = Auth::check() || session('is_authenticated');
-                    $userName =   $userName = auth()->user()->name ?? null;
-                    $userAvatar =   $userAvatar = auth()->user()->avatar ?? null;
+                $isLoggedIn = Auth::check() || session('is_authenticated');
+                $userName = $userName = auth()->user()->name ?? null;
+                $userAvatar = $userAvatar = auth()->user()->avatar ?? null;
                 @endphp
 
                 @if ($isLoggedIn)
@@ -164,7 +167,7 @@
                 </div>
                 @else
                 <a href="{{ route('login') }}" class="btn btn-primary me-4">Masuk</a>
-               
+
                 @endif
             </div>
         </div>
