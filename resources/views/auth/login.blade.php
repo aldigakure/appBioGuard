@@ -20,7 +20,7 @@
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-logo">
-                <img src="{{ asset('assets/images/dinacom_notext.png') }}" style="width: 42px" alt="" >
+                <img src="{{ asset('assets/images/dinacom_notext.webp') }}" style="width: 42px" alt="" >
                 <span>BIOGUARD</span>
             </div>
 

@@ -30,7 +30,7 @@
 
           <div class="hero-visual ">
               <div class="hero-blob"></div>
-              <img src="{{ asset('assets/images/dinacommaskot.png') }}" alt="maskot">
+              <img src="{{ asset('assets/images/dinacommaskot.webp') }}" alt="maskot">
               <div class="floating-card floating-card-1">
                   <div class="floating-icon icon-green">🌱</div>
                   <div>

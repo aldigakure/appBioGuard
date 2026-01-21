@@ -15,8 +15,8 @@
     <meta name="language" content="Indonesian">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/dinacom_notext.png') }}">
-    <link rel="apple-touch-icon" href="{{ asset('assets/images/dinacom_notext.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/dinacom_notext.webp') }}">
+    <link rel="apple-touch-icon" href="{{ asset('assets/images/dinacom_notext.webp') }}">
 
     <!-- Canonical URL -->
     <link rel="canonical" href="{{ url()->current() }}">
@@ -26,7 +26,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="BIOGUARD - AI-Powered Biodiversity Protection">
     <meta property="og:description" content="Platform pemantauan dan perlindungan keanekaragaman hayati berbasis AI untuk konservasi alam Indonesia.">
-    <meta property="og:image" content="{{ asset('assets/images/dinacom_notext.png') }}">
+    <meta property="og:image" content="{{ asset('assets/images/dinacom_notext.webp') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="id_ID">
@@ -37,7 +37,7 @@
     <meta name="twitter:url" content="{{ url()->current() }}">
     <meta name="twitter:title" content="BIOGUARD - AI-Powered Biodiversity Protection">
     <meta name="twitter:description" content="Platform pemantauan dan perlindungan keanekaragaman hayati berbasis AI untuk konservasi alam Indonesia.">
-    <meta name="twitter:image" content="{{ asset('assets/images/dinacom_notext.png') }}">
+    <meta name="twitter:image" content="{{ asset('assets/images/dinacom_notext.webp') }}">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#10b981">

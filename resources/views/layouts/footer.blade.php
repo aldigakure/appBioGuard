@@ -3,7 +3,7 @@
         <div class="footer-grid footer-grid-5col">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <img src="{{ asset('assets/images/dinacom_notext.png') }}" style="width: 62px" alt="">
+                    <img src="{{ asset('assets/images/dinacom_notext.webp') }}" style="width: 62px" alt="">
                     BIOGUARD
                 </div>
                 <p class="footer-description">
