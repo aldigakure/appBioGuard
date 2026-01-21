@@ -353,7 +353,7 @@
           <div class="cta-container">
               <div class="section-badge">
                   <span>🚀</span>
-                  <span>Bergabung Sekarang</span>
+                  <span>Gabung Sekarang</span>
               </div>
               <h2 class="cta-title">Mulai Berkontribusi untuk Konservasi</h2>
               <p class="cta-description">
@@ -363,7 +363,7 @@
               <div class="cta-buttons">
                   @if (Route::has('register'))
                   <a href="{{ route('register') }}" class="btn btn-primary btn-large">
-                      Daftar Gratis
+                      Daftar Sekarang
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2">
                           <path d="M5 12h14M12 5l7 7-7 7" />

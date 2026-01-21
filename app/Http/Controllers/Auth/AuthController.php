@@ -116,4 +116,38 @@ class AuthController extends Controller
 
         return redirect('/');
     }
+
+    /**
+     * Show the forgot password form.
+     */
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    /**
+     * Send reset password link to email.
+     */
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+        ], [
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+        ]);
+
+        // Check if email exists
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Email tidak terdaftar dalam sistem kami.',
+            ])->onlyInput('email');
+        }
+
+        // TODO: Implement actual password reset email sending
+        // For now, just show a success message
+        return back()->with('status', 'Link reset password telah dikirim ke email Anda. Silakan periksa inbox atau folder spam Anda.');
+    }
 }

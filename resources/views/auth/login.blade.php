@@ -94,7 +94,7 @@
                         <input type="checkbox" name="remember" class="form-checkbox">
                         Ingat saya
                     </label>
-                    <a href="#" class="form-link">Lupa password?</a>
+                    <a href="{{ route('password.request') }}" class="form-link">Lupa password?</a>
                 </div>
 
                 <button type="submit" class="btn-auth btn-auth-primary">

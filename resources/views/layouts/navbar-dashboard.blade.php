@@ -14,15 +14,15 @@
                 {{-- navbar --}}
                 @if (auth()->user()->role->role_name == 'admin')
                     <li class="nav-item">
-                        <a href="{{ auth()->user()->role->role_name == 'admin'? route('admin.dashboard') : route('user.dashboard') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') || request()->routeIs('user.dashboard') ? 'active' : '' }}">Dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="nav-link text-capitalize {{ request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') ? 'active' : '' }}">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('observasi') }}"
                             class="nav-link text-capitalize {{ request()->routeIs('observasi*') ? 'active' : '' }}">Observasi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Spesies</a>
+                        <a href="{{ route('spesies') }}" class="nav-link text-capitalize {{ request()->routeIs('spesies') ? 'active' : '' }}">Spesies</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('admin.laporan') }}"
@@ -35,13 +35,22 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('user.dashboard') }}"
-                            class="nav-link text-capitalize {{ request()->routeIs('user.dashboard') ? 'active' : '' }}">Dashboard</a>
+                        <a href="{{ route('dashboard') }}"
+                            class="nav-link text-capitalize {{ request()->routeIs('warga.dashboard') || request()->routeIs('jagawana.dashboard') ? 'active' : '' }}">Dashboard</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-capitalize">Laporkan</a>
+                        <a href="{{ auth()->user()->role->role_name == 'jagawana' ? route('jagawana.laporan') : route('warga.laporan') }}" 
+                           class="nav-link text-capitalize {{ request()->routeIs('warga.laporan') || request()->routeIs('jagawana.laporan') ? 'active' : '' }}">
+                           Laporan
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('spesies') }}" 
+                           class="nav-link text-capitalize {{ request()->routeIs('spesies') ? 'active' : '' }}">
+                           Spesies
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-capitalize">Permainan</a>
@@ -163,7 +172,7 @@
                             <span class="user-name d-none d-md-inline">{{ $userName }}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ auth()->user()->role->role_name == 'admin'? route('admin.dashboard') : route('user.dashboard') }}">
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2" class="me-2">
                                         <rect x="3" y="3" width="7" height="7"></rect>

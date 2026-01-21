@@ -91,7 +91,7 @@
     </div>
 </main>
 
-@push('scripts')
+@section('scripts')
 <script>
     document.querySelectorAll('.role-update-form').forEach(form => {
         form.addEventListener('submit', function(e) {
@@ -125,5 +125,5 @@
         });
     });
 </script>
-@endpush
+@endsection
 @endsection

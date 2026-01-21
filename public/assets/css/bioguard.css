@@ -804,19 +804,19 @@
 .bioguard-map-interactive {
     width: 100%;
     height: 450px;
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    /* Default to Fauna/Yellow if no extra class */
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    /* Default to Ocean Blue */
     border-radius: 16px;
 }
 
 .bioguard-map-interactive.flora {
-    background: linear-gradient(135deg, #e0f2fe, #dcfce7);
-    /* Restore Flora/Green */
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    /* Flora/Ocean Blue */
 }
 
 .bioguard-map-interactive.fauna {
-    background: linear-gradient(135deg, #fef3c7, #fde68a);
-    /* Fauna/Yellow */
+    background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+    /* Fauna/Ocean Blue */
 }
 
 .bioguard-habitat-placeholder {
