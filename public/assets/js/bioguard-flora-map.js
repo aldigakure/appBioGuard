@@ -232,8 +232,8 @@ function showFloraDetail(code, name) {
         `${mainFlora.nama} adalah ${mainFlora.identitas || 'flora khas'} ${d.name}. ${mainFlora.budaya ? 'Dalam budaya lokal, ' + mainFlora.nama.toLowerCase() + ' digunakan sebagai ' + mainFlora.budaya.toLowerCase() + '.' : ''} ${mainFlora.simbol ? 'Melambangkan ' + mainFlora.simbol.toLowerCase() + '.' : ''}` :
         `${mainFlora?.nama || 'Flora ini'} merupakan flora identitas provinsi ${d.name}. Tumbuhan ini memiliki nilai ekologis dan budaya yang penting bagi masyarakat setempat.`;
 
-    // EcoDetect-style layout
-    let html = `
+    // 1. Render Main Identity to Sidebar
+    document.getElementById('floraHabitatList').innerHTML = `
         <div class="peta-detail-content-wrapper">
             <!-- Province Header -->
             <div class="peta-detail-header">
@@ -269,7 +269,7 @@ function showFloraDetail(code, name) {
                         <div class="peta-flora-identity-info">
                             <h5 class="peta-flora-identity-name">${mainFlora?.nama || '-'}</h5>
                             ${mainFlora?.namaLain ? `<p class="peta-flora-identity-alias">${mainFlora.namaLain}</p>` : ''}
-                            <p class="peta-flora-identity-latin"><em>${mainFlora?.latin || '-'}</em></p>
+                            <p class="peta-flora-identity-latin"><em>${(mainFlora?.latin && !mainFlora.latin.toLowerCase().includes('sp.')) ? mainFlora.latin : '-'}</em></p>
                             <span class="peta-flora-identity-status ${statusClass}">${mainStatus}</span>
                         </div>
                     </div>
@@ -285,15 +285,18 @@ function showFloraDetail(code, name) {
                     </div>
                 </div>
             </div>
+        </div>
     `;
 
-    // Other species with numbered cards like EcoDetect
+    // 2. Render Other Species to Bottom Container
     const otherSpecies = d.species.filter(s => !s.isMain);
+    const bottomContainer = document.getElementById('floraLainnyaContainer');
+
     if (otherSpecies.length > 0) {
-        html += `
-            <div class="peta-species-section">
+        let otherHtml = `
+            <div class="peta-species-section bottom-section">
                 <h4 class="peta-species-title">🌱 Flora Lainnya di ${d.name}</h4>
-                <div class="peta-flora-list">
+                <div class="peta-flora-grid">
         `;
 
         otherSpecies.forEach(function (s, index) {
@@ -301,12 +304,12 @@ function showFloraDetail(code, name) {
                 (s.status === 'Langka' ? 'status-vulnerable' :
                     (s.status === 'Rentan' ? 'status-vulnerable' : 'status-safe'));
 
-            html += `
+            otherHtml += `
                 <div class="peta-flora-card">
                     <div class="peta-flora-number">${index + 1}</div>
                     <div class="peta-flora-info">
                         <h5 class="peta-flora-name">${s.name}</h5>
-                        <p class="peta-flora-latin"><em>${s.latin}</em></p>
+                        <p class="peta-flora-latin"><em>${(s.latin && !s.latin.toLowerCase().includes('sp.')) ? s.latin : '-'}</em></p>
                         <span class="peta-flora-status ${sStatusClass}">${s.status || 'Umum'}</span>
                         ${s.deskripsi ? `<p class="peta-flora-desc">${s.deskripsi}</p>` : ''}
                         ${s.ancaman && s.ancaman !== 'Tidak ada ancaman signifikan saat ini' ? `<p class="peta-flora-threat">⚠️ ${s.ancaman}</p>` : ''}
@@ -315,15 +318,16 @@ function showFloraDetail(code, name) {
             `;
         });
 
-        html += `
+        otherHtml += `
                 </div>
             </div>
         `;
+        bottomContainer.innerHTML = otherHtml;
+        bottomContainer.style.display = 'block';
+    } else {
+        bottomContainer.innerHTML = '';
+        bottomContainer.style.display = 'none';
     }
-
-    html += `</div>`;
-
-    document.getElementById('floraHabitatList').innerHTML = html;
 
     // Scroll to detail panel on mobile
     if (window.innerWidth < 1024) {

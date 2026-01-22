@@ -63,6 +63,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Flora Lainnya Section (Akan diisi via JS) -->
+        <div id="floraLainnyaContainer" class="flora-lainnya-wrapper"></div>
     </div>
 </section>
 

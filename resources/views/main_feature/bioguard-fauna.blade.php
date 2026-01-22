@@ -63,6 +63,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Fauna Lainnya Section (Akan diisi via JS) -->
+        <div id="faunaLainnyaContainer" class="fauna-lainnya-wrapper"></div>
     </div>
 </section>
 

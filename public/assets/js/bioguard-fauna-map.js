@@ -251,8 +251,8 @@ function showFaunaDetail(code, name) {
     // Build description for main fauna
     const mainDescription = `${mainFauna?.nama || 'Fauna ini'} merupakan ${mainFauna?.identitas || 'fauna identitas'} provinsi ${d.name}. ${mainFauna?.habitat ? 'Hewan ini dapat ditemukan di ' + mainFauna.habitat.toLowerCase() + '.' : ''} ${mainFauna?.warna ? 'Memiliki warna ' + mainFauna.warna.toLowerCase() + '.' : ''}`;
 
-    // EcoDetect-style layout
-    let html = `
+    // 1. Render Main Identity to Sidebar
+    document.getElementById('faunaHabitatList').innerHTML = `
         <div class="peta-detail-content-wrapper fauna">
             <!-- Province Header -->
             <div class="peta-detail-header fauna">
@@ -288,7 +288,7 @@ function showFaunaDetail(code, name) {
                         <div class="peta-fauna-identity-info">
                             <h5 class="peta-fauna-identity-name">${mainFauna?.nama || '-'}</h5>
                             ${mainFauna?.namaLain ? `<p class="peta-fauna-identity-alias">${mainFauna.namaLain}</p>` : ''}
-                            <p class="peta-fauna-identity-latin"><em>${mainFauna?.latin || '-'}</em></p>
+                            <p class="peta-fauna-identity-latin"><em>${(mainFauna?.latin && !mainFauna.latin.toLowerCase().includes('sp.')) ? mainFauna.latin : '-'}</em></p>
                             <span class="peta-fauna-identity-status ${statusClass}">${mainStatus}</span>
                         </div>
                     </div>
@@ -303,15 +303,18 @@ function showFaunaDetail(code, name) {
                     </div>
                 </div>
             </div>
+        </div>
     `;
 
-    // Other species with numbered cards like EcoDetect
+    // 2. Render Other Species to Bottom Container
     const otherSpecies = d.species.filter(s => !s.isMain);
+    const bottomContainer = document.getElementById('faunaLainnyaContainer');
+
     if (otherSpecies.length > 0) {
-        html += `
-            <div class="peta-species-section">
+        let otherHtml = `
+            <div class="peta-species-section bottom-section fauna">
                 <h4 class="peta-species-title fauna">🐾 Fauna Lainnya di ${d.name}</h4>
-                <div class="peta-fauna-list">
+                <div class="peta-fauna-grid">
         `;
 
         otherSpecies.forEach(function (s, index) {
@@ -319,12 +322,12 @@ function showFaunaDetail(code, name) {
                 (s.status === 'Langka' ? 'status-vulnerable' :
                     (s.status === 'Rentan' ? 'status-vulnerable' : 'status-safe'));
 
-            html += `
+            otherHtml += `
                 <div class="peta-fauna-card">
                     <div class="peta-fauna-number">${index + 1}</div>
                     <div class="peta-fauna-info">
                         <h5 class="peta-fauna-name">${s.name}</h5>
-                        <p class="peta-fauna-latin"><em>${s.latin}</em></p>
+                        <p class="peta-fauna-latin"><em>${(s.latin && !s.latin.toLowerCase().includes('sp.')) ? s.latin : '-'}</em></p>
                         <span class="peta-fauna-status ${sStatusClass}">${s.status || 'Umum'}</span>
                         ${s.deskripsi ? `<p class="peta-fauna-desc">${s.deskripsi}</p>` : ''}
                         ${s.ancaman && s.ancaman !== 'Tidak ada ancaman signifikan saat ini' ? `<p class="peta-fauna-threat">⚠️ ${s.ancaman}</p>` : ''}
@@ -333,15 +336,16 @@ function showFaunaDetail(code, name) {
             `;
         });
 
-        html += `
+        otherHtml += `
                 </div>
             </div>
         `;
+        bottomContainer.innerHTML = otherHtml;
+        bottomContainer.style.display = 'block';
+    } else {
+        bottomContainer.innerHTML = '';
+        bottomContainer.style.display = 'none';
     }
-
-    html += `</div>`;
-
-    document.getElementById('faunaHabitatList').innerHTML = html;
 
     // Scroll to detail panel on mobile
     if (window.innerWidth < 1024) {

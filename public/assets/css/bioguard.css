@@ -992,11 +992,11 @@
     border-radius: 6px;
 }
 
-/* Scrollable habitat list */
+/* Scrollable habitat list - Removed fixed height to show full content */
 .bioguard-habitat-list {
-    max-height: 500px;
-    overflow-y: auto;
-    padding-right: 0.5rem;
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
 }
 
 .bioguard-habitat-list::-webkit-scrollbar {
@@ -1509,6 +1509,50 @@
 
     .peta-quick-stat-card {
         padding: 1.5rem 1rem;
+    }
+}
+
+/* Flora & Fauna Lainnya Grid (Bottom Section) */
+.flora-lainnya-wrapper,
+.fauna-lainnya-wrapper {
+    margin-top: 3rem;
+    padding-top: 3rem;
+    border-top: 2px solid #e5e7eb;
+}
+
+.bottom-section {
+    margin-bottom: 0 !important;
+}
+
+.peta-flora-grid,
+.peta-fauna-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.peta-species-section.bottom-section .peta-species-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+@media (max-width: 1024px) {
+
+    .peta-flora-grid,
+    .peta-fauna-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .peta-flora-grid,
+    .peta-fauna-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2460,25 +2504,11 @@
 }
 
 .bioguard-habitat-list {
-    background: #f8fafc;
+    background: transparent;
     border-radius: 16px;
-    padding: 1rem;
-    max-height: 550px;
-    overflow-y: auto;
-}
-
-.bioguard-habitat-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.bioguard-habitat-list::-webkit-scrollbar-track {
-    background: #e2e8f0;
-    border-radius: 3px;
-}
-
-.bioguard-habitat-list::-webkit-scrollbar-thumb {
-    background: #10b981;
-    border-radius: 3px;
+    padding: 0;
+    max-height: none;
+    overflow-y: visible;
 }
 
 .bioguard-habitat-placeholder {
