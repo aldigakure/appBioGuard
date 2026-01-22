@@ -102,6 +102,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Dashboard Flora Lainnya (New Section at Bottom) -->
+        <div id="dashboardFloraLainnyaContainer"></div>
     </div>
 </section>
 
@@ -607,23 +610,65 @@
         document.getElementById('endangeredCount').textContent = data.endangeredCount || 25;
         document.getElementById('endemicCount').textContent = data.endemicCount || 15;
 
-        // Update species list
+        // Update species list (Mascot remains in sidebar)
         const speciesList = document.getElementById('speciesList');
         speciesList.innerHTML = '';
 
-        (data.species || []).forEach(function(s) {
-            const statusClass = getStatusClass(s.status);
-            speciesList.innerHTML += `
-            <div class="user-species-card">
-                <div class="user-species-icon">${s.icon || '🌿'}</div>
-                <div class="user-species-info">
-                    <div class="user-species-name">${s.name}</div>
-                    <div class="user-species-latin">${s.latin}</div>
+        const species = data.species || [];
+        const mainSpecies = species[0]; // First species as mascot
+        const otherSpecies = species.slice(1);
+
+        if (mainSpecies) {
+            const statusClass = getStatusClass(mainSpecies.status);
+            const latinDisplay = (mainSpecies.latin && !mainSpecies.latin.toLowerCase().includes('sp.')) ? mainSpecies.latin : '-';
+            
+            speciesList.innerHTML = `
+                <div class="user-species-card">
+                    <div class="user-species-icon">${mainSpecies.icon || '🌿'}</div>
+                    <div class="user-species-info">
+                        <div class="user-species-name">${mainSpecies.name}</div>
+                        <div class="user-species-latin"><em>${latinDisplay}</em></div>
+                    </div>
+                    <div class="user-species-status ${statusClass}">${mainSpecies.status}</div>
                 </div>
-                <div class="user-species-status ${statusClass}">${s.status}</div>
-            </div>
-        `;
-        });
+            `;
+        }
+
+        // Update others list (Bottom Grid)
+        const othersContainer = document.getElementById('dashboardFloraLainnyaContainer');
+        if (otherSpecies.length > 0) {
+            let othersHtml = `
+                <div class="flora-lainnya-wrapper">
+                    <div class="peta-species-section bottom-section">
+                        <h4 class="peta-species-title">🌱 Flora Lainnya di ${data.name}</h4>
+                        <div class="peta-flora-grid">
+            `;
+
+            otherSpecies.forEach((s, index) => {
+                const statusClass = getStatusClass(s.status);
+                const latinDisplay = (s.latin && !s.latin.toLowerCase().includes('sp.')) ? s.latin : '-';
+                
+                othersHtml += `
+                    <div class="peta-flora-card">
+                        <div class="peta-flora-number">${index + 1}</div>
+                        <div class="peta-flora-info">
+                            <h5 class="peta-flora-name">${s.name}</h5>
+                            <p class="peta-flora-latin"><em>${latinDisplay}</em></p>
+                            <span class="peta-flora-status ${statusClass}">${s.status}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            othersHtml += `
+                        </div>
+                    </div>
+                </div>
+            `;
+            othersContainer.innerHTML = othersHtml;
+        } else {
+            othersContainer.innerHTML = '';
+        }
 
         // Update habitat tags
         const habitatTags = document.getElementById('habitatTags');

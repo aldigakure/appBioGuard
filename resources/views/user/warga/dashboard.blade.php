@@ -70,6 +70,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Dashboard Flora Lainnya (New Section at Bottom) -->
+        <div id="dashboardFloraLainnyaContainer"></div>
     </div>
 </section>
 
@@ -118,6 +121,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Dashboard Fauna Lainnya (New Section at Bottom) -->
+        <div id="dashboardFaunaLainnyaContainer"></div>
     </div>
 </section>
 
