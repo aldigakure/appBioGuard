@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\Hash;
 class DatabaseSeeder extends Seeder
 {
     use WithoutModelEvents;
@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
             'password_hash' => bcrypt('password'),
             'role_id' => 3, // warga
         ]);
+
+        $this->call(QuestionSeeder::class);
     }
 }

@@ -10,27 +10,30 @@ return new class extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
+            
             // Kategori: Memisahkan Flora dan Fauna
             $table->enum('category', ['flora', 'fauna']);
             
-            // Level Kesulitan (Sesuai kolom CSV kamu)
+            // Level Kesulitan
             $table->enum('difficulty', ['mudah', 'sedang', 'sulit', 'sangat_sulit']);
             
             // Pertanyaan
             $table->text('question');
             
-            // Opsi Jawaban A-E (Disimpan sebagai JSON Array biar rapi)
-            // Contoh isi: ["Jati", "Padi", "Kelapa", "Anggrek", "Jagung"]
+            // Kolom Image (PENTING: Harus ada karena di seeder kita pakai ini)
+            // Nullable artinya boleh kosong jika soal hanya teks
+            $table->string('image')->nullable(); 
+            
+            // Opsi Jawaban (JSON Array)
             $table->json('options');
             
-            // Kunci Jawaban (Disimpan sebagai INDEX angka)
-            // 0 = A, 1 = B, 2 = C, 3 = D, 4 = E
+            // Kunci Jawaban (Index 0-4)
             $table->tinyInteger('correct_index');
             
-            // Poin (25, 50, 75, 100)
+            // Poin
             $table->integer('points')->default(25);
             
-            // Penjelasan (Opsional, untuk edukasi setelah jawab)
+            // Penjelasan untuk Feedback Edukatif
             $table->text('explanation')->nullable();
             
             $table->timestamps();

@@ -11,7 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SpeciesController;
-
+use App\Http\Controllers\QuizController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -21,7 +21,7 @@ Route::middleware('guest')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::get('register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('register', [AuthController::class, 'register']);
-    
+
     // Forgot Password Routes
     Route::get('forgot-password', [AuthController::class, 'showForgotPassword'])->name('password.request');
     Route::post('forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
@@ -30,7 +30,7 @@ Route::middleware('guest')->group(function () {
 // Protected Routes
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-    
+
     // Generic Dashboard Redirect
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -68,7 +68,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/laporkan', [LaporanController::class, 'store'])->name('jagawana.laporkan.store');
     });
 
-    Route::post('/quiz/save', [App\Http\Controllers\QuizController::class, 'store'])->name('quiz.store');
+    Route::post('/quiz/store', [QuizController::class, 'store'])->name('quiz.store');
 });
 
 // Public BioGuard & Map Routes (Accessible to everyone)
@@ -79,6 +79,6 @@ Route::prefix('bioguard')->group(function () {
 });
 Route::get('/peta', [BioGuardController::class, 'peta'])->name('peta');
 
- // GAME PLANT-ID / KUIS (Masuk sini agar aman)
-        Route::get('/quiz', [App\Http\Controllers\QuizController::class, 'index'])->name('quiz.index');
-        Route::get('/api/quiz-data', [App\Http\Controllers\QuizController::class, 'getQuestions'])->name('quiz.data');
+// GAME PLANT-ID / KUIS (Masuk sini agar aman)
+Route::get('/quiz', [App\Http\Controllers\QuizController::class, 'index'])->name('quiz.index');
+Route::get('/api/quiz-data', [App\Http\Controllers\QuizController::class, 'getQuestions'])->name('quiz.data');

@@ -87,7 +87,8 @@
                     <div class="message-body" data-simplebar>
                         <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                             <span class="me-3">
-                                <img src="../../dist/images/profile/user-1.jpg" alt="user" class="rounded-circle"
+                                {{-- GANTI DENGAN AVATAR ONLINE --}}
+                                <img src="https://ui-avatars.com/api/?name=Roman&background=random" alt="user" class="rounded-circle"
                                     width="48" height="48" />
                             </span>
                             <div class="w-75 d-inline-block v-middle">
@@ -97,7 +98,7 @@
                         </a>
                         <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                             <span class="me-3">
-                                <img src="../../dist/images/profile/user-2.jpg" alt="user" class="rounded-circle"
+                                <img src="https://ui-avatars.com/api/?name=Salma&background=random" alt="user" class="rounded-circle"
                                     width="48" height="48" />
                             </span>
                             <div class="w-75 d-inline-block v-middle">
@@ -107,7 +108,7 @@
                         </a>
                         <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                             <span class="me-3">
-                                <img src="../../dist/images/profile/user-3.jpg" alt="user" class="rounded-circle"
+                                <img src="https://ui-avatars.com/api/?name=Bianca&background=random" alt="user" class="rounded-circle"
                                     width="48" height="48" />
                             </span>
                             <div class="w-75 d-inline-block v-middle">
@@ -117,7 +118,7 @@
                         </a>
                         <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                             <span class="me-3">
-                                <img src="../../dist/images/profile/user-4.jpg" alt="user" class="rounded-circle"
+                                <img src="https://ui-avatars.com/api/?name=Jolly&background=random" alt="user" class="rounded-circle"
                                     width="48" height="48" />
                             </span>
                             <div class="w-75 d-inline-block v-middle">
@@ -127,22 +128,12 @@
                         </a>
                         <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
                             <span class="me-3">
-                                <img src="../../dist/images/profile/user-5.jpg" alt="user" class="rounded-circle"
+                                <img src="https://ui-avatars.com/api/?name=John&background=random" alt="user" class="rounded-circle"
                                     width="48" height="48" />
                             </span>
                             <div class="w-75 d-inline-block v-middle">
                                 <h6 class="mb-1 fw-semibold">John received payment</h6>
                                 <span class="d-block">$230 deducted from account</span>
-                            </div>
-                        </a>
-                        <a href="javascript:void(0)" class="py-6 px-7 d-flex align-items-center dropdown-item">
-                            <span class="me-3">
-                                <img src="../../dist/images/profile/user-1.jpg" alt="user" class="rounded-circle"
-                                    width="48" height="48" />
-                            </span>
-                            <div class="w-75 d-inline-block v-middle">
-                                <h6 class="mb-1 fw-semibold">Roman Joined the Team!</h6>
-                                <span class="d-block">Congratulate him</span>
                             </div>
                         </a>
                     </div>

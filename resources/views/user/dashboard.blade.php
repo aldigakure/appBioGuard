@@ -654,6 +654,69 @@
                 return 'status-safe';
         }
     }
+
+    // ... (kode Highcharts di atas biarkan saja) ...
+
+    // {{-- SCRIPT PENYELAMAT SKOR GAME (VERSI DEBUG / CEREWET) --}}
+    document.addEventListener('DOMContentLoaded', async function() {
+        console.log("🔍 Script Penyelamat Skor: AKTIF"); // Cek Console F12
+
+        // 1. Cek apakah ada titipan skor dari game?
+        const pendingScore = localStorage.getItem('pending_game_score');
+
+        if (!pendingScore) {
+            console.log("ℹ️ Info: Tidak ada skor game yang tertunda.");
+            return; // Stop di sini kalau tidak ada data
+        }
+
+        // Kalau sampai sini, berarti ada data!
+        console.log("✅ Ditemukan titipan skor:", pendingScore);
+        const gameData = JSON.parse(pendingScore);
+
+        // Alert Konfirmasi (Bisa dihapus nanti kalau menggangu)
+        // alert("Hai Ranger! Sistem menemukan skor game " + gameData.score + " yang belum disimpan. Mencoba menyimpan...");
+
+        try {
+            // 2. Kirim ke Database lewat jalur belakang (AJAX)
+            const response = await fetch("{{ route('quiz.store') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    score: gameData.score,
+                    streak: gameData.streak,
+                    accuracy: 0 // Default 0 untuk guest
+                })
+            });
+
+            // Baca respon server
+            const result = await response.json();
+            console.log("📡 Respon Server:", result);
+
+            if (response.ok) {
+                // 3. SUKSES
+                localStorage.removeItem('pending_game_score'); // Hapus titipan biar gak double
+                
+                // Tampilkan Alert Sukses
+                alert("🎉 BERHASIL! Skor " + gameData.score + " dari permainan tadi sudah diamankan ke akunmu!");
+                
+                // Reload halaman biar poin di dashboard nambah
+                location.reload();
+            } else {
+                // 4. GAGAL DARI SERVER
+                console.error("❌ Gagal simpan:", result);
+                alert("Gagal menyimpan skor! Server menolak: " + (result.message || "Unknown Error"));
+            }
+
+        } catch (error) {
+            // 5. ERROR JARINGAN / KODINGAN
+            console.error("❌ Error Fatal:", error);
+            alert("Terjadi kesalahan sistem saat menyimpan skor. Cek Console untuk detail.");
+        }
+    });
 </script>
 
 @endsection
