@@ -11,7 +11,7 @@ class BioGuardController extends Controller
      */
     public function flora()
     {
-        return view('main_feature.bioguard-flora');
+        return view('feature.bioguard-flora');
     }
 
     /**
@@ -19,7 +19,7 @@ class BioGuardController extends Controller
      */
     public function fauna()
     {
-        return view('main_feature.bioguard-fauna');
+        return view('feature.bioguard-fauna');
     }
 
     /**
@@ -27,7 +27,7 @@ class BioGuardController extends Controller
      */
     public function peta()
     {
-        return view('main_feature.ecodetect');
+        return view('feature.ecodetect');
     }
 
     /**
@@ -35,6 +35,6 @@ class BioGuardController extends Controller
      */
     public function bioAi()
     {
-        return view('main_feature.bio-ai');
+        return view('feature.bio-ai');
     }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/css/bioai.css') }}">
+@endsection
+
 @section('content')
 @include('layouts.navbar-landing')
 <!-- Bio-AI Reforestation Impact Dashboard -->
@@ -23,7 +27,7 @@
 </div>
 
 <!-- Stats Overview Section -->
-<section class="bioguard-section" style="background: #d1fae5; padding-top: 2rem;">
+<section class="bioguard-section" style="background: #ffffff; padding-top: 2rem;">
     <div class="bioguard-container">
         <div class="bioai-stats-grid">
             <div class="bioai-stat-card">
@@ -254,98 +258,15 @@
                             <th>Deforestasi</th>
                             <th>Prioritas</th>
                             <th>Rekomendasi</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="bioaiTableBody">
+                        <!-- Data will be populated by JS -->
                         <tr>
-                            <td>
-                                <div class="bioai-location-cell">
-                                    <span class="bioai-location-icon">🌲</span>
-                                    <span>Taman Nasional Tesso Nilo</span>
-                                </div>
+                            <td colspan="7" style="text-align: center; padding: 2rem;">
+                                <div class="bioai-loading">Memuat data...</div>
                             </td>
-                            <td>Riau, Sumatera</td>
-                            <td>
-                                <div class="bioai-moisture-cell">
-                                    <div class="bioai-moisture-bar" style="width: 35%;"></div>
-                                    <span>35%</span>
-                                </div>
-                            </td>
-                            <td><span class="bioai-deforestation-badge high">28.5%</span></td>
-                            <td><span class="bioai-priority-tag high">Tinggi</span></td>
-                            <td>Penanaman intensif spesies asli</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="bioai-location-cell">
-                                    <span class="bioai-location-icon">🌳</span>
-                                    <span>Hutan Lindung Sebangau</span>
-                                </div>
-                            </td>
-                            <td>Kalimantan Tengah</td>
-                            <td>
-                                <div class="bioai-moisture-cell">
-                                    <div class="bioai-moisture-bar" style="width: 42%;"></div>
-                                    <span>42%</span>
-                                </div>
-                            </td>
-                            <td><span class="bioai-deforestation-badge high">24.2%</span></td>
-                            <td><span class="bioai-priority-tag high">Tinggi</span></td>
-                            <td>Restorasi lahan gambut</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="bioai-location-cell">
-                                    <span class="bioai-location-icon">🌴</span>
-                                    <span>Kawasan Hutan Leuser</span>
-                                </div>
-                            </td>
-                            <td>Aceh, Sumatera</td>
-                            <td>
-                                <div class="bioai-moisture-cell">
-                                    <div class="bioai-moisture-bar" style="width: 58%;"></div>
-                                    <span>58%</span>
-                                </div>
-                            </td>
-                            <td><span class="bioai-deforestation-badge medium">15.8%</span></td>
-                            <td><span class="bioai-priority-tag medium">Sedang</span></td>
-                            <td>Pengawasan koridor satwa</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="bioai-location-cell">
-                                    <span class="bioai-location-icon">🌲</span>
-                                    <span>SM Danau Sentarum</span>
-                                </div>
-                            </td>
-                            <td>Kalimantan Barat</td>
-                            <td>
-                                <div class="bioai-moisture-cell">
-                                    <div class="bioai-moisture-bar" style="width: 72%;"></div>
-                                    <span>72%</span>
-                                </div>
-                            </td>
-                            <td><span class="bioai-deforestation-badge low">8.3%</span></td>
-                            <td><span class="bioai-priority-tag low">Rendah</span></td>
-                            <td>Pemeliharaan ekosistem</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="bioai-location-cell">
-                                    <span class="bioai-location-icon">🌳</span>
-                                    <span>TN Wasur</span>
-                                </div>
-                            </td>
-                            <td>Papua</td>
-                            <td>
-                                <div class="bioai-moisture-cell">
-                                    <div class="bioai-moisture-bar" style="width: 65%;"></div>
-                                    <span>65%</span>
-                                </div>
-                            </td>
-                            <td><span class="bioai-deforestation-badge low">5.2%</span></td>
-                            <td><span class="bioai-priority-tag low">Rendah</span></td>
-                            <td>Monitoring biodiversitas</td>
                         </tr>
                     </tbody>
                 </table>
@@ -353,6 +274,56 @@
         </div>
     </div>
 </section>
+
+<!-- Detail Modal -->
+<div class="bioai-modal-overlay" id="bioaiDetailModal">
+    <div class="bioai-modal-content">
+        <div class="bioai-modal-header">
+            <div class="bioai-modal-title">
+                <div class="bioai-modal-icon">🌳</div>
+                <h3 id="modalProvinceName">Detail Provinsi</h3>
+            </div>
+            <button class="bioai-modal-close" onclick="closeBioaiModal()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="bioai-modal-body">
+            <div class="bioai-modal-grid">
+                <div class="bioai-modal-item">
+                    <div class="bioai-modal-item-label">Wilayah</div>
+                    <div class="bioai-modal-item-value" id="modalProvinceRegion">-</div>
+                </div>
+                <div class="bioai-modal-item">
+                    <div class="bioai-modal-item-label">Prioritas</div>
+                    <div class="bioai-modal-item-value" id="modalProvincePriority">-</div>
+                </div>
+                <div class="bioai-modal-item">
+                    <div class="bioai-modal-item-label">Pohon Ditanam</div>
+                    <div class="bioai-modal-item-value" id="modalTreesPlanted">-</div>
+                </div>
+                <div class="bioai-modal-item">
+                    <div class="bioai-modal-item-label">Area Direstorasi</div>
+                    <div class="bioai-modal-item-value" id="modalAreaRestored">-</div>
+                </div>
+                <div class="bioai-modal-item">
+                    <div class="bioai-modal-item-label">Kelembapan Tanah</div>
+                    <div class="bioai-modal-item-value" id="modalSoilMoisture">-</div>
+                </div>
+                <div class="bioai-modal-item">
+                    <div class="bioai-modal-item-label">Tingkat Deforestasi</div>
+                    <div class="bioai-modal-item-value" id="modalDeforestation">-</div>
+                </div>
+            </div>
+            <div class="bioai-recommendation">
+                <h4 class="bioai-rec-title">🤖 Rekomendasi AI</h4>
+                <p class="bioai-rec-text" id="modalRecommendation">-</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Call to Action -->
 <section class="bioguard-section bioai-cta-section">

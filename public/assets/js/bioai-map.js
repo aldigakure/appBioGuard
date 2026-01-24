@@ -398,28 +398,37 @@ function initTrendChart() {
  * Update the priority table with data from JSON
  */
 function updatePriorityTable() {
-    const tableBody = document.querySelector('.bioai-data-table tbody');
+    const tableBody = document.getElementById('bioaiTableBody');
     if (!tableBody) return;
 
     // Clear existing rows
     tableBody.innerHTML = '';
 
-    // Get high priority and critical areas
-    const priorityAreas = Object.entries(reforestationData)
-        .filter(([key, d]) => d.prioritas === 'high' || d.prioritas === 'critical')
+    // Get areas from reforestationData
+    const areas = Object.entries(reforestationData)
         .sort((a, b) => {
             // Sort critical first, then by deforestation rate
             if (a[1].prioritas === 'critical' && b[1].prioritas !== 'critical') return -1;
             if (b[1].prioritas === 'critical' && a[1].prioritas !== 'critical') return 1;
             return (b[1].tingkatDeforestasi || 0) - (a[1].tingkatDeforestasi || 0);
-        })
-        .slice(0, 10); // Show top 10
+        });
 
-    priorityAreas.forEach(([key, d]) => {
+    if (areas.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="7" style="text-align:center;">Tidak ada data tersedia</td></tr>';
+        return;
+    }
+
+    areas.forEach(([key, d]) => {
         const row = document.createElement('tr');
 
-        const priorityLabel = d.prioritas === 'critical' ? 'Kritis' : 'Tinggi';
-        const priorityClass = d.prioritas === 'critical' ? 'high' : 'medium';
+        const priorityLabels = {
+            'critical': 'Kritis',
+            'high': 'Tinggi',
+            'medium': 'Sedang',
+            'low': 'Rendah'
+        };
+
+        const priorityLabel = priorityLabels[d.prioritas] || 'Sedang';
         const deforestationClass = (d.tingkatDeforestasi || 0) > 20 ? 'high' :
             (d.tingkatDeforestasi || 0) > 10 ? 'medium' : 'low';
 
@@ -440,11 +449,67 @@ function updatePriorityTable() {
             <td><span class="bioai-deforestation-badge ${deforestationClass}">${d.tingkatDeforestasi || 0}%</span></td>
             <td><span class="bioai-priority-tag ${d.prioritas}">${priorityLabel}</span></td>
             <td>${d.rekomendasi ? d.rekomendasi.substring(0, 50) + '...' : '-'}</td>
+            <td>
+                <button class="bioai-action-btn" onclick="openBioaiModal('${key}')" title="Lihat Detail">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </button>
+            </td>
         `;
 
         tableBody.appendChild(row);
     });
 }
+
+/**
+ * Modal Detail Functions
+ */
+function openBioaiModal(key) {
+    const d = reforestationData[key];
+    if (!d) return;
+
+    document.getElementById('modalProvinceName').textContent = d.nama || 'Detail Provinsi';
+    document.getElementById('modalProvinceRegion').textContent = d.wilayah || 'Indonesia';
+
+    const priorityLabels = {
+        'critical': 'Kritis',
+        'high': 'Tinggi',
+        'medium': 'Sedang',
+        'low': 'Rendah'
+    };
+    document.getElementById('modalProvincePriority').textContent = priorityLabels[d.prioritas] || 'Sedang';
+
+    document.getElementById('modalTreesPlanted').textContent = (d.pohonDitanam || 0).toLocaleString();
+    document.getElementById('modalAreaRestored').textContent = (d.luasReboisasi || 0).toLocaleString() + ' Ha';
+    document.getElementById('modalSoilMoisture').textContent = (d.kelembapanTanah || 0) + '%';
+    document.getElementById('modalDeforestation').textContent = (d.tingkatDeforestasi || 0) + '%';
+    document.getElementById('modalRecommendation').textContent = d.rekomendasi || '-';
+
+    document.getElementById('bioaiDetailModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeBioaiModal() {
+    document.getElementById('bioaiDetailModal').classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close modal on overlay click
+document.addEventListener('click', function (e) {
+    const modal = document.getElementById('bioaiDetailModal');
+    if (e.target === modal) {
+        closeBioaiModal();
+    }
+});
+
+// Close modal on Escape key
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+        closeBioaiModal();
+    }
+});
 
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', function () {

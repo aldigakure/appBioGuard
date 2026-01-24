@@ -84,6 +84,6 @@ Route::middleware('auth')->group(function () {
 Route::prefix('bioguard')->group(function () {
     Route::get('/flora', [BioGuardController::class, 'flora'])->name('bioguard.flora');
     Route::get('/fauna', [BioGuardController::class, 'fauna'])->name('bioguard.fauna');
-    Route::get('/bio-ai', [BioGuardController::class, 'bioAi'])->name('bioguard.bio-ai');
+    Route::get('/bio-ai', [BioGuardController::class, 'bioAi'])->name('bioAi');
 });
 Route::get('/peta', [BioGuardController::class, 'peta'])->name('peta');

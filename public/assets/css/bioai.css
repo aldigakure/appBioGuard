@@ -674,3 +674,149 @@
         font-size: 1.5rem;
     }
 }
+
+/* Action Column */
+.bioai-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #059669;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.bioai-action-btn:hover {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+    transform: scale(1.1);
+}
+
+/* Scrollable Table */
+.bioai-table-wrapper {
+    overflow-x: auto;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.bioai-table-wrapper::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.bioai-table-wrapper::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.bioai-table-wrapper::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+/* Modal for Detail */
+.bioai-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+
+.bioai-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.bioai-modal-content {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 600px;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.bioai-modal-overlay.active .bioai-modal-content {
+    transform: translateY(0);
+}
+
+.bioai-modal-header {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.bioai-modal-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bioai-modal-title h3 {
+    font-family: 'Outfit', sans-serif;
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.bioai-modal-close {
+    background: white;
+    border: 1px solid #e5e7eb;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bioai-modal-close:hover {
+    background: #fee2e2;
+    color: #ef4444;
+    border-color: #fca5a5;
+}
+
+.bioai-modal-body {
+    padding: 1.5rem;
+}
+
+.bioai-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.bioai-modal-item-label {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.bioai-modal-item-value {
+    font-weight: 700;
+    color: #111827;
+    font-size: 1.1rem;
+}
