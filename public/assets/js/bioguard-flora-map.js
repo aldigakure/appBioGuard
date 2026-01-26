@@ -1,56 +1,30 @@
 /**
  * BioGuard Flora Map - Interactive Indonesia Map
  * Fetches flora data from external JSON API
+ * Updated: Now uses 38 provinces GeoJSON (includes new Papua provinces)
  */
-
-// Province name to Highcharts key mapping (corrected based on actual Highcharts map)
-const provinceToKey = {
-    'Aceh': 'id-ac',
-    'Sumatera Utara': 'id-su',
-    'Sumatera Barat': 'id-sb',
-    'Riau': 'id-ri',
-    'Kepulauan Riau': 'id-kr',
-    'Jambi': 'id-ja',
-    'Sumatera Selatan': 'id-sl',
-    'Kepulauan Bangka Belitung': 'id-bb',
-    'Bengkulu': 'id-be',
-    'Lampung': 'id-1024',
-    'DKI Jakarta': 'id-jk',
-    'Jawa Barat': 'id-jr',
-    'Banten': 'id-bt',
-    'Jawa Tengah': 'id-jt',
-    'DI Yogyakarta': 'id-yo',
-    'Jawa Timur': 'id-ji',
-    'Bali': 'id-ba',
-    'Nusa Tenggara Barat': 'id-nb',
-    'Nusa Tenggara Timur': 'id-nt',
-    'Kalimantan Barat': 'id-kb',
-    'Kalimantan Tengah': 'id-kt',
-    'Kalimantan Selatan': 'id-ks',
-    'Kalimantan Timur': 'id-ki',
-    'Kalimantan Utara': 'id-ku',
-    'Sulawesi Utara': 'id-sw',
-    'Gorontalo': 'id-go',
-    'Sulawesi Tengah': 'id-st',
-    'Sulawesi Barat': 'id-sr',
-    'Sulawesi Selatan': 'id-se',
-    'Sulawesi Tenggara': 'id-sg',
-    'Maluku': 'id-ma',
-    'Maluku Utara': 'id-la',
-    'Papua': 'id-pa',
-    'Papua Barat': 'id-ib',
-    'Papua Barat Daya': 'id-ib',
-    'Papua Selatan': 'id-pa',
-    'Papua Tengah': 'id-pa',
-    'Papua Pegunungan': 'id-pa'
-};
 
 // Flora data storage
 let floraData = {};
 let rawProvinsiData = {};
+let indonesiaGeoJson = null;
 
-// API URL for province data
-const API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
+// API URLs
+const FLORA_API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
+const GEOJSON_URL = '/assets/data/indonesia-38-provinsi.json';
+
+// Province name mapping from GeoJSON to API data
+// Only needed for provinces with different names
+const floraProvinceNameMapping = {
+    'Daerah Istimewa Yogyakarta': 'DI Yogyakarta'
+};
+
+/**
+ * Get normalized province name for data lookup
+ */
+function getFloraProvinceName(geoJsonName) {
+    return floraProvinceNameMapping[geoJsonName] || geoJsonName;
+}
 
 /**
  * Parse conservation status from status string
@@ -65,18 +39,23 @@ function parseStatus(statusString) {
 }
 
 /**
- * Fetch flora data from external API
+ * Fetch flora data from external API and GeoJSON
  */
 async function fetchFloraData() {
     try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
+        // Fetch both GeoJSON and flora data in parallel
+        const [geoResponse, floraResponse] = await Promise.all([
+            fetch(GEOJSON_URL),
+            fetch(FLORA_API_URL)
+        ]);
+
+        indonesiaGeoJson = await geoResponse.json();
+        const data = await floraResponse.json();
         rawProvinsiData = data;
 
-        // Transform data to match Highcharts key format
+        // Transform data - store with province name as key
         for (const [provinceName, provinceData] of Object.entries(data)) {
-            const key = provinceToKey[provinceName];
-            if (key && provinceData.flora) {
+            if (provinceData.flora) {
                 const flora = provinceData.flora;
                 const otherSpecies = flora.lainnya || [];
 
@@ -110,7 +89,8 @@ async function fetchFloraData() {
                     });
                 });
 
-                floraData[key] = {
+                // Store with province name as key
+                floraData[provinceName] = {
                     name: provinceName,
                     mainFlora: flora,
                     species: species,
@@ -122,7 +102,7 @@ async function fetchFloraData() {
         initializeFloraMap();
     } catch (error) {
         console.error('Error fetching flora data:', error);
-        initializeFloraMap(); // Initialize with empty data
+        initializeFloraMap();
     }
 }
 
@@ -130,13 +110,24 @@ async function fetchFloraData() {
  * Initialize Highcharts map for flora
  */
 function initializeFloraMap() {
+    // Check if GeoJSON is loaded
+    if (!indonesiaGeoJson) {
+        console.error('GeoJSON not loaded for flora map');
+        return;
+    }
+
     const mapData = [];
-    Highcharts.maps['countries/id/id-all'].features.forEach(function (f) {
-        const code = f.properties['hc-key'];
+
+    // Build map data from GeoJSON features
+    indonesiaGeoJson.features.forEach(function (f) {
+        const geoJsonName = f.properties.PROVINSI;
+        const normalizedName = getFloraProvinceName(geoJsonName);
+        const data = floraData[normalizedName];
+
         mapData.push({
-            'hc-key': code,
-            value: floraData[code]?.value || 150,
-            name: f.properties.name
+            'PROVINSI': geoJsonName,
+            value: data?.value || 150,
+            name: geoJsonName
         });
     });
 
@@ -175,15 +166,16 @@ function initializeFloraMap() {
         tooltip: {
             useHTML: true,
             formatter: function () {
-                const d = floraData[this.point['hc-key']];
+                const normalizedName = getFloraProvinceName(this.point.name);
+                const d = floraData[normalizedName];
                 const speciesCount = d?.species?.length || 0;
                 return '<div style="padding:8px;"><b>🌿 ' + this.point.name + '</b><br>' + speciesCount + ' spesies flora tercatat</div>';
             }
         },
         series: [{
             data: mapData,
-            mapData: Highcharts.maps['countries/id/id-all'],
-            joinBy: 'hc-key',
+            mapData: indonesiaGeoJson,
+            joinBy: 'PROVINSI',
             borderColor: 'white',
             borderWidth: 1,
             states: {
@@ -196,7 +188,7 @@ function initializeFloraMap() {
             point: {
                 events: {
                     click: function () {
-                        showFloraDetail(this['hc-key'], this.name);
+                        showFloraDetail(this.name);
                     }
                 }
             }
@@ -207,14 +199,15 @@ function initializeFloraMap() {
 /**
  * Show flora detail panel for selected province (EcoDetect-style layout)
  */
-function showFloraDetail(code, name) {
-    const d = floraData[code];
+function showFloraDetail(provinceName) {
+    const normalizedName = getFloraProvinceName(provinceName);
+    const d = floraData[normalizedName];
 
     if (!d) {
         document.getElementById('floraHabitatList').innerHTML = `
             <div class="bioguard-habitat-placeholder">
                 <div class="bioguard-habitat-placeholder-icon">🌿</div>
-                <p>Data flora untuk ${name} belum tersedia</p>
+                <p>Data flora untuk ${provinceName} belum tersedia</p>
             </div>
         `;
         return;

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+1`@extends('layouts.app')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
@@ -142,337 +142,164 @@
 <script src="https://code.highcharts.com/maps/highmaps.js"></script>
 <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-<script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
 
 <script>
-    // Flora data for each province
-    const floraData = {
-        'id-ac': {
-            name: 'Aceh',
-            region: 'Sumatera',
-            icon: '🌿',
-            speciesCount: 320,
-            endangeredCount: 45,
-            endemicCount: 28,
-            value: 320,
-            species: [{
-                    name: 'Rafflesia arnoldii',
-                    latin: 'Rafflesia arnoldii',
-                    status: 'Kritis',
-                    icon: '🌺'
-                },
-                {
-                    name: 'Pinus Merkusii',
-                    latin: 'Pinus merkusii',
-                    status: 'Rentan',
-                    icon: '🌲'
-                },
-                {
-                    name: 'Damar',
-                    latin: 'Agathis dammara',
-                    status: 'Aman',
-                    icon: '🌳'
-                }
-            ],
-            habitats: ['Hutan Hujan Tropis', 'Pegunungan', 'Rawa Gambut']
-        },
-        'id-su': {
-            name: 'Sumatera Utara',
-            region: 'Sumatera',
-            icon: '🌴',
-            speciesCount: 380,
-            endangeredCount: 52,
-            endemicCount: 35,
-            value: 380,
-            species: [{
-                    name: 'Bunga Bangkai',
-                    latin: 'Amorphophallus titanum',
-                    status: 'Rentan',
-                    icon: '🌸'
-                },
-                {
-                    name: 'Pohon Kemenyan',
-                    latin: 'Styrax benzoin',
-                    status: 'Rentan',
-                    icon: '🌳'
-                },
-                {
-                    name: 'Andaliman',
-                    latin: 'Zanthoxylum acanthopodium',
-                    status: 'Aman',
-                    icon: '🌿'
-                }
-            ],
-            habitats: ['Hutan Hujan Tropis', 'Danau Toba', 'Pegunungan']
-        },
-        'id-sb': {
-            name: 'Sumatera Barat',
-            region: 'Sumatera',
-            icon: '🌺',
-            speciesCount: 420,
-            endangeredCount: 58,
-            endemicCount: 42,
-            value: 420,
-            species: [{
-                    name: 'Rafflesia arnoldii',
-                    latin: 'Rafflesia arnoldii',
-                    status: 'Kritis',
-                    icon: '🌺'
-                },
-                {
-                    name: 'Kantong Semar',
-                    latin: 'Nepenthes spp.',
-                    status: 'Rentan',
-                    icon: '🪴'
-                },
-                {
-                    name: 'Anggrek Sumatera',
-                    latin: 'Bulbophyllum spp.',
-                    status: 'Aman',
-                    icon: '🌸'
-                }
-            ],
-            habitats: ['Hutan Hujan Tropis', 'Pegunungan Bukit Barisan']
-        },
-        'id-jb': {
-            name: 'Jawa Barat',
-            region: 'Jawa',
-            icon: '🌸',
-            speciesCount: 520,
-            endangeredCount: 72,
-            endemicCount: 55,
-            value: 520,
-            species: [{
-                    name: 'Rafflesia patma',
-                    latin: 'Rafflesia patma',
-                    status: 'Kritis',
-                    icon: '🌺'
-                },
-                {
-                    name: 'Edelweiss Jawa',
-                    latin: 'Anaphalis javanica',
-                    status: 'Rentan',
-                    icon: '🌸'
-                },
-                {
-                    name: 'Kantil',
-                    latin: 'Magnolia champaca',
-                    status: 'Rentan',
-                    icon: '🌸'
-                }
-            ],
-            habitats: ['Taman Nasional Gunung Gede Pangrango', 'Hutan Pegunungan', 'Cagar Alam']
-        },
-        'id-jt': {
-            name: 'Jawa Tengah',
-            region: 'Jawa',
-            icon: '🌲',
-            speciesCount: 450,
-            endangeredCount: 58,
-            endemicCount: 42,
-            value: 450,
-            species: [{
-                    name: 'Cemara Gunung',
-                    latin: 'Casuarina junghuhniana',
-                    status: 'Aman',
-                    icon: '🌲'
-                },
-                {
-                    name: 'Sendang Arum',
-                    latin: 'Magnolia spp.',
-                    status: 'Rentan',
-                    icon: '🌸'
-                },
-                {
-                    name: 'Sawo Kecik',
-                    latin: 'Manilkara kauki',
-                    status: 'Rentan',
-                    icon: '🌳'
-                }
-            ],
-            habitats: ['Gunung Lawu', 'Gunung Merbabu', 'Hutan Jati']
-        },
-        'id-ji': {
-            name: 'Jawa Timur',
-            region: 'Jawa',
-            icon: '🌺',
-            speciesCount: 480,
-            endangeredCount: 65,
-            endemicCount: 48,
-            value: 480,
-            species: [{
-                    name: 'Edelweiss Jawa',
-                    latin: 'Anaphalis javanica',
-                    status: 'Rentan',
-                    icon: '🌸'
-                },
-                {
-                    name: 'Bunga Wijaya Kusuma',
-                    latin: 'Epiphyllum anguliger',
-                    status: 'Aman',
-                    icon: '🌺'
-                },
-                {
-                    name: 'Pohon Sono',
-                    latin: 'Dalbergia latifolia',
-                    status: 'Rentan',
-                    icon: '🌳'
-                }
-            ],
-            habitats: ['Taman Nasional Bromo Tengger Semeru', 'Taman Nasional Baluran', 'Alas Purwo']
-        },
-        'id-kb': {
-            name: 'Kalimantan Barat',
-            region: 'Kalimantan',
-            icon: '🪴',
-            speciesCount: 580,
-            endangeredCount: 82,
-            endemicCount: 65,
-            value: 580,
-            species: [{
-                    name: 'Kantong Semar',
-                    latin: 'Nepenthes rajah',
-                    status: 'Kritis',
-                    icon: '🪴'
-                },
-                {
-                    name: 'Tengkawang',
-                    latin: 'Shorea stenoptera',
-                    status: 'Rentan',
-                    icon: '🌳'
-                },
-                {
-                    name: 'Jelutung',
-                    latin: 'Dyera costulata',
-                    status: 'Rentan',
-                    icon: '🌲'
-                }
-            ],
-            habitats: ['Taman Nasional Betung Kerihun', 'Hutan Kerangas', 'Rawa Gambut']
-        },
-        'id-ki': {
-            name: 'Kalimantan Timur',
-            region: 'Kalimantan',
-            icon: '🌸',
-            speciesCount: 620,
-            endangeredCount: 88,
-            endemicCount: 72,
-            value: 620,
-            species: [{
-                    name: 'Anggrek Hitam',
-                    latin: 'Coelogyne pandurata',
-                    status: 'Kritis',
-                    icon: '🌸'
-                },
-                {
-                    name: 'Meranti',
-                    latin: 'Shorea spp.',
-                    status: 'Kritis',
-                    icon: '🌲'
-                },
-                {
-                    name: 'Ulin',
-                    latin: 'Eusideroxylon zwageri',
-                    status: 'Rentan',
-                    icon: '🌳'
-                }
-            ],
-            habitats: ['Taman Nasional Kutai', 'Hutan Dipterocarp', 'Karst Sangkulirang']
-        },
-        'id-pa': {
-            name: 'Papua',
-            region: 'Papua',
-            icon: '🌴',
-            speciesCount: 850,
-            endangeredCount: 120,
-            endemicCount: 95,
-            value: 850,
-            species: [{
-                    name: 'Matoa',
-                    latin: 'Pometia pinnata',
-                    status: 'Aman',
-                    icon: '🌳'
-                },
-                {
-                    name: 'Anggrek Papua',
-                    latin: 'Dendrobium spp.',
-                    status: 'Rentan',
-                    icon: '🌸'
-                },
-                {
-                    name: 'Merbau',
-                    latin: 'Intsia bijuga',
-                    status: 'Rentan',
-                    icon: '🌲'
-                }
-            ],
-            habitats: ['Taman Nasional Lorentz', 'Hutan Hujan Tropis', 'Pegunungan Jayawijaya']
-        },
-        'id-pb': {
-            name: 'Papua Barat',
-            region: 'Papua',
-            icon: '🌿',
-            speciesCount: 720,
-            endangeredCount: 98,
-            endemicCount: 82,
-            value: 720,
-            species: [{
-                    name: 'Damar',
-                    latin: 'Agathis labillardieri',
-                    status: 'Rentan',
-                    icon: '🌲'
-                },
-                {
-                    name: 'Anggrek Tebu',
-                    latin: 'Grammatophyllum speciosum',
-                    status: 'Rentan',
-                    icon: '🌸'
-                }
-            ],
-            habitats: ['Taman Nasional Teluk Cenderawasih', 'Raja Ampat']
-        }
+    // API URLs
+    const GEOJSON_URL = '/assets/data/indonesia-38-provinsi.json';
+    const FLORA_API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
+    
+    // Data storage
+    let indonesiaGeoJson = null;
+    let floraData = {};
+
+    // Province name mapping from GeoJSON to API data
+    const provinceNameMapping = {
+        'Daerah Istimewa Yogyakarta': 'DI Yogyakarta'
     };
+
+    function getProvinceName(geoJsonName) {
+        return provinceNameMapping[geoJsonName] || geoJsonName;
+    }
+
+    /**
+     * Parse conservation status from status string
+     */
+    function parseFloraStatus(statusString) {
+        if (!statusString) return 'Umum';
+        if (statusString.includes('Kritis') || statusString.includes('Critically')) return 'Kritis';
+        if (statusString.includes('Terancam') || statusString.includes('Endangered')) return 'Terancam';
+        if (statusString.includes('Rentan') || statusString.includes('Vulnerable')) return 'Rentan';
+        if (statusString.includes('Langka')) return 'Langka';
+        return 'Umum';
+    }
 
     // Default data for provinces without specific data
     const defaultProvinceData = {
         icon: '🌿',
-        speciesCount: 200,
-        endangeredCount: 25,
-        endemicCount: 15,
+        speciesCount: 0,
+        endangeredCount: 0,
+        endemicCount: 0,
         value: 200,
-        species: [{
-            name: 'Flora Lokal',
-            latin: 'Species indigenus',
-            status: 'Aman',
-            icon: '🌿'
-        }],
+        species: [],
         habitats: ['Hutan Tropis']
     };
 
     // Initialize map when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeMap();
+    document.addEventListener('DOMContentLoaded', async function() {
+        await loadDataAndInitMap();
     });
 
+    async function loadDataAndInitMap() {
+        try {
+            // Fetch GeoJSON and Flora API data in parallel
+            const [geoResponse, floraResponse] = await Promise.all([
+                fetch(GEOJSON_URL),
+                fetch(FLORA_API_URL)
+            ]);
+
+            indonesiaGeoJson = await geoResponse.json();
+            const apiData = await floraResponse.json();
+
+            // Transform API data to floraData format
+            for (const [provinceName, provinceData] of Object.entries(apiData)) {
+                if (provinceData.flora) {
+                    const flora = provinceData.flora;
+                    const otherSpecies = flora.lainnya || [];
+
+                    // Build species array from main flora and lainnya
+                    const species = [{
+                        name: flora.nama,
+                        latin: flora.latin,
+                        namaLain: flora.namaLain,
+                        status: parseFloraStatus(flora.status),
+                        habitat: flora.habitat,
+                        manfaat: flora.manfaat,
+                        tips: flora.tips,
+                        warna: flora.warna,
+                        tinggi: flora.tinggi,
+                        budaya: flora.budaya,
+                        simbol: flora.simbol,
+                        identitas: flora.identitas,
+                        icon: '🌺',
+                        isMain: true
+                    }];
+
+                    // Add other species
+                    otherSpecies.forEach(s => {
+                        species.push({
+                            name: s.nama,
+                            latin: s.latin,
+                            status: parseFloraStatus(s.status),
+                            statusDetail: s.statusDetail,
+                            habitat: s.habitat,
+                            deskripsi: s.deskripsi,
+                            ancaman: s.ancaman,
+                            icon: '🌿'
+                        });
+                    });
+
+                    // Count endangered and endemic
+                    const endangeredCount = species.filter(s => 
+                        s.status === 'Kritis' || s.status === 'Terancam'
+                    ).length;
+                    const endemicCount = Math.floor(species.length * 0.3); // Estimate
+
+                    floraData[provinceName] = {
+                        name: provinceName,
+                        region: getRegion(provinceName),
+                        icon: '🌿',
+                        mainFlora: flora,
+                        species: species,
+                        speciesCount: species.length,
+                        endangeredCount: endangeredCount,
+                        endemicCount: endemicCount,
+                        value: 100 + (species.length * 50) + Math.floor(Math.random() * 200),
+                        habitats: flora.habitat ? [flora.habitat] : ['Hutan Tropis']
+                    };
+                }
+            }
+
+            initializeMap();
+        } catch (error) {
+            console.error('Error loading data:', error);
+        }
+    }
+
+    function getRegion(provinceName) {
+        const regions = {
+            'Sumatera': ['Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Kepulauan Riau', 'Jambi', 'Sumatera Selatan', 'Kepulauan Bangka Belitung', 'Bengkulu', 'Lampung'],
+            'Jawa': ['DKI Jakarta', 'Jawa Barat', 'Banten', 'Jawa Tengah', 'DI Yogyakarta', 'Daerah Istimewa Yogyakarta', 'Jawa Timur'],
+            'Kalimantan': ['Kalimantan Barat', 'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara'],
+            'Sulawesi': ['Sulawesi Utara', 'Gorontalo', 'Sulawesi Tengah', 'Sulawesi Barat', 'Sulawesi Selatan', 'Sulawesi Tenggara'],
+            'Bali & Nusa Tenggara': ['Bali', 'Nusa Tenggara Barat', 'Nusa Tenggara Timur'],
+            'Maluku': ['Maluku', 'Maluku Utara'],
+            'Papua': ['Papua', 'Papua Barat', 'Papua Barat Daya', 'Papua Tengah', 'Papua Pegunungan', 'Papua Selatan']
+        };
+        
+        for (const [region, provinces] of Object.entries(regions)) {
+            if (provinces.includes(provinceName)) return region;
+        }
+        return 'Indonesia';
+    }
+
     function initializeMap() {
+        if (!indonesiaGeoJson) {
+            console.error('GeoJSON not loaded');
+            return;
+        }
+
         // Prepare data for Highcharts
         const mapData = [];
 
-        // Get all province codes from the map topology
-        const topology = Highcharts.maps['countries/id/id-all'];
-
-        topology.features.forEach(function(feature) {
-            const code = feature.properties['hc-key'];
-            const data = floraData[code] || {
-                ...defaultProvinceData,
-                name: feature.properties.name,
-                region: 'Indonesia'
-            };
+        indonesiaGeoJson.features.forEach(function(feature) {
+            const geoJsonName = feature.properties.PROVINSI;
+            const normalizedName = getProvinceName(geoJsonName);
+            const data = floraData[normalizedName];
 
             mapData.push({
-                'hc-key': code,
-                value: data.value || data.speciesCount,
-                name: feature.properties.name
+                'PROVINSI': geoJsonName,
+                value: data?.value || 200,
+                name: geoJsonName
             });
         });
 
@@ -543,7 +370,8 @@
                 shadow: true,
                 useHTML: true,
                 formatter: function() {
-                    const data = floraData[this.point['hc-key']] || defaultProvinceData;
+                    const normalizedName = getProvinceName(this.point.name);
+                    const data = floraData[normalizedName] || defaultProvinceData;
                     return `
                     <div style="padding: 8px;">
                         <div style="font-weight: 600; font-size: 14px; color: #111827; margin-bottom: 4px;">
@@ -562,8 +390,8 @@
 
             series: [{
                 data: mapData,
-                mapData: Highcharts.maps['countries/id/id-all'],
-                joinBy: 'hc-key',
+                mapData: indonesiaGeoJson,
+                joinBy: 'PROVINSI',
                 name: 'Keanekaragaman Flora',
                 borderColor: 'white',
                 borderWidth: 1,
@@ -581,7 +409,7 @@
                 point: {
                     events: {
                         click: function() {
-                            showProvinceDetail(this['hc-key'], this.name);
+                            showProvinceDetail(this.name);
                         }
                     }
                 }
@@ -589,10 +417,11 @@
         });
     }
 
-    function showProvinceDetail(code, name) {
-        const data = floraData[code] || {
+    function showProvinceDetail(provinceName) {
+        const normalizedName = getProvinceName(provinceName);
+        const data = floraData[normalizedName] || {
             ...defaultProvinceData,
-            name: name,
+            name: provinceName,
             region: 'Indonesia'
         };
 
@@ -602,7 +431,7 @@
 
         // Update header
         document.getElementById('provinceIcon').textContent = data.icon || '🌿';
-        document.getElementById('provinceName').textContent = data.name || name;
+        document.getElementById('provinceName').textContent = data.name || provinceName;
         document.getElementById('provinceRegion').textContent = data.region || 'Indonesia';
 
         // Update stats

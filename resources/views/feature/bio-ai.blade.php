@@ -104,20 +104,20 @@
                     <div class="bioai-legend-title">Tingkat Reboisasi</div>
                     <div class="bioai-legend-items">
                         <div class="bioai-legend-item">
-                            <span class="bioai-legend-color" style="background: #064e3b;"></span>
+                            <span class="bioai-legend-color" style="background: #22c55e;"></span>
                             <span>Sangat Tinggi (>100k pohon)</span>
                         </div>
                         <div class="bioai-legend-item">
-                            <span class="bioai-legend-color" style="background: #059669;"></span>
+                            <span class="bioai-legend-color" style="background: #facc15;"></span>
                             <span>Tinggi (50k-100k pohon)</span>
                         </div>
                         <div class="bioai-legend-item">
-                            <span class="bioai-legend-color" style="background: #34d399;"></span>
+                            <span class="bioai-legend-color" style="background: #f97316;"></span>
                             <span>Sedang (20k-50k pohon)</span>
                         </div>
                         <div class="bioai-legend-item">
-                            <span class="bioai-legend-color" style="background: #a7f3d0;"></span>
-                            <span>Rendah (<20k pohon)</span>
+                            <span class="bioai-legend-color" style="background: #ef4444;"></span>
+                            <span>Rendah (20k pohon) </span>
                         </div>
                     </div>
                 </div>
@@ -362,6 +362,6 @@
         Highcharts.maps = Highcharts.maps || {};
     }
 </script>
-<script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
+
 <script src="{{ asset('assets/js/bioai-map.js') }}"></script>
 @endsection

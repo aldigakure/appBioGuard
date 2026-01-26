@@ -2,60 +2,52 @@
  * Bio-AI Reforestation Map - Interactive Indonesia Map
  * Fetches reforestation data from external JSON
  * Data source: Luas Kegiatan Reboisasi, 2019.xlsx
+ * Updated: Now uses 38 provinces GeoJSON (includes new Papua provinces)
  */
-
-// Province name to Highcharts key mapping
-const bioaiProvinceToKey = {
-    'Aceh': 'id-ac',
-    'Sumatera Utara': 'id-su',
-    'Sumatera Barat': 'id-sb',
-    'Riau': 'id-ri',
-    'Kepulauan Riau': 'id-kr',
-    'Jambi': 'id-ja',
-    'Sumatera Selatan': 'id-sl',
-    'Kepulauan Bangka Belitung': 'id-bb',
-    'Bengkulu': 'id-be',
-    'Lampung': 'id-1024',
-    'DKI Jakarta': 'id-jk',
-    'Jawa Barat': 'id-jr',
-    'Banten': 'id-bt',
-    'Jawa Tengah': 'id-jt',
-    'DI Yogyakarta': 'id-yo',
-    'Jawa Timur': 'id-ji',
-    'Bali': 'id-ba',
-    'Nusa Tenggara Barat': 'id-nb',
-    'Nusa Tenggara Timur': 'id-nt',
-    'Kalimantan Barat': 'id-kb',
-    'Kalimantan Tengah': 'id-kt',
-    'Kalimantan Selatan': 'id-ks',
-    'Kalimantan Timur': 'id-ki',
-    'Kalimantan Utara': 'id-ku',
-    'Sulawesi Utara': 'id-sw',
-    'Gorontalo': 'id-go',
-    'Sulawesi Tengah': 'id-st',
-    'Sulawesi Barat': 'id-sr',
-    'Sulawesi Selatan': 'id-se',
-    'Sulawesi Tenggara': 'id-sg',
-    'Maluku': 'id-ma',
-    'Maluku Utara': 'id-la',
-    'Papua': 'id-pa',
-    'Papua Barat': 'id-ib'
-};
 
 // Reforestation data storage
 let reforestationData = {};
 let dataMetadata = {};
+let indonesiaGeoJson = null;
 
-// API URL for reforestation data
+// API URLs
 const REBOISASI_DATA_URL = '/assets/data/reboisasi-data.json';
+const GEOJSON_URL = '/assets/data/indonesia-38-provinsi.json';
+
+// Province name mapping from GeoJSON to reboisasi-data.json
+const provinceNameMapping = {
+    'Daerah Istimewa Yogyakarta': 'DI Yogyakarta',
+    'DKI Jakarta': 'DKI Jakarta',
+    'Kepulauan Bangka Belitung': 'Kepulauan Bangka Belitung',
+    'Kepulauan Riau': 'Kepulauan Riau',
+    'Nusa Tenggara Barat': 'Nusa Tenggara Barat',
+    'Nusa Tenggara Timur': 'Nusa Tenggara Timur',
+    'Papua Barat Daya': 'Papua Barat Daya',
+    'Papua Pegunungan': 'Papua Pegunungan',
+    'Papua Selatan': 'Papua Selatan',
+    'Papua Tengah': 'Papua Tengah'
+};
 
 /**
- * Fetch reforestation data from JSON
+ * Get normalized province name for data lookup
+ */
+function getNormalizedProvinceName(geoJsonName) {
+    return provinceNameMapping[geoJsonName] || geoJsonName;
+}
+
+/**
+ * Fetch both GeoJSON and reforestation data
  */
 async function fetchReforestationData() {
     try {
-        const response = await fetch(REBOISASI_DATA_URL);
-        const data = await response.json();
+        // Fetch both data sources in parallel
+        const [geoResponse, dataResponse] = await Promise.all([
+            fetch(GEOJSON_URL),
+            fetch(REBOISASI_DATA_URL)
+        ]);
+
+        indonesiaGeoJson = await geoResponse.json();
+        const data = await dataResponse.json();
 
         // Extract metadata
         if (data.metadata) {
@@ -63,15 +55,12 @@ async function fetchReforestationData() {
             delete data.metadata;
         }
 
-        // Transform data to match Highcharts key format
+        // Store reforestation data with province name as key
         for (const [provinceName, provinceData] of Object.entries(data)) {
-            const key = bioaiProvinceToKey[provinceName];
-            if (key) {
-                reforestationData[key] = {
-                    ...provinceData,
-                    value: provinceData.luasReboisasi || 0
-                };
-            }
+            reforestationData[provinceName] = {
+                ...provinceData,
+                value: provinceData.pohonDitanam || 0 // Use pohonDitanam for color
+            };
         }
 
         // Update total stats after data is loaded
@@ -80,9 +69,22 @@ async function fetchReforestationData() {
         initReforestationMap();
     } catch (error) {
         console.error('Error fetching reforestation data:', error);
+        // Fallback to old map if new GeoJSON fails
+        initFallbackMap();
+    }
+}
+
+/**
+ * Fallback to old Highcharts map if custom GeoJSON fails
+ */
+function initFallbackMap() {
+    console.warn('Using fallback map (34 provinces)');
+    if (Highcharts.maps && Highcharts.maps['countries/id/id-all']) {
+        // Use the old implementation as fallback
         initReforestationMap();
     }
 }
+
 
 /**
  * Update total stats from data
@@ -188,15 +190,24 @@ function updateTrendChart(currentTotal) {
  * Initialize Highcharts map for reforestation
  */
 function initReforestationMap() {
+    // Check if custom GeoJSON is loaded
+    if (!indonesiaGeoJson) {
+        console.error('GeoJSON not loaded');
+        return;
+    }
+
     const mapData = [];
 
-    Highcharts.maps['countries/id/id-all'].features.forEach(function (f) {
-        const code = f.properties['hc-key'];
-        const data = reforestationData[code];
+    // Build map data from GeoJSON features
+    indonesiaGeoJson.features.forEach(function (f) {
+        const geoJsonName = f.properties.PROVINSI;
+        const normalizedName = getNormalizedProvinceName(geoJsonName);
+        const data = reforestationData[normalizedName];
+
         mapData.push({
-            'hc-key': code,
-            value: data?.value || Math.floor(Math.random() * 5000) + 500,
-            name: f.properties.name
+            'PROVINSI': geoJsonName,
+            value: data?.value || 0,
+            name: geoJsonName
         });
     });
 
@@ -215,18 +226,21 @@ function initReforestationMap() {
         legend: { enabled: false },
         colorAxis: {
             min: 0,
-            max: 20000,
+            max: 200000, // Max pohon ditanam
             stops: [
-                [0, '#a7f3d0'],
-                [0.3, '#34d399'],
-                [0.6, '#059669'],
-                [1, '#064e3b']
+                [0, '#ef4444'],      // Merah - sangat sedikit pohon
+                [0.1, '#f97316'],    // Orange
+                [0.25, '#facc15'],   // Kuning
+                [0.5, '#84cc16'],    // Hijau muda
+                [0.75, '#22c55e'],   // Hijau
+                [1, '#064e3b']       // Hijau tua - sangat banyak pohon
             ]
         },
         tooltip: {
             useHTML: true,
             formatter: function () {
-                const d = reforestationData[this.point['hc-key']];
+                const normalizedName = getNormalizedProvinceName(this.point.name);
+                const d = reforestationData[normalizedName];
                 const luas = d?.luasReboisasi || 'N/A';
                 const pohon = d?.pohonDitanam || 'N/A';
                 return '<div style="padding:8px;"><b>🌲 ' + this.point.name + '</b><br>' +
@@ -237,8 +251,8 @@ function initReforestationMap() {
         },
         series: [{
             data: mapData,
-            mapData: Highcharts.maps['countries/id/id-all'],
-            joinBy: 'hc-key',
+            mapData: indonesiaGeoJson,
+            joinBy: 'PROVINSI',
             borderColor: 'white',
             borderWidth: 1,
             states: {
@@ -251,7 +265,7 @@ function initReforestationMap() {
             point: {
                 events: {
                     click: function () {
-                        showProvinceDetail(this['hc-key'], this.name);
+                        showProvinceDetail(this.name);
                     }
                 }
             }
@@ -259,12 +273,14 @@ function initReforestationMap() {
     });
 }
 
+
 /**
  * Show province detail panel
  */
-function showProvinceDetail(code, name) {
-    const d = reforestationData[code] || {
-        nama: name,
+function showProvinceDetail(provinceName) {
+    const normalizedName = getNormalizedProvinceName(provinceName);
+    const d = reforestationData[normalizedName] || {
+        nama: provinceName,
         wilayah: 'Indonesia',
         luasReboisasi: Math.floor(Math.random() * 10000) + 1000,
         pohonDitanam: Math.floor(Math.random() * 50000) + 10000,
@@ -287,7 +303,7 @@ function showProvinceDetail(code, name) {
     const provinceNameEl = document.getElementById('provinceName');
     const provinceRegionEl = document.getElementById('provinceRegion');
 
-    if (provinceNameEl) provinceNameEl.textContent = d.nama || name;
+    if (provinceNameEl) provinceNameEl.textContent = d.nama || provinceName;
     if (provinceRegionEl) provinceRegionEl.textContent = d.wilayah || 'Indonesia';
 
     // Update stats

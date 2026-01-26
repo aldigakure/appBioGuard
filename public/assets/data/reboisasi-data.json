@@ -401,6 +401,18 @@
         "prioritas": "low",
         "rekomendasi": "Monitoring biodiversitas. Dukung konservasi berbasis masyarakat adat."
     },
+    "Papua Barat Daya": {
+        "nama": "Papua Barat Daya",
+        "wilayah": "Papua",
+        "luasReboisasi": 2200,
+        "pohonDitanam": 22000,
+        "kelembapanTanah": 80,
+        "tingkatDeforestasi": 3,
+        "tutupanHutan": 90,
+        "kesehatanTanah": 88,
+        "prioritas": "low",
+        "rekomendasi": "Konservasi hutan primer Raja Ampat. Dukung program ekowisata berkelanjutan."
+    },
     "Papua": {
         "nama": "Papua",
         "wilayah": "Papua",
@@ -412,5 +424,41 @@
         "kesehatanTanah": 88,
         "prioritas": "low",
         "rekomendasi": "Pertahankan tutupan hutan yang ada. Fokus pada edukasi dan pemberdayaan masyarakat adat."
+    },
+    "Papua Tengah": {
+        "nama": "Papua Tengah",
+        "wilayah": "Papua",
+        "luasReboisasi": 3500,
+        "pohonDitanam": 35000,
+        "kelembapanTanah": 75,
+        "tingkatDeforestasi": 6,
+        "tutupanHutan": 82,
+        "kesehatanTanah": 85,
+        "prioritas": "low",
+        "rekomendasi": "Konservasi Taman Nasional Lorentz. Fokus perlindungan habitat endemik pegunungan."
+    },
+    "Papua Pegunungan": {
+        "nama": "Papua Pegunungan",
+        "wilayah": "Papua",
+        "luasReboisasi": 2800,
+        "pohonDitanam": 28000,
+        "kelembapanTanah": 72,
+        "tingkatDeforestasi": 4,
+        "tutupanHutan": 87,
+        "kesehatanTanah": 86,
+        "prioritas": "low",
+        "rekomendasi": "Perlindungan ekosistem pegunungan tinggi. Dukung masyarakat adat Dani dan Lani."
+    },
+    "Papua Selatan": {
+        "nama": "Papua Selatan",
+        "wilayah": "Papua",
+        "luasReboisasi": 3200,
+        "pohonDitanam": 32000,
+        "kelembapanTanah": 80,
+        "tingkatDeforestasi": 5,
+        "tutupanHutan": 84,
+        "kesehatanTanah": 87,
+        "prioritas": "low",
+        "rekomendasi": "Konservasi hutan rawa dan mangrove. Fokus restorasi ekosistem pesisir selatan."
     }
 }

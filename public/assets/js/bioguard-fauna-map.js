@@ -1,49 +1,29 @@
 /**
  * BioGuard Fauna Map - Interactive Indonesia Map
  * Fetches fauna data from external JSON API
+ * Updated: Now uses 38 provinces GeoJSON (includes new Papua provinces)
  */
 
-// Province name to Highcharts key mapping (corrected based on actual Highcharts map)
-const provinceToKey = {
-    'Aceh': 'id-ac',
-    'Sumatera Utara': 'id-su',
-    'Sumatera Barat': 'id-sb',
-    'Riau': 'id-ri',
-    'Kepulauan Riau': 'id-kr',
-    'Jambi': 'id-ja',
-    'Sumatera Selatan': 'id-sl',
-    'Kepulauan Bangka Belitung': 'id-bb',
-    'Bengkulu': 'id-be',
-    'Lampung': 'id-1024',
-    'DKI Jakarta': 'id-jk',
-    'Jawa Barat': 'id-jr',
-    'Banten': 'id-bt',
-    'Jawa Tengah': 'id-jt',
-    'DI Yogyakarta': 'id-yo',
-    'Jawa Timur': 'id-ji',
-    'Bali': 'id-ba',
-    'Nusa Tenggara Barat': 'id-nb',
-    'Nusa Tenggara Timur': 'id-nt',
-    'Kalimantan Barat': 'id-kb',
-    'Kalimantan Tengah': 'id-kt',
-    'Kalimantan Selatan': 'id-ks',
-    'Kalimantan Timur': 'id-ki',
-    'Kalimantan Utara': 'id-ku',
-    'Sulawesi Utara': 'id-sw',
-    'Gorontalo': 'id-go',
-    'Sulawesi Tengah': 'id-st',
-    'Sulawesi Barat': 'id-sr',
-    'Sulawesi Selatan': 'id-se',
-    'Sulawesi Tenggara': 'id-sg',
-    'Maluku': 'id-ma',
-    'Maluku Utara': 'id-la',
-    'Papua': 'id-pa',
-    'Papua Barat': 'id-ib',
-    'Papua Barat Daya': 'id-ib',
-    'Papua Selatan': 'id-pa',
-    'Papua Tengah': 'id-pa',
-    'Papua Pegunungan': 'id-pa'
+// Fauna data storage
+let faunaData = {};
+let rawProvinsiData = {};
+let indonesiaGeoJson = null;
+
+// API URLs
+const FAUNA_API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
+const GEOJSON_URL = '/assets/data/indonesia-38-provinsi.json';
+
+// Province name mapping from GeoJSON to API data
+const faunaProvinceNameMapping = {
+    'Daerah Istimewa Yogyakarta': 'DI Yogyakarta'
 };
+
+/**
+ * Get normalized province name for data lookup
+ */
+function getFaunaProvinceName(geoJsonName) {
+    return faunaProvinceNameMapping[geoJsonName] || geoJsonName;
+}
 
 // Fauna icon mapping based on animal type
 const faunaIcons = {
@@ -55,13 +35,6 @@ const faunaIcons = {
     'pesut': '🐬', 'lumba': '🐬', 'ikan': '🐟', 'kasuari': '🐦',
     'default': '🦋'
 };
-
-// Fauna data storage
-let faunaData = {};
-let rawProvinsiData = {};
-
-// API URL for province data
-const API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
 
 /**
  * Get appropriate icon for fauna based on name
@@ -87,18 +60,23 @@ function parseStatus(statusString) {
 }
 
 /**
- * Fetch fauna data from external API
+ * Fetch fauna data from external API and GeoJSON
  */
 async function fetchFaunaData() {
     try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
+        // Fetch both GeoJSON and fauna data in parallel
+        const [geoResponse, faunaResponse] = await Promise.all([
+            fetch(GEOJSON_URL),
+            fetch(FAUNA_API_URL)
+        ]);
+
+        indonesiaGeoJson = await geoResponse.json();
+        const data = await faunaResponse.json();
         rawProvinsiData = data;
 
-        // Transform data to match Highcharts key format
+        // Transform data - store with province name as key
         for (const [provinceName, provinceData] of Object.entries(data)) {
-            const key = provinceToKey[provinceName];
-            if (key && provinceData.fauna) {
+            if (provinceData.fauna) {
                 const fauna = provinceData.fauna;
                 const otherSpecies = fauna.lainnya || [];
 
@@ -131,7 +109,8 @@ async function fetchFaunaData() {
                     });
                 });
 
-                faunaData[key] = {
+                // Store with province name as key
+                faunaData[provinceName] = {
                     name: provinceName,
                     mainFauna: fauna,
                     species: species,
@@ -143,7 +122,7 @@ async function fetchFaunaData() {
         initializeFaunaMap();
     } catch (error) {
         console.error('Error fetching fauna data:', error);
-        initializeFaunaMap(); // Initialize with empty data
+        initializeFaunaMap();
     }
 }
 
@@ -151,13 +130,24 @@ async function fetchFaunaData() {
  * Initialize Highcharts map for fauna
  */
 function initializeFaunaMap() {
+    // Check if GeoJSON is loaded
+    if (!indonesiaGeoJson) {
+        console.error('GeoJSON not loaded for fauna map');
+        return;
+    }
+
     const mapData = [];
-    Highcharts.maps['countries/id/id-all'].features.forEach(function (f) {
-        const code = f.properties['hc-key'];
+
+    // Build map data from GeoJSON features
+    indonesiaGeoJson.features.forEach(function (f) {
+        const geoJsonName = f.properties.PROVINSI;
+        const normalizedName = getFaunaProvinceName(geoJsonName);
+        const data = faunaData[normalizedName];
+
         mapData.push({
-            'hc-key': code,
-            value: faunaData[code]?.value || 80,
-            name: f.properties.name
+            'PROVINSI': geoJsonName,
+            value: data?.value || 80,
+            name: geoJsonName
         });
     });
 
@@ -196,15 +186,16 @@ function initializeFaunaMap() {
         tooltip: {
             useHTML: true,
             formatter: function () {
-                const d = faunaData[this.point['hc-key']];
+                const normalizedName = getFaunaProvinceName(this.point.name);
+                const d = faunaData[normalizedName];
                 const speciesCount = d?.species?.length || 0;
                 return '<div style="padding:8px;"><b>🦋 ' + this.point.name + '</b><br>' + speciesCount + ' spesies fauna tercatat</div>';
             }
         },
         series: [{
             data: mapData,
-            mapData: Highcharts.maps['countries/id/id-all'],
-            joinBy: 'hc-key',
+            mapData: indonesiaGeoJson,
+            joinBy: 'PROVINSI',
             borderColor: 'white',
             borderWidth: 1,
             states: {
@@ -217,7 +208,7 @@ function initializeFaunaMap() {
             point: {
                 events: {
                     click: function () {
-                        showFaunaDetail(this['hc-key'], this.name);
+                        showFaunaDetail(this.name);
                     }
                 }
             }
@@ -228,14 +219,15 @@ function initializeFaunaMap() {
 /**
  * Show fauna detail panel for selected province (EcoDetect-style layout)
  */
-function showFaunaDetail(code, name) {
-    const d = faunaData[code];
+function showFaunaDetail(provinceName) {
+    const normalizedName = getFaunaProvinceName(provinceName);
+    const d = faunaData[normalizedName];
 
     if (!d) {
         document.getElementById('faunaHabitatList').innerHTML = `
             <div class="bioguard-habitat-placeholder">
                 <div class="bioguard-habitat-placeholder-icon">🦋</div>
-                <p>Data fauna untuk ${name} belum tersedia</p>
+                <p>Data fauna untuk ${provinceName} belum tersedia</p>
             </div>
         `;
         return;
