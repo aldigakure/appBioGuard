@@ -66,19 +66,19 @@
 
           <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
               <div class="feature-card card-hover feature-card-clickable" id="bioguardCard"
-                  onclick="openBioGuardModal()" style="background: linear-gradient(135deg, #f0fdf4, #ecfeff);">
+                  onclick="openBioGuardModal()" style="background: linear-gradient(135deg, #f0fdf4, #ecfeff); cursor: pointer;">
                   <div class="feature-icon icon-green">🔍</div>
                   <h3 class="feature-title">BioGuard</h3>
                   <p class="feature-description">Identifikasi otomatis spesies dari foto menggunakan machine learning
                       dengan akurasi tinggi.</p>
               </div>
 
-              <div class="feature-card card-hover" id="bioaiCard" style="background: linear-gradient(135deg, #fef3c7, #ffedd5);">
+              <a href="{{ route('bioguard.bio-ai') }}" class="feature-card card-hover feature-card-clickable" id="bioaiCard" style="background: linear-gradient(135deg, #fef3c7, #ffedd5); text-decoration: none;">
                   <div class="feature-icon icon-amber">🌳</div>
-                  <h3 class="feature-title">Bio-Ai</h3>
+                  <h3 class="feature-title">Bio-AI</h3>
                   <p class="feature-description">Dashboard analitik real-time untuk monitoring populasi dan tren
                       biodiversitas.</p>
-              </div>
+              </a>
 
               <a href="{{ route('peta') }}" class="feature-card card-hover feature-card-clickable"
                   style="background: linear-gradient(135deg, #fce7f3, #ede9fe); text-decoration: none;">
@@ -87,17 +87,17 @@
                   <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran spesies
                       dan habitat.</p>
               </a>
-              <div class="feature-card card-hover" id="plantIdCard" style="background: linear-gradient(135deg, #97e7b1, #ede9fe);">
-                  <div class="feature-icon icon-rose">🤖</div>
-                  <h3 class="feature-title">PlantId</h3>
-                  <p class="feature-description">Peta interaktif dengan tracking GPS untuk visualisasi sebaran
-                      spesiesIdentifikasi spesies dari foto pengguna, tampilkan status konservasi, dan dorong
-                      partisipasi warga.
 
+              <a href="{{ route('quiz.index') }}" class="feature-card card-hover feature-card-clickable" id="plantIdCard"
+                  style="background: linear-gradient(135deg, #dcfce7, #dbeafe); text-decoration: none;">
+                  <div class="feature-icon icon-green">🎮</div>
+                  <h3 class="feature-title">PlantID</h3>
+                  <p class="feature-description">
+                      Tantangan kuis interaktif untuk menguji pengetahuan konservasi dan identifikasi spesies flora fauna.
                   </p>
-              </div>
-
+              </a>
           </div>
+      </div>
   </section>
 
   <!-- BioGuard Modal -->
@@ -353,7 +353,7 @@
           <div class="cta-container">
               <div class="section-badge">
                   <span>🚀</span>
-                  <span>Bergabung Sekarang</span>
+                  <span>Gabung Sekarang</span>
               </div>
               <h2 class="cta-title">Mulai Berkontribusi untuk Konservasi</h2>
               <p class="cta-description">
@@ -363,7 +363,7 @@
               <div class="cta-buttons">
                   @if (Route::has('register'))
                   <a href="{{ route('register') }}" class="btn btn-primary btn-large">
-                      Daftar Gratis
+                      Daftar Sekarang
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                           stroke="currentColor" stroke-width="2">
                           <path d="M5 12h14M12 5l7 7-7 7" />

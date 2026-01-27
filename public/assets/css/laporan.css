@@ -1,0 +1,164 @@
+/* ============================================
+   BIOGUARD Laporan Modal Styles
+   ============================================ */
+
+/* View Laporan Modal Styles */
+.forum-modal-lg {
+    max-width: 700px;
+    padding: 0;
+    overflow: hidden;
+}
+
+.view-laporan-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.laporan-image-container {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #f0fdf4, #ecfeff);
+    position: relative;
+    overflow: hidden;
+}
+
+.laporan-detail-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.laporan-details {
+    padding: 1.5rem 2rem 2rem;
+}
+
+.laporan-detail-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.3;
+}
+
+.laporan-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.laporan-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.875rem;
+    background: #f9fafb;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+}
+
+.laporan-info-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+}
+
+.laporan-info-icon.icon-green {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.laporan-info-icon.icon-cyan {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.laporan-info-icon.icon-amber {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.laporan-info-icon.icon-violet {
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.laporan-info-content {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.laporan-info-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 0.125rem;
+}
+
+.laporan-info-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827;
+    word-break: break-word;
+}
+
+.laporan-author-section {
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.laporan-author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.laporan-author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.laporan-author-name {
+    display: block;
+    font-weight: 600;
+    color: #111827;
+    font-size: 0.9rem;
+}
+
+.laporan-author-time {
+    display: block;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* Form with 2 columns */
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .laporan-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .laporan-image-container {
+        height: 180px;
+    }
+
+    .laporan-details {
+        padding: 1rem 1.25rem 1.5rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}

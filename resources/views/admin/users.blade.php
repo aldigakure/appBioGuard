@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
-@push('styles')
+@section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
-@endpush
+@endsection
 
 @section('content')
 @include('layouts.navbar-dashboard')
@@ -91,7 +91,7 @@
     </div>
 </main>
 
-@push('scripts')
+@section('scripts')
 <script>
     document.querySelectorAll('.role-update-form').forEach(form => {
         form.addEventListener('submit', function(e) {
@@ -125,5 +125,5 @@
         });
     });
 </script>
-@endpush
+@endsection
 @endsection

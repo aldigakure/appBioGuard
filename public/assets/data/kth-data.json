@@ -1,0 +1,615 @@
+{
+    "metadata": {
+        "title": "Data Kelompok Tani Hutan (KTH) Indonesia",
+        "description": "Persebaran Kelompok Tani Hutan di setiap provinsi Indonesia",
+        "lastUpdated": "2026-01-21",
+        "source": "Kementerian Lingkungan Hidup dan Kehutanan"
+    },
+    "provinces": {
+        "Aceh": {
+            "region": "Sumatera",
+            "kthCount": 156,
+            "groups": [
+                {
+                    "nama": "Tani Bakau",
+                    "register": "11/06/04/2004/KTH./001/2017",
+                    "alamat": "Dusun Podiamat Kelurahan Alue Naga, Kec. Syiah Kuala"
+                },
+                {
+                    "nama": "Kapur",
+                    "register": "11/06/04/2004/KTH./002/2017",
+                    "alamat": "Gampong Lam Ateuk, Kec. Peukan Bada"
+                },
+                {
+                    "nama": "Al Banna",
+                    "register": "11/06/04/2004/KTH./003/2017",
+                    "alamat": "Gampong Tanjong, Kec. Ingin Jaya"
+                },
+                {
+                    "nama": "Tunas Hijau",
+                    "register": "11/06/04/2004/KTH./004/2018",
+                    "alamat": "Desa Lambaro, Kec. Baitussalam"
+                },
+                {
+                    "nama": "Harapan Baru",
+                    "register": "11/06/04/2004/KTH./005/2018",
+                    "alamat": "Gampong Blang Bintang, Kec. Blang Bintang"
+                }
+            ]
+        },
+        "Sumatera Utara": {
+            "region": "Sumatera",
+            "kthCount": 234,
+            "groups": [
+                {
+                    "nama": "Tani Mandiri",
+                    "register": "12/02/01/2005/KTH./001/2016",
+                    "alamat": "Desa Lumban Julu, Kec. Lumban Julu, Toba Samosir"
+                },
+                {
+                    "nama": "Sejahtera",
+                    "register": "12/02/01/2005/KTH./002/2016",
+                    "alamat": "Desa Sianjur, Kec. Siborongborong"
+                },
+                {
+                    "nama": "Lestari Hutan",
+                    "register": "12/02/01/2005/KTH./003/2017",
+                    "alamat": "Desa Parbaba, Kec. Pangururan"
+                },
+                {
+                    "nama": "Rimba Lestari",
+                    "register": "12/02/01/2005/KTH./004/2018",
+                    "alamat": "Desa Simarjarunjung, Kec. Silimakuta"
+                }
+            ]
+        },
+        "Sumatera Barat": {
+            "region": "Sumatera",
+            "kthCount": 189,
+            "groups": [
+                {
+                    "nama": "Nagari Hijau",
+                    "register": "13/01/02/2006/KTH./001/2017",
+                    "alamat": "Nagari Pandai Sikek, Kec. X Koto"
+                },
+                {
+                    "nama": "Bukit Barisan",
+                    "register": "13/01/02/2006/KTH./002/2017",
+                    "alamat": "Nagari Maninjau, Kec. Tanjung Raya"
+                },
+                {
+                    "nama": "Minang Lestari",
+                    "register": "13/01/02/2006/KTH./003/2018",
+                    "alamat": "Nagari Koto Baru, Kec. Sungai Pagu"
+                }
+            ]
+        },
+        "Riau": {
+            "region": "Sumatera",
+            "kthCount": 145,
+            "groups": [
+                {
+                    "nama": "Mekar Jaya",
+                    "register": "14/01/03/2007/KTH./001/2017",
+                    "alamat": "Desa Tanjung Medang, Kec. Bengkalis"
+                },
+                {
+                    "nama": "Harapan Kita",
+                    "register": "14/01/03/2007/KTH./002/2018",
+                    "alamat": "Desa Pangkalan Kerinci, Kec. Pangkalan Kerinci"
+                }
+            ]
+        },
+        "Jambi": {
+            "region": "Sumatera",
+            "kthCount": 167,
+            "groups": [
+                {
+                    "nama": "Rimba Jambi",
+                    "register": "15/02/04/2008/KTH./001/2017",
+                    "alamat": "Desa Rantau Panjang, Kec. Tabir"
+                },
+                {
+                    "nama": "Tani Makmur",
+                    "register": "15/02/04/2008/KTH./002/2018",
+                    "alamat": "Desa Sungai Bahar, Kec. Muaro Jambi"
+                }
+            ]
+        },
+        "Bengkulu": {
+            "region": "Sumatera",
+            "kthCount": 98,
+            "groups": [
+                {
+                    "nama": "Tani Hutan Lestari",
+                    "register": "17/01/05/2009/KTH./001/2017",
+                    "alamat": "Desa Air Hitam, Kec. Lebong Utara"
+                },
+                {
+                    "nama": "Berkah Alam",
+                    "register": "17/01/05/2009/KTH./002/2018",
+                    "alamat": "Desa Taba Penanjung, Kec. Taba Penanjung"
+                }
+            ]
+        },
+        "Sumatera Selatan": {
+            "region": "Sumatera",
+            "kthCount": 178,
+            "groups": [
+                {
+                    "nama": "Musi Lestari",
+                    "register": "16/03/06/2010/KTH./001/2017",
+                    "alamat": "Desa Ulak Paceh, Kec. Muara Enim"
+                },
+                {
+                    "nama": "Sriwijaya Hijau",
+                    "register": "16/03/06/2010/KTH./002/2018",
+                    "alamat": "Desa Tanjung Raja, Kec. Tanjung Raja"
+                }
+            ]
+        },
+        "Kepulauan Bangka Belitung": {
+            "region": "Sumatera",
+            "kthCount": 45,
+            "groups": [
+                {
+                    "nama": "Pesisir Timur",
+                    "register": "19/01/07/2011/KTH./001/2018",
+                    "alamat": "Desa Manggar, Kec. Manggar"
+                }
+            ]
+        },
+        "Lampung": {
+            "region": "Sumatera",
+            "kthCount": 156,
+            "groups": [
+                {
+                    "nama": "Way Kambas Lestari",
+                    "register": "18/02/08/2012/KTH./001/2017",
+                    "alamat": "Desa Labuhan Ratu, Kec. Labuhan Ratu"
+                },
+                {
+                    "nama": "Tani Mandiri",
+                    "register": "18/02/08/2012/KTH./002/2018",
+                    "alamat": "Desa Gunung Sugih, Kec. Gunung Sugih"
+                }
+            ]
+        },
+        "Kepulauan Riau": {
+            "region": "Sumatera",
+            "kthCount": 34,
+            "groups": [
+                {
+                    "nama": "Pesisir Mandiri",
+                    "register": "21/01/09/2013/KTH./001/2018",
+                    "alamat": "Desa Tanjung Pinang, Kec. Tanjung Pinang"
+                }
+            ]
+        },
+        "DKI Jakarta": {
+            "region": "Jawa",
+            "kthCount": 12,
+            "groups": [
+                {
+                    "nama": "Jakarta Hijau",
+                    "register": "31/01/01/2014/KTH./001/2019",
+                    "alamat": "Kelurahan Muara Angke, Kec. Penjaringan"
+                }
+            ]
+        },
+        "Jawa Barat": {
+            "region": "Jawa",
+            "kthCount": 456,
+            "groups": [
+                {
+                    "nama": "Sunda Lestari",
+                    "register": "32/01/02/2005/KTH./001/2016",
+                    "alamat": "Desa Ciwidey, Kec. Ciwidey, Bandung"
+                },
+                {
+                    "nama": "Tani Parahyangan",
+                    "register": "32/01/02/2005/KTH./002/2016",
+                    "alamat": "Desa Pangalengan, Kec. Pangalengan"
+                },
+                {
+                    "nama": "Gunung Gede",
+                    "register": "32/01/02/2005/KTH./003/2017",
+                    "alamat": "Desa Cipanas, Kec. Cipanas, Cianjur"
+                },
+                {
+                    "nama": "Rimba Priangan",
+                    "register": "32/01/02/2005/KTH./004/2018",
+                    "alamat": "Desa Cikalong, Kec. Cikalong Wetan"
+                },
+                {
+                    "nama": "Sukabumi Asri",
+                    "register": "32/01/02/2005/KTH./005/2018",
+                    "alamat": "Desa Pelabuhan Ratu, Kec. Pelabuhan Ratu"
+                }
+            ]
+        },
+        "Banten": {
+            "region": "Jawa",
+            "kthCount": 87,
+            "groups": [
+                {
+                    "nama": "Ujung Kulon",
+                    "register": "36/01/03/2015/KTH./001/2017",
+                    "alamat": "Desa Sumur, Kec. Sumur, Pandeglang"
+                },
+                {
+                    "nama": "Krakatau Lestari",
+                    "register": "36/01/03/2015/KTH./002/2018",
+                    "alamat": "Desa Labuan, Kec. Labuan"
+                }
+            ]
+        },
+        "Jawa Tengah": {
+            "region": "Jawa",
+            "kthCount": 389,
+            "groups": [
+                {
+                    "nama": "Gunung Merapi",
+                    "register": "33/02/04/2006/KTH./001/2016",
+                    "alamat": "Desa Cangkringan, Kec. Cangkringan, Sleman"
+                },
+                {
+                    "nama": "Tani Dieng",
+                    "register": "33/02/04/2006/KTH./002/2017",
+                    "alamat": "Desa Dieng, Kec. Kejajar, Wonosobo"
+                },
+                {
+                    "nama": "Lawu Hijau",
+                    "register": "33/02/04/2006/KTH./003/2018",
+                    "alamat": "Desa Tawangmangu, Kec. Tawangmangu"
+                }
+            ]
+        },
+        "DIY": {
+            "region": "Jawa",
+            "kthCount": 67,
+            "groups": [
+                {
+                    "nama": "Yogya Lestari",
+                    "register": "34/01/05/2007/KTH./001/2017",
+                    "alamat": "Desa Mangunan, Kec. Dlingo, Bantul"
+                },
+                {
+                    "nama": "Merapi Mandiri",
+                    "register": "34/01/05/2007/KTH./002/2018",
+                    "alamat": "Desa Hargobinangun, Kec. Pakem"
+                }
+            ]
+        },
+        "Jawa Timur": {
+            "region": "Jawa",
+            "kthCount": 423,
+            "groups": [
+                {
+                    "nama": "Bromo Cemerlang",
+                    "register": "35/03/06/2008/KTH./001/2016",
+                    "alamat": "Desa Ngadisari, Kec. Sukapura, Probolinggo"
+                },
+                {
+                    "nama": "Alas Purwo",
+                    "register": "35/03/06/2008/KTH./002/2017",
+                    "alamat": "Desa Kalipait, Kec. Tegaldlimo, Banyuwangi"
+                },
+                {
+                    "nama": "Baluran Lestari",
+                    "register": "35/03/06/2008/KTH./003/2018",
+                    "alamat": "Desa Wonorejo, Kec. Banyuputih"
+                }
+            ]
+        },
+        "Bali": {
+            "region": "Bali & Nusa Tenggara",
+            "kthCount": 78,
+            "groups": [
+                {
+                    "nama": "Bali Barat",
+                    "register": "51/01/01/2009/KTH./001/2017",
+                    "alamat": "Desa Sumber Klampok, Kec. Gerokgak, Buleleng"
+                },
+                {
+                    "nama": "Tani Dewata",
+                    "register": "51/01/01/2009/KTH./002/2018",
+                    "alamat": "Desa Munduk, Kec. Banjar"
+                }
+            ]
+        },
+        "NTB": {
+            "region": "Bali & Nusa Tenggara",
+            "kthCount": 123,
+            "groups": [
+                {
+                    "nama": "Rinjani Lestari",
+                    "register": "52/02/02/2010/KTH./001/2017",
+                    "alamat": "Desa Senaru, Kec. Bayan, Lombok Utara"
+                },
+                {
+                    "nama": "Sasak Hijau",
+                    "register": "52/02/02/2010/KTH./002/2018",
+                    "alamat": "Desa Sembalun, Kec. Sembalun"
+                }
+            ]
+        },
+        "NTT": {
+            "region": "Bali & Nusa Tenggara",
+            "kthCount": 145,
+            "groups": [
+                {
+                    "nama": "Komodo Mandiri",
+                    "register": "53/03/03/2011/KTH./001/2017",
+                    "alamat": "Desa Labuan Bajo, Kec. Komodo, Manggarai Barat"
+                },
+                {
+                    "nama": "Flores Lestari",
+                    "register": "53/03/03/2011/KTH./002/2018",
+                    "alamat": "Desa Ruteng, Kec. Langke Rembong"
+                }
+            ]
+        },
+        "Kalimantan Barat": {
+            "region": "Kalimantan",
+            "kthCount": 234,
+            "groups": [
+                {
+                    "nama": "Dayak Lestari",
+                    "register": "61/01/01/2005/KTH./001/2016",
+                    "alamat": "Desa Nanga Pinoh, Kec. Nanga Pinoh, Melawi"
+                },
+                {
+                    "nama": "Kapuas Hijau",
+                    "register": "61/01/01/2005/KTH./002/2017",
+                    "alamat": "Desa Sanggau, Kec. Sanggau"
+                },
+                {
+                    "nama": "Betung Kerihun",
+                    "register": "61/01/01/2005/KTH./003/2018",
+                    "alamat": "Desa Putussibau, Kec. Putussibau Utara"
+                }
+            ]
+        },
+        "Kalimantan Tengah": {
+            "region": "Kalimantan",
+            "kthCount": 289,
+            "groups": [
+                {
+                    "nama": "Tanjung Puting",
+                    "register": "62/02/02/2006/KTH./001/2016",
+                    "alamat": "Desa Kumai, Kec. Kumai, Kotawaringin Barat"
+                },
+                {
+                    "nama": "Dayak Mandiri",
+                    "register": "62/02/02/2006/KTH./002/2017",
+                    "alamat": "Desa Sampit, Kec. Baamang"
+                },
+                {
+                    "nama": "Kahayan Lestari",
+                    "register": "62/02/02/2006/KTH./003/2018",
+                    "alamat": "Desa Palangka Raya, Kec. Jekan Raya"
+                }
+            ]
+        },
+        "Kalimantan Selatan": {
+            "region": "Kalimantan",
+            "kthCount": 198,
+            "groups": [
+                {
+                    "nama": "Meratus Lestari",
+                    "register": "63/03/03/2007/KTH./001/2017",
+                    "alamat": "Desa Loksado, Kec. Loksado, Hulu Sungai Selatan"
+                },
+                {
+                    "nama": "Banjar Hijau",
+                    "register": "63/03/03/2007/KTH./002/2018",
+                    "alamat": "Desa Martapura, Kec. Martapura"
+                }
+            ]
+        },
+        "Kalimantan Timur": {
+            "region": "Kalimantan",
+            "kthCount": 267,
+            "groups": [
+                {
+                    "nama": "Kutai Lestari",
+                    "register": "64/04/04/2008/KTH./001/2016",
+                    "alamat": "Desa Sangatta, Kec. Sangatta Utara, Kutai Timur"
+                },
+                {
+                    "nama": "Mahakam Hijau",
+                    "register": "64/04/04/2008/KTH./002/2017",
+                    "alamat": "Desa Samarinda, Kec. Sungai Kunjang"
+                },
+                {
+                    "nama": "Berau Mandiri",
+                    "register": "64/04/04/2008/KTH./003/2018",
+                    "alamat": "Desa Tanjung Redeb, Kec. Tanjung Redeb"
+                }
+            ]
+        },
+        "Kalimantan Utara": {
+            "region": "Kalimantan",
+            "kthCount": 156,
+            "groups": [
+                {
+                    "nama": "Kayan Mentarang",
+                    "register": "65/05/05/2013/KTH./001/2017",
+                    "alamat": "Desa Malinau, Kec. Malinau Kota"
+                },
+                {
+                    "nama": "Tarakan Hijau",
+                    "register": "65/05/05/2013/KTH./002/2018",
+                    "alamat": "Desa Tarakan, Kec. Tarakan Tengah"
+                }
+            ]
+        },
+        "Sulawesi Utara": {
+            "region": "Sulawesi",
+            "kthCount": 134,
+            "groups": [
+                {
+                    "nama": "Bunaken Lestari",
+                    "register": "71/01/01/2009/KTH./001/2017",
+                    "alamat": "Desa Manado, Kec. Bunaken"
+                },
+                {
+                    "nama": "Minahasa Hijau",
+                    "register": "71/01/01/2009/KTH./002/2018",
+                    "alamat": "Desa Tomohon, Kec. Tomohon Utara"
+                }
+            ]
+        },
+        "Gorontalo": {
+            "region": "Sulawesi",
+            "kthCount": 89,
+            "groups": [
+                {
+                    "nama": "Gorontalo Lestari",
+                    "register": "75/02/02/2010/KTH./001/2017",
+                    "alamat": "Desa Gorontalo, Kec. Kota Timur"
+                }
+            ]
+        },
+        "Sulawesi Tengah": {
+            "region": "Sulawesi",
+            "kthCount": 178,
+            "groups": [
+                {
+                    "nama": "Lore Lindu",
+                    "register": "72/03/03/2011/KTH./001/2017",
+                    "alamat": "Desa Palu, Kec. Palu Selatan"
+                },
+                {
+                    "nama": "Togian Lestari",
+                    "register": "72/03/03/2011/KTH./002/2018",
+                    "alamat": "Desa Ampana, Kec. Ampana Kota"
+                }
+            ]
+        },
+        "Sulawesi Barat": {
+            "region": "Sulawesi",
+            "kthCount": 67,
+            "groups": [
+                {
+                    "nama": "Mamuju Lestari",
+                    "register": "76/04/04/2012/KTH./001/2018",
+                    "alamat": "Desa Mamuju, Kec. Mamuju"
+                }
+            ]
+        },
+        "Sulawesi Selatan": {
+            "region": "Sulawesi",
+            "kthCount": 245,
+            "groups": [
+                {
+                    "nama": "Bantimurung",
+                    "register": "73/05/05/2007/KTH./001/2016",
+                    "alamat": "Desa Maros, Kec. Bantimurung"
+                },
+                {
+                    "nama": "Toraja Lestari",
+                    "register": "73/05/05/2007/KTH./002/2017",
+                    "alamat": "Desa Rantepao, Kec. Rantepao"
+                },
+                {
+                    "nama": "Makassar Hijau",
+                    "register": "73/05/05/2007/KTH./003/2018",
+                    "alamat": "Desa Makassar, Kec. Panakkukang"
+                }
+            ]
+        },
+        "Sulawesi Tenggara": {
+            "region": "Sulawesi",
+            "kthCount": 123,
+            "groups": [
+                {
+                    "nama": "Wakatobi Lestari",
+                    "register": "74/06/06/2013/KTH./001/2017",
+                    "alamat": "Desa Wangi-Wangi, Kec. Wangi-Wangi"
+                },
+                {
+                    "nama": "Kendari Hijau",
+                    "register": "74/06/06/2013/KTH./002/2018",
+                    "alamat": "Desa Kendari, Kec. Kendari"
+                }
+            ]
+        },
+        "Maluku": {
+            "region": "Maluku",
+            "kthCount": 98,
+            "groups": [
+                {
+                    "nama": "Ambon Lestari",
+                    "register": "81/01/01/2014/KTH./001/2017",
+                    "alamat": "Desa Ambon, Kec. Nusaniwe"
+                },
+                {
+                    "nama": "Banda Hijau",
+                    "register": "81/01/01/2014/KTH./002/2018",
+                    "alamat": "Desa Banda, Kec. Banda"
+                }
+            ]
+        },
+        "Maluku Utara": {
+            "region": "Maluku",
+            "kthCount": 87,
+            "groups": [
+                {
+                    "nama": "Ternate Lestari",
+                    "register": "82/02/02/2015/KTH./001/2017",
+                    "alamat": "Desa Ternate, Kec. Ternate Tengah"
+                },
+                {
+                    "nama": "Halmahera Hijau",
+                    "register": "82/02/02/2015/KTH./002/2018",
+                    "alamat": "Desa Tobelo, Kec. Tobelo"
+                }
+            ]
+        },
+        "Papua": {
+            "region": "Papua",
+            "kthCount": 145,
+            "groups": [
+                {
+                    "nama": "Jayapura Lestari",
+                    "register": "91/01/01/2010/KTH./001/2017",
+                    "alamat": "Desa Jayapura, Kec. Jayapura Utara"
+                },
+                {
+                    "nama": "Cenderawasih",
+                    "register": "91/01/01/2010/KTH./002/2018",
+                    "alamat": "Desa Sentani, Kec. Sentani"
+                }
+            ]
+        },
+        "Papua Barat": {
+            "region": "Papua",
+            "kthCount": 112,
+            "groups": [
+                {
+                    "nama": "Raja Ampat Lestari",
+                    "register": "92/02/02/2011/KTH./001/2017",
+                    "alamat": "Desa Waisai, Kec. Raja Ampat"
+                },
+                {
+                    "nama": "Manokwari Hijau",
+                    "register": "92/02/02/2011/KTH./002/2018",
+                    "alamat": "Desa Manokwari, Kec. Manokwari Barat"
+                }
+            ]
+        },
+        "Papua Selatan": {
+            "region": "Papua",
+            "kthCount": 78,
+            "groups": [
+                {
+                    "nama": "Merauke Lestari",
+                    "register": "93/03/03/2022/KTH./001/2023",
+                    "alamat": "Desa Merauke, Kec. Merauke"
+                }
+            ]
+        }
+    }
+}

@@ -11,7 +11,9 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('user.profile.index');
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+        return view('user.profile.index', compact('user'));
     }
 
     public function edit()
@@ -31,6 +33,7 @@ class ProfileController extends Controller
             'expertise' => 'nullable|string|max:100',
             'organization' => 'nullable|string|max:255',
         ]);
+     
 
         /** @var \App\Models\User $user */
         $user = Auth::user();

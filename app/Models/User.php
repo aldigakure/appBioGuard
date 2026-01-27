@@ -30,6 +30,7 @@ class User extends Authenticatable
         'bio',
         'expertise',
         'organization',
+        
     ];
 
     public function role()

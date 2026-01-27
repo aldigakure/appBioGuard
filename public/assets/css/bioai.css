@@ -1,0 +1,676 @@
+/* ============================================
+   Bio-AI Dashboard Styles
+   ============================================ */
+
+/* Stats Grid */
+.bioai-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.bioai-stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.bioai-stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.1);
+}
+
+.bioai-stat-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.bioai-stat-content {
+    flex: 1;
+}
+
+.bioai-stat-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #111827;
+    line-height: 1.2;
+}
+
+.bioai-stat-label {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.bioai-stat-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.bioai-stat-trend.trend-up {
+    color: #059669;
+}
+
+.bioai-stat-trend.trend-neutral {
+    color: #6b7280;
+}
+
+/* Map Section */
+.bioai-map-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+}
+
+.bioai-section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.bioai-map-container {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 1.5rem;
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+}
+
+.bioai-map-wrapper {
+    position: relative;
+    min-width: 0;
+}
+
+.bioai-map-canvas {
+    width: 100%;
+    min-height: 450px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.bioai-map-legend {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.bioai-legend-title {
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+}
+
+.bioai-legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.bioai-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.bioai-legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+}
+
+/* Detail Panel */
+.bioai-detail-panel {
+    background: #f8fafc;
+    min-width: 0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.bioai-detail-placeholder {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6b7280;
+}
+
+.bioai-detail-placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.bioai-detail-placeholder h3 {
+    font-family: 'Outfit', sans-serif;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.bioai-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.bioai-detail-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.bioai-detail-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin: 0;
+}
+
+.bioai-detail-subtitle {
+    color: #6b7280;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.bioai-priority-badge {
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: auto;
+}
+
+.bioai-priority-badge.critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.bioai-priority-badge.high {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.bioai-priority-badge.medium {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.bioai-priority-badge.low {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.bioai-detail-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.bioai-detail-stat-item {
+    text-align: center;
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.bioai-detail-stat-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #059669;
+}
+
+.bioai-detail-stat-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+.bioai-env-data {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+}
+
+.bioai-env-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+}
+
+.bioai-env-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.bioai-env-item {
+    display: grid;
+    grid-template-columns: 120px 1fr 40px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.bioai-env-label {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.bioai-progress-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bioai-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.bioai-progress-fill.deforestation {
+    background: linear-gradient(90deg, #f43f5e, #e11d48);
+}
+
+.bioai-progress-fill.forest {
+    background: linear-gradient(90deg, #10b981, #059669);
+}
+
+.bioai-progress-fill.soil {
+    background: linear-gradient(90deg, #06b6d4, #0891b2);
+}
+
+.bioai-env-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #374151;
+    text-align: right;
+}
+
+.bioai-recommendation {
+    background: linear-gradient(135deg, #ecfdf5, #f0fdfa);
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.bioai-rec-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #059669;
+    margin-bottom: 0.5rem;
+}
+
+.bioai-rec-text {
+    font-size: 0.85rem;
+    color: #374151;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Charts Section */
+.bioai-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.bioai-chart-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e5e7eb;
+    min-width: 0;
+}
+
+.bioai-chart-card.bioai-chart-small {
+    grid-column: span 1;
+}
+
+.bioai-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.bioai-chart-header h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.bioai-chart-badge {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.bioai-chart-canvas {
+    width: 100%;
+    min-height: 280px;
+}
+
+.bioai-chart-canvas-small {
+    width: 100%;
+    min-height: 220px;
+}
+
+/* Table Section */
+.bioai-table-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e5e7eb;
+    min-width: 0;
+}
+
+.bioai-table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.bioai-table-filters {
+    display: flex;
+    gap: 1rem;
+}
+
+.bioai-filter-select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #374151;
+    background: white;
+    cursor: pointer;
+}
+
+.bioai-export-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bioai-export-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.bioai-table-wrapper {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.bioai-data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bioai-data-table th {
+    text-align: left;
+    padding: 1rem;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 2px solid #e5e7eb;
+    background: linear-gradient(135deg, #f8fafc, #f0fdf4);
+    font-size: 0.85rem;
+}
+
+.bioai-data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 0.9rem;
+    color: #374151;
+}
+
+.bioai-data-table tbody tr:hover {
+    background: rgba(16, 185, 129, 0.03);
+}
+
+.bioai-location-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bioai-location-icon {
+    font-size: 1.25rem;
+}
+
+.bioai-moisture-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bioai-moisture-bar {
+    height: 8px;
+    background: linear-gradient(90deg, #06b6d4, #0891b2);
+    border-radius: 4px;
+    min-width: 60px;
+}
+
+.bioai-deforestation-badge {
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.bioai-deforestation-badge.high {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.bioai-deforestation-badge.medium {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.bioai-deforestation-badge.low {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.bioai-priority-tag {
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.bioai-priority-tag.high {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.bioai-priority-tag.medium {
+    background: #dbeafe;
+    color: #2563eb;
+}
+
+.bioai-priority-tag.low {
+    background: #d1fae5;
+    color: #059669;
+}
+
+/* CTA Section */
+.bioai-cta-section {
+    background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+    padding: 4rem 2rem;
+}
+
+.bioai-cta-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.bioai-cta-content h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.bioai-cta-content p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.bioai-cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.bioai-cta-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.bioai-cta-btn.primary {
+    background: white;
+    color: #059669;
+}
+
+.bioai-cta-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bioai-cta-btn.secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.bioai-cta-btn.secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .bioai-map-container {
+        grid-template-columns: 1fr;
+    }
+
+    .bioai-detail-panel {
+        max-height: none;
+    }
+
+    .bioai-charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .bioai-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .bioai-map-container {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .bioai-map-canvas {
+        min-height: 350px;
+    }
+
+    .bioai-chart-card {
+        padding: 1rem;
+    }
+
+    .bioai-detail-panel {
+        padding: 1rem;
+    }
+
+    .bioai-detail-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .bioai-env-item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+
+    .bioai-table-filters {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .bioai-filter-select {
+        width: 100%;
+    }
+
+    .bioai-cta-content h2 {
+        font-size: 1.5rem;
+    }
+}

@@ -1,20 +1,20 @@
 @extends('layouts.app')
 
-@push('styles')
+@yield('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/observasi.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/profile.css') }}">
-@endpush
+
 
 @php
-$userName = Auth::user()->name ?? session('admin_user.name') ?? 'User';
-$userEmail = Auth::user()->email ?? session('admin_user.email') ?? 'user@bioguard.id';
-$userAvatar = session('admin_user.avatar') ?? null;
-$userPhone = session('admin_user.phone') ?? '';
-$userLocation = session('admin_user.location') ?? '';
-$userBio = session('admin_user.bio') ?? '';
-$userExpertise = session('admin_user.expertise') ?? '';
-$userOrganization = session('admin_user.organization') ?? '';
+$userName = auth()->user()->name ?? null;
+$userEmail =  auth()->user()->email ?? null;
+$userAvatar =  auth()->user()->avatar ?? null;
+$userPhone =  auth()->user()->phone ?? null;
+$userLocation =  auth()->user()->location ?? null;
+$userBio =  auth()->user()->bio ?? null;
+$userExpertise =  auth()->user()->expertise ?? null;
+$userOrganization = auth()->user()->organization ?? null;
 @endphp
 
 @section('content')
@@ -167,7 +167,7 @@ $userOrganization = session('admin_user.organization') ?? '';
                                 <option value="photographer" {{ $userExpertise == 'photographer' ? 'selected' : '' }}>📸 Fotografer</option>
                                 <option value="botanist" {{ $userExpertise == 'botanist' ? 'selected' : '' }}>🌺 Botanis</option>
                                 <option value="zoologist" {{ $userExpertise == 'zoologist' ? 'selected' : '' }}>🦁 Zoologist</option>
-                                <option value="ranger" {{ $userExpertise == 'ranger' ? 'selected' : '' }}>🏕️ Ranger</option>
+                                <option value="jagawana" {{ $userExpertise == 'jagawana' ? 'selected' : '' }}>🏕️ Jagawana</option>
                                 <option value="other" {{ $userExpertise == 'other' ? 'selected' : '' }}>✨ Lainnya</option>
                             </select>
                         </div>

@@ -1,7 +1,7 @@
 <nav id="navbar" class="navbar fixed-top navbar-expand-lg bg-transparent justify-content-center ">
     <div class="container-fluid">
         <a href="/" class="logo navbar-brand ms-4">
-            <img src="{{ asset('assets/images/dinacom_notext.png') }}" class="d-none d-md-inline" style="width: 62px;"
+            <img src="{{ asset('assets/images/dinacom_notext.png') }}" class="d-none d-md-inline" style="width: 42px;"
                 alt="BioGuard Logo">
             BIOGUARD
         </a>
@@ -15,7 +15,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @php
-            $isBioGuardPage = request()->is('bioguard/*') || request()->is('peta');
+            $isBioGuardPage = request()->is('bioguard/*') || request()->is('peta') || request()->is('quiz*');
             $baseUrl = $isBioGuardPage ? url('/') : '';
             @endphp
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0 navbar-user gap-3" data-bioguard-page="{{ $isBioGuardPage ? 'true' : 'false' }}">
@@ -29,15 +29,16 @@
                         Beranda
                     </a>
                 </li>
+                {{-- MENU DROPDOWN FITUR --}}
                 <li class="nav-item dropdown">
-                    <a class="nav-link text-capitalize dropdown-toggle {{ request()->is('bioguard/*') || request()->is('peta') ? 'active' : '' }}"
+                    <a class="nav-link text-capitalize dropdown-toggle {{ request()->is('bioguard/*') || request()->is('peta') || request()->is('quiz*') ? 'active' : '' }}"
                         href="#" role="button" id="fitur-dropdown-toggle"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Fitur
                     </a>
                     <ul class="dropdown-menu dropdown-menu-features">
                         <li>
-                            <a class="dropdown-item {{ request()->is('bioguard/*') ? 'active' : '' }}" href="{{ $baseUrl }}#bioguardCard">
+                            <a class="dropdown-item {{ request()->is('bioguard/*') ? 'active' : '' }}" href="{{ $baseUrl }}#features">
                                 <span class="dropdown-item-icon">🔍</span>
                                 <span class="dropdown-item-text">
                                     <span class="dropdown-item-title">BioGuard</span>
@@ -63,12 +64,14 @@
                                 </span>
                             </a>
                         </li>
+                        
+                        {{-- PERBAIKAN 2: Ubah link PlantId ke route quiz dan tambah logika active --}}
                         <li>
-                            <a class="dropdown-item" href="{{ $baseUrl }}#plantIdCard">
+                            <a class="dropdown-item {{ request()->is('quiz*') ? 'active' : '' }}" href="{{ route('quiz.index') }}">
                                 <span class="dropdown-item-icon">🤖</span>
                                 <span class="dropdown-item-text">
                                     <span class="dropdown-item-title">PlantId</span>
-                                    <span class="dropdown-item-desc">Identifikasi tumbuhan</span>
+                                    <span class="dropdown-item-desc">Uji pengetahuan konservasi</span>
                                 </span>
                             </a>
                         </li>
@@ -106,8 +109,8 @@
             <div class="d-flex align-items-center gap-2">
                 @php
                 $isLoggedIn = Auth::check() || session('is_authenticated');
-                $userName = Auth::user()->name ?? (session('admin_user.name') ?? 'User');
-                $userAvatar = session('admin_user.avatar') ?? null;
+                $userName = $userName = auth()->user()->name ?? null;
+                $userAvatar = $userAvatar = auth()->user()->avatar ?? null;
                 @endphp
 
                 @if ($isLoggedIn)
@@ -163,8 +166,8 @@
                     </ul>
                 </div>
                 @else
-                <a href="{{ route('login') }}" class="btn btn-outline me-2">Masuk</a>
-                <a href="{{ route('register') }}" class="btn btn-primary me-4">Daftar</a>
+                <a href="{{ route('login') }}" class="btn btn-primary me-4">Masuk</a>
+
                 @endif
             </div>
         </div>

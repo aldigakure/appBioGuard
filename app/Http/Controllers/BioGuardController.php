@@ -29,4 +29,12 @@ class BioGuardController extends Controller
     {
         return view('main_feature.ecodetect');
     }
+
+    /**
+     * Display the Bio-AI Reforestation Dashboard
+     */
+    public function bioAi()
+    {
+        return view('main_feature.bio-ai');
+    }
 }

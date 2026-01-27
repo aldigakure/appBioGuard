@@ -45,12 +45,14 @@
             <div>
                 <h4 class="footer-title">Ikuti Kami</h4>
                 <div class="footer-social footer-social-vertical">
-                    <a href="#" class="social-link" title="Twitter">
+                    <a href="https://www.tiktok.com/@smkantartika1sda?is_from_webapp=1&sender_device=pc" class="social-link" title="Tiktok">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path
-                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            <path 
+                                d="M12.9 2c.3 2.1 1.6 3.9 3.5 4.8a7.2 7.2 0 0 0 2.6.6v2.7a8.9 8.9 0 0 1-5.1-1.7v6.7a5.9 5.9 0 1 1-5.9-5.9c.4 0 .8 0 1.2.1v2.9a3.1 3.1 0 1 0 2.2 3v-11h1.5z" />
                         </svg>
-                        <span>Twitter</span>
+
+                        </svg>
+                        <span>Tiktok</span>
                     </a>
                     <a href="https://www.instagram.com/smkantartika1sda" class="social-link" title="Instagram">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">

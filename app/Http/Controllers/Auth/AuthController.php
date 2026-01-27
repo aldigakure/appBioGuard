@@ -24,6 +24,10 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'password.required' => 'Password wajib diisi.',
         ]);
 
         $throttleKey = Str::lower($request->input('email')) . '|' . $request->ip();
@@ -83,8 +87,8 @@ class AuthController extends Controller
             'terms.accepted' => 'Anda harus menyetujui Syarat & Ketentuan.',
         ]);
 
-        // Strictly assign 'user' role by default
-        $userRole = Role::where('role_name', 'user')->first();
+        // Strictly assign 'warga' role by default
+        $userRole = Role::where('role_name', 'warga')->first();
         
         if (!$userRole) {
             // Fallback or handle missing role in production
@@ -111,5 +115,39 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    /**
+     * Show the forgot password form.
+     */
+    public function showForgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    /**
+     * Send reset password link to email.
+     */
+    public function sendResetLink(Request $request)
+    {
+        $request->validate([
+            'email' => ['required', 'email'],
+        ], [
+            'email.required' => 'Alamat email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+        ]);
+
+        // Check if email exists
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors([
+                'email' => 'Email tidak terdaftar dalam sistem kami.',
+            ])->onlyInput('email');
+        }
+
+        // TODO: Implement actual password reset email sending
+        // For now, just show a success message
+        return back()->with('status', 'Link reset password telah dikirim ke email Anda. Silakan periksa inbox atau folder spam Anda.');
     }
 }

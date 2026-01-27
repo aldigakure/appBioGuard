@@ -1,0 +1,119 @@
+/* Minimalist Achievement Badge Styles */
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0 1.25rem;
+    height: 36px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(255, 255, 255, 0.1);
+    /* Glass background base */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    cursor: default;
+    z-index: 1;
+}
+
+.role-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.role-badge svg {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    flex-shrink: 0;
+}
+
+/* Role Specific Glass Themes */
+
+/* Admin - Royal Red Glass */
+.role-admin {
+    background: linear-gradient(135deg, rgba(254, 242, 242, 0.7), rgba(255, 228, 230, 0.7));
+    color: #be123c;
+    border: 1px solid rgba(251, 113, 133, 0.3);
+}
+
+.role-admin:hover {
+    background: linear-gradient(135deg, rgba(254, 242, 242, 0.9), rgba(255, 228, 230, 0.9));
+}
+
+/* Jagawana - Nature Green Glass */
+.role-jagawana {
+    background: linear-gradient(135deg, rgba(240, 253, 244, 0.7), rgba(220, 252, 231, 0.7));
+    color: #047857;
+    border: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.role-jagawana:hover {
+    background: linear-gradient(135deg, rgba(240, 253, 244, 0.9), rgba(220, 252, 231, 0.9));
+}
+
+/* Warga - Earthy Amber Glass */
+.role-warga {
+    background: linear-gradient(135deg, rgba(255, 251, 235, 0.7), rgba(254, 243, 199, 0.7));
+    color: #b45309;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.role-warga:hover {
+    background: linear-gradient(135deg, rgba(255, 251, 235, 0.9), rgba(254, 243, 199, 0.9));
+}
+
+/* Subtler Animation */
+.role-badge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 30%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.6),
+            transparent);
+    animation: simpleShine 6s infinite;
+    transform: skewX(-20deg);
+}
+
+@keyframes simpleShine {
+    0% {
+        left: -100%;
+    }
+
+    15% {
+        left: 150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.role-badge {
+    animation: float 4s ease-in-out infinite;
+}
