@@ -53,6 +53,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bioguard.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bioai.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mascot-chat.css') }}">
 
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -61,7 +62,9 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
+
     @yield('styles')
+    @stack('styles')
 </head>
 
 <body>
@@ -71,7 +74,7 @@
     @include('layouts.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Navbar scroll effect
+        //  scroll effect
         const navbar = document.getElementById('navbar');
 
         // Check if on BioGuard page
@@ -284,6 +287,9 @@
         });
     </script>
     @yield('scripts')
+
+    {{-- Mascot Chat Widget --}}
+    <x-mascot-chat />
 </body>
 
 </html>

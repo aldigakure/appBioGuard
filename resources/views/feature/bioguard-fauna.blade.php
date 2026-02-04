@@ -13,7 +13,7 @@
                 Kembali
             </a>
             <div class="bioguard-header-badge">
-                <span>🦋</span>
+                <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17a5 5 0 0 0 5-5c0-4-5-9-5-9s-5 5-5 9a5 5 0 0 0 5 5Z"/><path d="m9.5 14.5 5-5"/></svg></span>
                 <span>BioGuard Fauna</span>
             </div>
         </div>
@@ -30,7 +30,7 @@
 
         <div class="bioguard-upload-card" onclick="document.getElementById('faunaUpload').click()">
             <input type="file" id="faunaUpload" accept="image/*,video/*" style="display: none;">
-            <div class="bioguard-upload-icon">📹</div>
+            <div class="bioguard-upload-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2" ry="2"/></svg></div>
             <h3 class="bioguard-upload-title">Upload Foto atau Video Satwa</h3>
             <p class="bioguard-upload-desc">Seret dan lepas foto/video atau klik untuk memilih file</p>
             <button class="bioguard-upload-btn" type="button">
@@ -46,20 +46,25 @@
     </div>
 </section>
 
+<!-- Map Specific CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/bioguard-map.css') }}">
+<!-- Leaflet.js CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
 <!-- Interactive Map Section -->
 <section class="bioguard-section bioguard-map-section">
     <div class="bioguard-container">
-        <h2 class="bioguard-section-title">🗺️ Peta Interaktif Habitat Fauna</h2>
+        <h2 class="bioguard-section-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:8px;"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Peta Interaktif Habitat Fauna</h2>
         <p class="bioguard-section-subtitle">Jelajahi sebaran habitat satwa liar di Indonesia</p>
 
         <div class="bioguard-map-container">
             <div class="bioguard-map-wrapper">
-                <div id="fauna-map" class="bioguard-map-interactive"></div>
+                <div id="fauna-map" class="bioguard-map-interactive fauna"></div>
             </div>
             <div class="bioguard-habitat-list" id="faunaHabitatList">
                 <div class="bioguard-habitat-placeholder">
-                    <div class="bioguard-habitat-placeholder-icon">🦋</div>
-                    <p>Klik provinsi pada peta untuk melihat detail fauna</p>
+                    <div class="bioguard-habitat-placeholder-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17a5 5 0 0 0 5-5c0-4-5-9-5-9s-5 5-5 9a5 5 0 0 0 5 5Z"/><path d="m9.5 14.5 5-5"/></svg></div>
+                    <p>Klik marker pada peta untuk melihat detail fauna provinsi</p>
                 </div>
             </div>
         </div>
@@ -69,16 +74,16 @@
     </div>
 </section>
 
-<!-- Highcharts Maps Scripts -->
-<script src="https://code.highcharts.com/maps/highmaps.js"></script>
-<script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
-<script src="{{ asset('assets/js/bioguard-fauna-map.js') }}"></script>
+<!-- Leaflet.js Script -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<!-- Fauna Map Script -->
+<script src="{{ asset('assets/js/bioguard-fauna-leaflet.js') }}"></script>
 
 
 <!-- Urgent Notifications Section -->
 <section class="bioguard-section bioguard-notifications-section">
     <div class="bioguard-container">
-        <h2 class="bioguard-section-title">⚠️ Spesies yang Butuh Perlindungan Mendesak</h2>
+        <h2 class="bioguard-section-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:8px;"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>Spesies yang Butuh Perlindungan Mendesak</h2>
         <p class="bioguard-section-subtitle">Fauna terancam punah yang membutuhkan perhatian khusus dari konservasionis</p>
 
         <div class="bioguard-notifications-grid">
@@ -160,12 +165,12 @@
 <!-- Community Reports Section -->
 <section class="bioguard-section bioguard-community-section">
     <div class="bioguard-container">
-        <h2 class="bioguard-section-title">🐾 Komunitas Pelaporan Fauna</h2>
+        <h2 class="bioguard-section-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:8px;"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>Komunitas Pelaporan Fauna</h2>
         <p class="bioguard-section-subtitle">Laporan temuan satwa dari warga dan relawan konservasi</p>
 
         <div class="bioguard-community-grid">
             <div class="bioguard-report-card">
-                <div class="bioguard-report-image">🐅</div>
+                <div class="bioguard-report-image"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 16V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v10"/><path d="M12 14h8a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-8"/><path d="M4 10h4"/><path d="M4 6h4"/><path d="m11 19-2.5 2.5L6 19"/><circle cx="8" cy="12" r="6"/></svg></div>
                 <div class="bioguard-report-content">
                     <div class="bioguard-report-meta">
                         <div class="bioguard-report-user">
@@ -192,7 +197,7 @@
             </div>
 
             <div class="bioguard-report-card">
-                <div class="bioguard-report-image">🦜</div>
+                <div class="bioguard-report-image"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h.01"/><path d="M3.4 18H12a8 8 0 0 0 8-8V7a4 4 0 0 0-7.28-2.3L2 20"/><path d="m20 7 2 .5-2 .5"/><path d="M10 18v3"/><path d="M14 17.75V21"/><path d="M7 18a6 6 0 0 0 3.84-10.61"/></svg></div>
                 <div class="bioguard-report-content">
                     <div class="bioguard-report-meta">
                         <div class="bioguard-report-user">

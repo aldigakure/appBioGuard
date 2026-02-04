@@ -1,0 +1,503 @@
+/* ========================================
+   MASCOT CHAT WIDGET STYLES
+   ======================================== */
+
+/* CSS Custom Properties */
+:root {
+    --mascot-primary: #10b981;
+    --mascot-primary-dark: #059669;
+    --mascot-primary-light: #34d399;
+    --mascot-secondary: #0f172a;
+    --mascot-bg-glass: rgba(15, 23, 42, 0.95);
+    --mascot-border: rgba(16, 185, 129, 0.3);
+    --mascot-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    --mascot-text: #f8fafc;
+    --mascot-text-muted: #94a3b8;
+}
+
+/* Mascot Launcher Button */
+.mascot-launcher {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mascot-launcher.position-left {
+    right: auto;
+    left: 24px;
+}
+
+.mascot-launcher:hover {
+    transform: scale(1.1);
+}
+
+.mascot-launcher-img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 25px rgba(16, 185, 129, 0.4));
+    animation: mascotFloat 3s ease-in-out infinite;
+}
+
+/* Floating Animation */
+@keyframes mascotFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Pulse Ring Effect */
+.mascot-pulse-ring {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(16, 185, 129, 0.2);
+    animation: mascotPulse 2s ease-out infinite;
+    top: 0;
+    left: 0;
+}
+
+@keyframes mascotPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Chat Modal Overlay */
+.mascot-chat-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mascot-chat-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Chat Modal Container */
+.mascot-chat-modal {
+    position: fixed;
+    bottom: 160px;
+    right: 24px;
+    width: 420px;
+    max-width: calc(100vw - 48px);
+    max-height: calc(100vh - 200px);
+    background: var(--mascot-bg-glass);
+    border-radius: 24px;
+    border: 1px solid var(--mascot-border);
+    box-shadow: var(--mascot-shadow);
+    z-index: 10001;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.mascot-chat-modal.position-left {
+    right: auto;
+    left: 24px;
+}
+
+.mascot-chat-modal.active {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Chat Header */
+.mascot-chat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, var(--mascot-primary) 0%, var(--mascot-primary-dark) 100%);
+    border-bottom: 1px solid var(--mascot-border);
+}
+
+.mascot-chat-header-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px;
+    object-fit: contain;
+}
+
+.mascot-chat-header-info {
+    flex: 1;
+}
+
+.mascot-chat-header-name {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+.mascot-chat-header-status {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.mascot-chat-header-status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.mascot-chat-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #ffffff;
+}
+
+.mascot-chat-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.mascot-chat-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Chat Body */
+.mascot-chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-height: 300px;
+    max-height: 400px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--mascot-primary) transparent;
+}
+
+.mascot-chat-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.mascot-chat-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mascot-chat-body::-webkit-scrollbar-thumb {
+    background: var(--mascot-primary);
+    border-radius: 3px;
+}
+
+/* Chat Messages */
+.mascot-chat-message {
+    display: flex;
+    gap: 10px;
+    animation: messageSlide 0.3s ease;
+}
+
+@keyframes messageSlide {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mascot-chat-message.bot {
+    flex-direction: row;
+}
+
+.mascot-chat-message.user {
+    flex-direction: row-reverse;
+}
+
+.mascot-chat-message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: rgba(16, 185, 129, 0.2);
+    padding: 4px;
+}
+
+.mascot-chat-message.user .mascot-chat-message-avatar {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.mascot-chat-message-content {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.mascot-chat-message.bot .mascot-chat-message-content {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: var(--mascot-text);
+    border-top-left-radius: 4px;
+}
+
+.mascot-chat-message.user .mascot-chat-message-content {
+    background: linear-gradient(135deg, var(--mascot-primary) 0%, var(--mascot-primary-dark) 100%);
+    color: #ffffff;
+    border-top-right-radius: 4px;
+}
+
+/* Quick Replies */
+.mascot-quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.mascot-quick-reply-btn {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--mascot-primary-light);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+.mascot-quick-reply-btn:hover {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: var(--mascot-primary);
+    transform: translateY(-2px);
+}
+
+/* Chat Footer */
+.mascot-chat-footer {
+    padding: 16px 20px;
+    border-top: 1px solid var(--mascot-border);
+    background: rgba(15, 23, 42, 0.8);
+}
+
+.mascot-chat-input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--mascot-border);
+    border-radius: 25px;
+    padding: 4px 4px 4px 16px;
+    transition: all 0.2s ease;
+}
+
+.mascot-chat-input-wrapper:focus-within {
+    border-color: var(--mascot-primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.mascot-chat-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--mascot-text);
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+}
+
+.mascot-chat-input::placeholder {
+    color: var(--mascot-text-muted);
+}
+
+.mascot-chat-send {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--mascot-primary) 0%, var(--mascot-primary-dark) 100%);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: white;
+}
+
+.mascot-chat-send:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.mascot-chat-send:active {
+    transform: scale(0.95);
+}
+
+.mascot-chat-send svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Typing Indicator */
+.mascot-typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 12px 16px;
+    background: rgba(16, 185, 129, 0.15);
+    border-radius: 18px;
+    border-top-left-radius: 4px;
+    width: fit-content;
+}
+
+.mascot-typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--mascot-primary);
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite both;
+}
+
+.mascot-typing-indicator span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.mascot-typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.mascot-typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingBounce {
+
+    0%,
+    80%,
+    100% {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: translateY(-6px);
+        opacity: 1;
+    }
+}
+
+/* Welcome Message */
+.mascot-welcome {
+    text-align: center;
+    padding: 20px;
+}
+
+.mascot-welcome-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.mascot-welcome-text {
+    color: var(--mascot-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .mascot-launcher {
+        bottom: 16px;
+        right: 16px;
+    }
+
+    .mascot-launcher.position-left {
+        right: auto;
+        left: 16px;
+    }
+
+    .mascot-launcher-img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .mascot-pulse-ring {
+        width: 65px;
+        height: 65px;
+    }
+
+    .mascot-chat-modal {
+        bottom: 100px;
+        right: 12px;
+        width: calc(100vw - 24px);
+        max-height: calc(100vh - 120px);
+    }
+
+    .mascot-chat-modal.position-left {
+        right: auto;
+        left: 12px;
+    }
+
+    .mascot-chat-body {
+        min-height: 250px;
+        max-height: 350px;
+    }
+}
