@@ -159,7 +159,7 @@
 
 /* BioGuard Main Page Styles */
 .bioguard-header {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #f0f9ff 100%);
+    background: #E0F2F1;
     padding: 8rem 2rem 4rem;
     text-align: center;
     position: relative;
@@ -167,19 +167,7 @@
 }
 
 .bioguard-header::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(at 20% 30%,
-            rgba(16, 185, 129, 0.15) 0px,
-            transparent 50%),
-        radial-gradient(at 80% 20%,
-            rgba(6, 182, 212, 0.15) 0px,
-            transparent 50%);
-    pointer-events: none;
+    display: none;
 }
 
 .bioguard-header-content {
@@ -238,11 +226,11 @@
 /* Feature Sections */
 .bioguard-section {
     padding: 5rem 2rem;
-    
+
 }
 
 .bioguard-container {
-    max-width: 1280px;
+    max-width: 80%;
     margin: 0 auto;
 }
 
@@ -334,6 +322,7 @@
 /* Map Section */
 .bioguard-map-section {
     background: #f9fafb;
+    
 }
 
 .bioguard-map-container {
@@ -544,7 +533,7 @@
 
 /* Community Section */
 .bioguard-community-section {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+    background: white;
 }
 
 .bioguard-community-grid {
@@ -1155,7 +1144,7 @@
 
 /* Peta Interactive Map Styles (EcoDetect) */
 .peta-map-section {
-    background: #f9fafb;
+    background: white;
     padding: 3rem 2rem 5rem;
 }
 

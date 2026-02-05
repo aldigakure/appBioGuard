@@ -3,6 +3,10 @@
 @section('styles')
 <link rel="stylesheet" href="{{ asset('assets/css/dashboard.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/css/bioguard.css') }}">
+<!-- Leaflet.js CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+<!-- BioGuard Map CSS -->
+<link rel="stylesheet" href="{{ asset('assets/css/bioguard-map.css') }}">
 @endsection
 
 @section('content')
@@ -19,111 +23,55 @@
             <h1 class="user-welcome-title">Selamat Datang, <span class="text-gradient">{{ Auth::user()->name ?? 'Pengguna' }}</span>!</h1>
             <p class="user-welcome-desc">
                 Pantau dan jelajahi keanekaragaman hayati Indonesia melalui peta interaktif di bawah. 
-                Klik pada provinsi mana saja untuk melihat detail spesies flora dan fauna yang terdapat di wilayah tersebut.
+                Klik pada marker provinsi untuk melihat detail spesies flora dan fauna yang terdapat di wilayah tersebut.
             </p>
         </div>
     </div>
 </div>
 
 <!-- Flora Interactive Map Section -->
-<section class="user-map-section">
-    <div class="user-map-container">
-        <div class="dashboard-map-header">
-            <div class="dashboard-map-icon flora">🌿</div>
-            <div>
-                <h2 class="dashboard-map-title">Peta Interaktif Flora Indonesia</h2>
-                <p class="dashboard-map-subtitle">Jelajahi sebaran habitat tumbuhan langka di setiap provinsi</p>
-            </div>
-        </div>
+<section class="bioguard-section bioguard-map-section">
+    <div class="bioguard-container">
+        <h2 class="bioguard-section-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:8px;"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Peta Interaktif Habitat Flora</h2>
+        <p class="bioguard-section-subtitle">Jelajahi sebaran habitat tumbuhan langka di Indonesia</p>
+
         <div class="bioguard-map-container">
-            <!-- Map Container -->
             <div class="bioguard-map-wrapper">
                 <div id="flora-map" class="bioguard-map-interactive flora"></div>
-                <div class="dashboard-map-legend">
-                    <div class="dashboard-legend-title">Tingkat Keanekaragaman Flora</div>
-                    <div class="dashboard-legend-items">
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #064e3b;"></span>
-                            <span>Sangat Tinggi (>500 spesies)</span>
-                        </div>
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #059669;"></span>
-                            <span>Tinggi (300-500 spesies)</span>
-                        </div>
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #34d399;"></span>
-                            <span>Sedang (150-300 spesies)</span>
-                        </div>
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #a7f3d0;"></span>
-                            <span>Rendah (<150 spesies)</span>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <!-- Flora Detail Panel -->
             <div class="bioguard-habitat-list" id="floraHabitatList">
                 <div class="bioguard-habitat-placeholder">
-                    <div class="bioguard-habitat-placeholder-icon">🌿</div>
-                    <p>Klik provinsi pada peta untuk melihat detail flora</p>
+                    <div class="bioguard-habitat-placeholder-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
+                    <p>Klik marker pada peta untuk melihat detail flora provinsi</p>
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard Flora Lainnya (New Section at Bottom) -->
-        <div id="dashboardFloraLainnyaContainer"></div>
+        <!-- Flora Lainnya Section (ID sama dengan BioGuard) -->
+        <div id="floraLainnyaContainer" class="flora-lainnya-wrapper"></div>
     </div>
 </section>
 
 <!-- Fauna Interactive Map Section -->
-<section class="user-map-section fauna-section">
-    <div class="user-map-container">
-        <div class="dashboard-map-header">
-            <div class="dashboard-map-icon fauna">🦋</div>
-            <div>
-                <h2 class="dashboard-map-title">Peta Interaktif Fauna Indonesia</h2>
-                <p class="dashboard-map-subtitle">Jelajahi sebaran habitat satwa liar di setiap provinsi</p>
-            </div>
-        </div>
-        <div class="bioguard-map-container">
-            <!-- Map Container -->
-            <div class="bioguard-map-wrapper">
-                <div id="fauna-map" class="bioguard-map-interactive"></div>
-                <div class="dashboard-map-legend">
-                    <div class="dashboard-legend-title">Tingkat Keanekaragaman Fauna</div>
-                    <div class="dashboard-legend-items">
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #b45309;"></span>
-                            <span>Sangat Tinggi (>100 spesies)</span>
-                        </div>
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #f59e0b;"></span>
-                            <span>Tinggi (50-100 spesies)</span>
-                        </div>
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #fbbf24;"></span>
-                            <span>Sedang (25-50 spesies)</span>
-                        </div>
-                        <div class="dashboard-legend-item">
-                            <span class="dashboard-legend-color" style="background: #fef3c7;"></span>
-                            <span>Rendah (<25 spesies)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<section class="bioguard-section bioguard-map-section">
+    <div class="bioguard-container">
+        <h2 class="bioguard-section-title"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:8px;"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Peta Interaktif Habitat Fauna</h2>
+        <p class="bioguard-section-subtitle">Jelajahi sebaran habitat satwa liar di Indonesia</p>
 
-            <!-- Fauna Detail Panel -->
+        <div class="bioguard-map-container">
+            <div class="bioguard-map-wrapper">
+                <div id="fauna-map" class="bioguard-map-interactive fauna"></div>
+            </div>
             <div class="bioguard-habitat-list" id="faunaHabitatList">
                 <div class="bioguard-habitat-placeholder">
-                    <div class="bioguard-habitat-placeholder-icon">🦋</div>
-                    <p>Klik provinsi pada peta untuk melihat detail fauna</p>
+                    <div class="bioguard-habitat-placeholder-icon"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17a5 5 0 0 0 5-5c0-4-5-9-5-9s-5 5-5 9a5 5 0 0 0 5 5Z"/><path d="m9.5 14.5 5-5"/></svg></div>
+                    <p>Klik marker pada peta untuk melihat detail fauna provinsi</p>
                 </div>
             </div>
         </div>
 
-        <!-- Dashboard Fauna Lainnya (New Section at Bottom) -->
-        <div id="dashboardFaunaLainnyaContainer"></div>
+        <!-- Fauna Lainnya Section (ID sama dengan BioGuard) -->
+        <div id="faunaLainnyaContainer" class="fauna-lainnya-wrapper"></div>
     </div>
 </section>
 
@@ -155,14 +103,10 @@
     </div>
 </section>
 
-<!-- Highcharts Maps Scripts -->
-<script src="https://code.highcharts.com/maps/highmaps.js"></script>
-<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
-<script src="https://code.highcharts.com/mapdata/countries/id/id-all.js"></script>
-
-<!-- External Map Scripts -->
-<script src="{{ asset('assets/js/dashboard-flora-map.js') }}"></script>
-<script src="{{ asset('assets/js/dashboard-fauna-map.js') }}"></script>
+<!-- Leaflet.js Script -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<!-- Pakai JS BioGuard langsung (sama dengan pages BioGuard Flora & Fauna) -->
+<script src="{{ asset('assets/js/bioguard-flora-leaflet.js') }}"></script>
+<script src="{{ asset('assets/js/bioguard-fauna-leaflet.js') }}"></script>
 
 @endsection

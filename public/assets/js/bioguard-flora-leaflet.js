@@ -5,7 +5,7 @@
  */
 
 // SVG Icons for consistent styling
-const SVG_ICONS = {
+const FLORA_SVG_ICONS = {
     leaf: (size = 24, color = 'currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>`,
     flower: (size = 24, color = '#ec4899') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="1.5"><path d="M12 7.5a4.5 4.5 0 1 1 4.5 4.5M12 7.5A4.5 4.5 0 1 0 7.5 12M12 7.5V9m-4.5 3a4.5 4.5 0 1 0 4.5 4.5M7.5 12H9m7.5 0a4.5 4.5 0 1 1-4.5 4.5m4.5-4.5H15m-3 4.5V15"/><circle cx="12" cy="12" r="3"/></svg>`,
     trophy: (size = 24, color = '#f59e0b') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
@@ -18,15 +18,15 @@ const SVG_ICONS = {
 };
 
 // Flora data storage
-let floraData = {};
-let map = null;
-let markers = [];
+let floraDataStorage = {};
+let floraMapInstance = null;
+let floraMarkersArray = [];
 
 // API URL
 const FLORA_API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
 
 // Province coordinates for Indonesia
-const provinceCoordinates = {
+const floraProvinceCoords = {
     'Aceh': { lat: 4.695135, lng: 96.749397 },
     'Sumatera Utara': { lat: 2.115355, lng: 99.545097 },
     'Sumatera Barat': { lat: -0.739940, lng: 100.800003 },
@@ -70,7 +70,7 @@ const provinceCoordinates = {
 /**
  * Parse conservation status
  */
-function parseStatus(statusString) {
+function parseFloraStatus(statusString) {
     if (!statusString) return 'Umum';
     if (statusString.includes('Kritis') || statusString.includes('Critically')) return 'Kritis';
     if (statusString.includes('Terancam') || statusString.includes('Endangered')) return 'Terancam';
@@ -97,7 +97,7 @@ function initFloraMap() {
     }
 
     // Create map with mobile-friendly options and infinite scroll (world wrapping)
-    map = L.map('flora-map', {
+    floraMapInstance = L.map('flora-map', {
         center: indonesiaCenter,
         zoom: initialZoom,
         minZoom: 3,
@@ -117,7 +117,7 @@ function initFloraMap() {
         subdomains: 'abcd',
         maxZoom: 10,
         noWrap: false  // Allow tile wrapping for infinite horizontal scroll
-    }).addTo(map);
+    }).addTo(floraMapInstance);
 
     // Add Indonesia GeoJSON overlay with GREEN color for Flora
     fetch('https://raw.githubusercontent.com/superpikar/indonesia-geojson/master/indonesia.geojson')
@@ -131,22 +131,22 @@ function initFloraMap() {
                     weight: 2,
                     opacity: 1
                 }
-            }).addTo(map);
+            }).addTo(floraMapInstance);
         })
         .catch(error => {
             console.log('GeoJSON not loaded');
         });
 
     // Move zoom control to bottom right
-    map.zoomControl.setPosition('bottomright');
+    floraMapInstance.zoomControl.setPosition('bottomright');
 
     // Fetch flora data
     fetchFloraData();
 
     // Handle window resize
     window.addEventListener('resize', function () {
-        if (map) {
-            map.invalidateSize();
+        if (floraMapInstance) {
+            floraMapInstance.invalidateSize();
         }
     });
 }
@@ -170,7 +170,7 @@ async function fetchFloraData() {
                     name: flora.nama,
                     latin: flora.latin,
                     namaLain: flora.namaLain,
-                    status: parseStatus(flora.status),
+                    status: parseFloraStatus(flora.status),
                     habitat: flora.habitat,
                     manfaat: flora.manfaat,
                     tips: flora.tips,
@@ -194,7 +194,7 @@ async function fetchFloraData() {
                     });
                 });
 
-                floraData[provinceName] = {
+                floraDataStorage[provinceName] = {
                     name: provinceName,
                     mainFlora: flora,
                     species: species
@@ -231,11 +231,11 @@ function createFloraMarkerIcon() {
  * Add flora markers to map
  */
 function addFloraMarkers() {
-    markers.forEach(marker => map.removeLayer(marker));
-    markers = [];
+    floraMarkersArray.forEach(marker => floraMapInstance.removeLayer(marker));
+    floraMarkersArray = [];
 
-    for (const [provinceName, data] of Object.entries(floraData)) {
-        const coords = provinceCoordinates[provinceName];
+    for (const [provinceName, data] of Object.entries(floraDataStorage)) {
+        const coords = floraProvinceCoords[provinceName];
         if (!coords) continue;
 
         const mainFlora = data.mainFlora;
@@ -245,7 +245,7 @@ function addFloraMarkers() {
         const marker = L.marker([coords.lat, coords.lng], {
             icon: createFloraMarkerIcon(),
             title: provinceName
-        }).addTo(map);
+        }).addTo(floraMapInstance);
 
         // Popup content with image placeholder and species info
         const popupContent = `
@@ -268,7 +268,7 @@ function addFloraMarkers() {
             className: 'flora-popup'
         });
 
-        markers.push(marker);
+        floraMarkersArray.push(marker);
     }
 }
 
@@ -276,15 +276,15 @@ function addFloraMarkers() {
  * Show flora detail panel
  */
 function showFloraDetail(provinceName) {
-    const d = floraData[provinceName];
+    const d = floraDataStorage[provinceName];
 
     // Close popup
-    map.closePopup();
+    floraMapInstance.closePopup();
 
     // Zoom to province
-    const coords = provinceCoordinates[provinceName];
-    if (coords && map) {
-        map.setView([coords.lat, coords.lng], 7, { animate: true });
+    const coords = floraProvinceCoords[provinceName];
+    if (coords && floraMapInstance) {
+        floraMapInstance.setView([coords.lat, coords.lng], 7, { animate: true });
     }
 
     if (!d) {
@@ -298,7 +298,7 @@ function showFloraDetail(provinceName) {
     }
 
     const mainFlora = d.mainFlora;
-    const mainStatus = parseStatus(mainFlora?.status);
+    const mainStatus = parseFloraStatus(mainFlora?.status);
     const statusClass = mainStatus === 'Kritis' ? 'status-critical' :
         (mainStatus === 'Terancam' ? 'status-critical' :
             (mainStatus === 'Rentan' ? 'status-vulnerable' :
@@ -312,7 +312,7 @@ function showFloraDetail(provinceName) {
     document.getElementById('floraHabitatList').innerHTML = `
         <div class="peta-detail-content-wrapper">
             <div class="peta-detail-header">
-                <div class="peta-detail-icon">${SVG_ICONS.leaf(32, '#10b981')}</div>
+                <div class="peta-detail-icon">${FLORA_SVG_ICONS.leaf(32, '#10b981')}</div>
                 <div>
                     <h3 class="peta-detail-title">${d.name}</h3>
                     <p class="peta-detail-subtitle">${d.species.length} spesies flora tercatat</p>
@@ -335,10 +335,10 @@ function showFloraDetail(provinceName) {
             </div>
 
             <div class="peta-species-section">
-                <h4 class="peta-species-title">${SVG_ICONS.trophy(20)} Flora Identitas</h4>
+                <h4 class="peta-species-title">${FLORA_SVG_ICONS.trophy(20)} Flora Identitas</h4>
                 <div class="peta-flora-identity-card">
                     <div class="peta-flora-identity-header">
-                        <div class="peta-flora-identity-icon">${SVG_ICONS.flower(40)}</div>
+                        <div class="peta-flora-identity-icon">${FLORA_SVG_ICONS.flower(40)}</div>
                         <div class="peta-flora-identity-info">
                             <h5 class="peta-flora-identity-name">${mainFlora?.nama || '-'}</h5>
                             ${mainFlora?.namaLain ? `<p class="peta-flora-identity-alias">${mainFlora.namaLain}</p>` : ''}
@@ -350,11 +350,11 @@ function showFloraDetail(provinceName) {
                         <p>${mainDescription}</p>
                     </div>
                     <div class="peta-flora-identity-details">
-                        ${mainFlora?.warna ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${SVG_ICONS.palette()}</span><span class="peta-flora-detail-label">Warna:</span> ${mainFlora.warna}</div>` : ''}
-                        ${mainFlora?.tinggi ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${SVG_ICONS.ruler()}</span><span class="peta-flora-detail-label">Tinggi:</span> ${mainFlora.tinggi}</div>` : ''}
-                        ${mainFlora?.habitat ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${SVG_ICONS.mountain()}</span><span class="peta-flora-detail-label">Habitat:</span> ${mainFlora.habitat}</div>` : ''}
-                        ${mainFlora?.manfaat ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${SVG_ICONS.sparkles()}</span><span class="peta-flora-detail-label">Manfaat:</span> ${mainFlora.manfaat}</div>` : ''}
-                        ${mainFlora?.tips ? `<div class="peta-flora-detail-item peta-flora-tips"><span class="peta-flora-detail-icon">${SVG_ICONS.lightbulb()}</span><span class="peta-flora-detail-label">Tips:</span> ${mainFlora.tips}</div>` : ''}
+                        ${mainFlora?.warna ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${FLORA_SVG_ICONS.palette()}</span><span class="peta-flora-detail-label">Warna:</span> ${mainFlora.warna}</div>` : ''}
+                        ${mainFlora?.tinggi ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${FLORA_SVG_ICONS.ruler()}</span><span class="peta-flora-detail-label">Tinggi:</span> ${mainFlora.tinggi}</div>` : ''}
+                        ${mainFlora?.habitat ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${FLORA_SVG_ICONS.mountain()}</span><span class="peta-flora-detail-label">Habitat:</span> ${mainFlora.habitat}</div>` : ''}
+                        ${mainFlora?.manfaat ? `<div class="peta-flora-detail-item"><span class="peta-flora-detail-icon">${FLORA_SVG_ICONS.sparkles()}</span><span class="peta-flora-detail-label">Manfaat:</span> ${mainFlora.manfaat}</div>` : ''}
+                        ${mainFlora?.tips ? `<div class="peta-flora-detail-item peta-flora-tips"><span class="peta-flora-detail-icon">${FLORA_SVG_ICONS.lightbulb()}</span><span class="peta-flora-detail-label">Tips:</span> ${mainFlora.tips}</div>` : ''}
                     </div>
                 </div>
             </div>
@@ -368,7 +368,7 @@ function showFloraDetail(provinceName) {
     if (otherSpecies.length > 0) {
         let otherHtml = `
             <div class="peta-species-section bottom-section">
-                <h4 class="peta-species-title">${SVG_ICONS.seedling(20)} Flora Lainnya di ${d.name}</h4>
+                <h4 class="peta-species-title">${FLORA_SVG_ICONS.seedling(20)} Flora Lainnya di ${d.name}</h4>
                 <div class="peta-flora-grid">
         `;
 
@@ -411,12 +411,12 @@ function showFloraDetail(provinceName) {
  * Reset map view
  */
 function resetFloraMapView() {
-    if (map) {
+    if (floraMapInstance) {
         let resetZoom = 5;
         if (window.innerWidth <= 768) {
             resetZoom = 4;
         }
-        map.setView([-2.5, 118.0], resetZoom, { animate: true });
+        floraMapInstance.setView([-2.5, 118.0], resetZoom, { animate: true });
     }
 }
 

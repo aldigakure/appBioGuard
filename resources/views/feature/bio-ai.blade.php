@@ -194,7 +194,7 @@
 </section>
 
 <!-- Charts Section -->
-<section class="bioguard-section" style="background: #f8fafc;">
+<section class="bioguard-section" style="background: white;">
     <div class="bioguard-container">
         <div class="bioai-section-header">
             <h2 class="bioguard-section-title">📈 Tren & Analitik Reboisasi</h2>

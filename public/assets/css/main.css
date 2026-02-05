@@ -542,7 +542,7 @@
 
  /* Stats Section */
  .stats-section {
-     background: white;
+     
      color: var(--primary-700);
      position: relative;
      overflow: hidden;
@@ -612,7 +612,7 @@
 
  /* CTA Section */
  .cta-section {
-     background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 50%, #f0f9ff 100%);
+
      position: relative;
      padding: 100px 0;
  }
@@ -1208,7 +1208,7 @@
          max-width: 100% !important;
          width: 100% !important;
          position: absolute !important;
-         top: 100% !important;
+         top: 50% !important;
          left: 0 !important;
          right: 0 !important;
          margin-left: 0 !important;

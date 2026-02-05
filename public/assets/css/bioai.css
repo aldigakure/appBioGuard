@@ -74,7 +74,7 @@
 
 /* Map Section */
 .bioai-map-section {
-    background: linear-gradient(135deg, #f0fdf4 0%, #ecfeff 100%);
+    background: linear-gradient(white);
 }
 
 .bioai-section-header {

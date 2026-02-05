@@ -5,7 +5,7 @@
  */
 
 // SVG Icons for consistent styling
-const SVG_ICONS = {
+const FAUNA_SVG_ICONS = {
     paw: (size = 24, color = 'currentColor') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></svg>`,
     butterfly: (size = 24, color = '#f59e0b') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17a5 5 0 0 0 5-5c0-4-5-9-5-9s-5 5-5 9a5 5 0 0 0 5 5Z"/><path d="m9.5 14.5 5-5"/></svg>`,
     trophy: (size = 24, color = '#f59e0b') => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>`,
@@ -19,15 +19,15 @@ const SVG_ICONS = {
 };
 
 // Fauna data storage
-let faunaData = {};
-let map = null;
-let markers = [];
+let faunaDataStorage = {};
+let faunaMapInstance = null;
+let faunaMarkersArray = [];
 
 // API URL
 const FAUNA_API_URL = 'https://smartonesda.github.io/bioexplore-nusantara/assets/data/provinsi.json';
 
 // Province coordinates for Indonesia
-const provinceCoordinates = {
+const faunaProvinceCoords = {
     'Aceh': { lat: 4.695135, lng: 96.749397 },
     'Sumatera Utara': { lat: 2.115355, lng: 99.545097 },
     'Sumatera Barat': { lat: -0.739940, lng: 100.800003 },
@@ -108,7 +108,7 @@ function getFaunaIcon(name) {
 /**
  * Parse conservation status
  */
-function parseStatus(statusString) {
+function parseFaunaStatus(statusString) {
     if (!statusString) return 'Umum';
     if (statusString.includes('Kritis') || statusString.includes('Critically')) return 'Kritis';
     if (statusString.includes('Terancam') || statusString.includes('Endangered')) return 'Terancam';
@@ -135,7 +135,7 @@ function initFaunaMap() {
     }
 
     // Create map with mobile-friendly options and infinite scroll (world wrapping)
-    map = L.map('fauna-map', {
+    faunaMapInstance = L.map('fauna-map', {
         center: indonesiaCenter,
         zoom: initialZoom,
         minZoom: 3,
@@ -155,7 +155,7 @@ function initFaunaMap() {
         subdomains: 'abcd',
         maxZoom: 10,
         noWrap: false  // Allow tile wrapping for infinite horizontal scroll
-    }).addTo(map);
+    }).addTo(faunaMapInstance);
 
     // Add Indonesia GeoJSON overlay with YELLOW color for Fauna
     fetch('https://raw.githubusercontent.com/superpikar/indonesia-geojson/master/indonesia.geojson')
@@ -169,22 +169,22 @@ function initFaunaMap() {
                     weight: 2,
                     opacity: 1
                 }
-            }).addTo(map);
+            }).addTo(faunaMapInstance);
         })
         .catch(error => {
             console.log('GeoJSON not loaded');
         });
 
     // Move zoom control to bottom right
-    map.zoomControl.setPosition('bottomright');
+    faunaMapInstance.zoomControl.setPosition('bottomright');
 
     // Fetch fauna data
     fetchFaunaData();
 
     // Handle window resize
     window.addEventListener('resize', function () {
-        if (map) {
-            map.invalidateSize();
+        if (faunaMapInstance) {
+            faunaMapInstance.invalidateSize();
         }
     });
 }
@@ -208,7 +208,7 @@ async function fetchFaunaData() {
                     name: fauna.nama,
                     latin: fauna.latin,
                     namaLain: fauna.namaLain,
-                    status: parseStatus(fauna.status),
+                    status: parseFaunaStatus(fauna.status),
                     habitat: fauna.habitat,
                     perilaku: fauna.perilaku,
                     makanan: fauna.makanan,
@@ -233,7 +233,7 @@ async function fetchFaunaData() {
                     });
                 });
 
-                faunaData[provinceName] = {
+                faunaDataStorage[provinceName] = {
                     name: provinceName,
                     mainFauna: fauna,
                     species: species
@@ -270,11 +270,11 @@ function createFaunaMarkerIcon() {
  * Add fauna markers to map
  */
 function addFaunaMarkers() {
-    markers.forEach(marker => map.removeLayer(marker));
-    markers = [];
+    faunaMarkersArray.forEach(marker => faunaMapInstance.removeLayer(marker));
+    faunaMarkersArray = [];
 
-    for (const [provinceName, data] of Object.entries(faunaData)) {
-        const coords = provinceCoordinates[provinceName];
+    for (const [provinceName, data] of Object.entries(faunaDataStorage)) {
+        const coords = faunaProvinceCoords[provinceName];
         if (!coords) continue;
 
         const mainFauna = data.mainFauna;
@@ -285,12 +285,12 @@ function addFaunaMarkers() {
         const marker = L.marker([coords.lat, coords.lng], {
             icon: createFaunaMarkerIcon(),
             title: provinceName
-        }).addTo(map);
+        }).addTo(faunaMapInstance);
 
         // Popup content
         const popupContent = `
             <div class="map-popup">
-                <div class="map-popup-image" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">${SVG_ICONS.animal(48)}</div>
+                <div class="map-popup-image" style="background: linear-gradient(135deg, #fef3c7, #fde68a);">${FAUNA_SVG_ICONS.animal(48)}</div>
                 <div class="map-popup-content">
                     <h3 class="map-popup-title">${mainFauna?.nama || provinceName}</h3>
                     <p class="map-popup-subtitle">${provinceName} • ${speciesCount} spesies</p>
@@ -308,7 +308,7 @@ function addFaunaMarkers() {
             className: 'fauna-popup'
         });
 
-        markers.push(marker);
+        faunaMarkersArray.push(marker);
     }
 }
 
@@ -316,21 +316,21 @@ function addFaunaMarkers() {
  * Show fauna detail panel
  */
 function showFaunaDetail(provinceName) {
-    const d = faunaData[provinceName];
+    const d = faunaDataStorage[provinceName];
 
     // Close popup
-    map.closePopup();
+    faunaMapInstance.closePopup();
 
     // Zoom to province
-    const coords = provinceCoordinates[provinceName];
-    if (coords && map) {
-        map.setView([coords.lat, coords.lng], 7, { animate: true });
+    const coords = faunaProvinceCoords[provinceName];
+    if (coords && faunaMapInstance) {
+        faunaMapInstance.setView([coords.lat, coords.lng], 7, { animate: true });
     }
 
     if (!d) {
         document.getElementById('faunaHabitatList').innerHTML = `
             <div class="bioguard-habitat-placeholder">
-                <div class="bioguard-habitat-placeholder-icon">${SVG_ICONS.butterfly(64)}</div>
+                <div class="bioguard-habitat-placeholder-icon">${FAUNA_SVG_ICONS.butterfly(64)}</div>
                 <p>Data fauna untuk ${provinceName} belum tersedia</p>
             </div>
         `;
@@ -338,7 +338,7 @@ function showFaunaDetail(provinceName) {
     }
 
     const mainFauna = d.mainFauna;
-    const mainStatus = parseStatus(mainFauna?.status);
+    const mainStatus = parseFaunaStatus(mainFauna?.status);
     const statusClass = mainStatus === 'Kritis' ? 'status-critical' :
         (mainStatus === 'Terancam' ? 'status-critical' :
             (mainStatus === 'Rentan' ? 'status-vulnerable' :
@@ -353,7 +353,7 @@ function showFaunaDetail(provinceName) {
     document.getElementById('faunaHabitatList').innerHTML = `
         <div class="peta-detail-content-wrapper">
             <div class="peta-detail-header fauna">
-                <div class="peta-detail-icon">${SVG_ICONS.butterfly(32)}</div>
+                <div class="peta-detail-icon">${FAUNA_SVG_ICONS.butterfly(32)}</div>
                 <div>
                     <h3 class="peta-detail-title">${d.name}</h3>
                     <p class="peta-detail-subtitle">${d.species.length} spesies fauna tercatat</p>
@@ -376,10 +376,10 @@ function showFaunaDetail(provinceName) {
             </div>
 
             <div class="peta-species-section">
-                <h4 class="peta-species-title fauna">${SVG_ICONS.trophy(20)} Fauna Identitas</h4>
+                <h4 class="peta-species-title fauna">${FAUNA_SVG_ICONS.trophy(20)} Fauna Identitas</h4>
                 <div class="peta-fauna-identity-card">
                     <div class="peta-fauna-identity-header">
-                        <div class="peta-fauna-identity-icon">${SVG_ICONS.animal(40)}</div>
+                        <div class="peta-fauna-identity-icon">${FAUNA_SVG_ICONS.animal(40)}</div>
                         <div class="peta-fauna-identity-info">
                             <h5 class="peta-fauna-identity-name">${mainFauna?.nama || '-'}</h5>
                             ${mainFauna?.namaLain ? `<p class="peta-fauna-identity-alias">${mainFauna.namaLain}</p>` : ''}
@@ -391,12 +391,12 @@ function showFaunaDetail(provinceName) {
                         <p>${mainDescription}</p>
                     </div>
                     <div class="peta-fauna-identity-details">
-                        ${mainFauna?.ukuran ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${SVG_ICONS.ruler()}</span><span class="peta-fauna-detail-label">Ukuran:</span> ${mainFauna.ukuran}</div>` : ''}
-                        ${mainFauna?.berat ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${SVG_ICONS.scale()}</span><span class="peta-fauna-detail-label">Berat:</span> ${mainFauna.berat}</div>` : ''}
-                        ${mainFauna?.habitat ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${SVG_ICONS.mountain()}</span><span class="peta-fauna-detail-label">Habitat:</span> ${mainFauna.habitat}</div>` : ''}
-                        ${mainFauna?.makanan ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${SVG_ICONS.utensils()}</span><span class="peta-fauna-detail-label">Makanan:</span> ${mainFauna.makanan}</div>` : ''}
-                        ${mainFauna?.perilaku ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${SVG_ICONS.search()}</span><span class="peta-fauna-detail-label">Perilaku:</span> ${mainFauna.perilaku}</div>` : ''}
-                        ${mainFauna?.tips ? `<div class="peta-fauna-detail-item peta-fauna-tips"><span class="peta-fauna-detail-icon">${SVG_ICONS.lightbulb()}</span><span class="peta-fauna-detail-label">Tips:</span> ${mainFauna.tips}</div>` : ''}
+                        ${mainFauna?.ukuran ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${FAUNA_SVG_ICONS.ruler()}</span><span class="peta-fauna-detail-label">Ukuran:</span> ${mainFauna.ukuran}</div>` : ''}
+                        ${mainFauna?.berat ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${FAUNA_SVG_ICONS.scale()}</span><span class="peta-fauna-detail-label">Berat:</span> ${mainFauna.berat}</div>` : ''}
+                        ${mainFauna?.habitat ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${FAUNA_SVG_ICONS.mountain()}</span><span class="peta-fauna-detail-label">Habitat:</span> ${mainFauna.habitat}</div>` : ''}
+                        ${mainFauna?.makanan ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${FAUNA_SVG_ICONS.utensils()}</span><span class="peta-fauna-detail-label">Makanan:</span> ${mainFauna.makanan}</div>` : ''}
+                        ${mainFauna?.perilaku ? `<div class="peta-fauna-detail-item"><span class="peta-fauna-detail-icon">${FAUNA_SVG_ICONS.search()}</span><span class="peta-fauna-detail-label">Perilaku:</span> ${mainFauna.perilaku}</div>` : ''}
+                        ${mainFauna?.tips ? `<div class="peta-fauna-detail-item peta-fauna-tips"><span class="peta-fauna-detail-icon">${FAUNA_SVG_ICONS.lightbulb()}</span><span class="peta-fauna-detail-label">Tips:</span> ${mainFauna.tips}</div>` : ''}
                     </div>
                 </div>
             </div>
@@ -410,7 +410,7 @@ function showFaunaDetail(provinceName) {
     if (otherSpecies.length > 0) {
         let otherHtml = `
             <div class="peta-species-section bottom-section">
-                <h4 class="peta-species-title fauna">${SVG_ICONS.paw(20)} Fauna Lainnya di ${d.name}</h4>
+                <h4 class="peta-species-title fauna">${FAUNA_SVG_ICONS.paw(20)} Fauna Lainnya di ${d.name}</h4>
                 <div class="peta-fauna-grid">
         `;
 
@@ -454,12 +454,12 @@ function showFaunaDetail(provinceName) {
  * Reset map view
  */
 function resetFaunaMapView() {
-    if (map) {
+    if (faunaMapInstance) {
         let resetZoom = 5;
         if (window.innerWidth <= 768) {
             resetZoom = 4;
         }
-        map.setView([-2.5, 118.0], resetZoom, { animate: true });
+        faunaMapInstance.setView([-2.5, 118.0], resetZoom, { animate: true });
     }
 }
 
